@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button,
     Cascader,
@@ -27,24 +27,20 @@ const ProductForm = () => {
 
     const productData = useSelector((state) => state.productData);
 
+    const [currentProduct, setCurrentProduct] = useState(productData || {})
 
-    // const [product, setProduct] = useState({
-    //     title: '',
-    //     category: null
-    // });
-
-    // setProduct((pre) => (adminApp.productBean))
-
+    useEffect(()=>{
+        setCurrentProduct(productData || {})
+    }, [productData])
 
     const hideProductForm = () => {
         dispatch(setShowForm(false))
     }
 
     const commit = () => {
-        console.log("commit-->", productData);
+        console.log("commit-->", currentProduct);
         // 整理带传数据...
-        let product = productData
-        doCommit(product);
+        // doCommit(currentProduct);
     }
 
     const doCommit = async (product) => {
@@ -65,10 +61,24 @@ const ProductForm = () => {
 
     // 更新子组件传来的值
     const handleInputChange = (name, value) => {
-        dispatch(setProductData({
-            [name]: value,
-        }))
+        // dispatch(setProductData({
+        //     [name]: value,
+        // }))
+
+        setCurrentProduct((prev) => ({...prev, [name]: value}));
+
     };
+
+    const handleSelectChange = (name,value) => {
+        // dispatch(setProductData({
+        //     [name]: value,
+        // }))
+
+        setCurrentProduct((prev) => ({...prev, [name]: value}));
+    };
+
+    console.log('currentProduct-----------', currentProduct)
+
 
     return (
         <div className="flex flex-col">
@@ -77,7 +87,7 @@ const ProductForm = () => {
                 <ArrowLeftOutlined  onClick={hideProductForm} style={{color: '#2174ff'}} className="cursor-pointer"/>
                 <span className="mx-4">
                     {
-                        adminApp.formState === 'add' ? '新增产品' : '编辑产品'
+                        currentProduct.id ? '编辑产品' : '新增产品'
                     }
                 </span>
             </div>
@@ -88,13 +98,33 @@ const ProductForm = () => {
                     <div className="flex flex-col gap-4 px-2 py-2">
                         <div className="flex flex-row gap-4">
                             <FormLabel title="标题" required={true}></FormLabel>
-                            <AdminInput placeholder="请输入产品名称" value={productData.title}
-                                        onInputChange={(value) => handleInputChange('title', value)}/>
+                            <Input placeholder="请输入产品名称" value={currentProduct.title} onChange={(e) => handleInputChange("title", e.target.value)} style={{width:400}}/>
                         </div>
                         <div className="flex flex-row gap-4">
                             <FormLabel title="分类" required={true}></FormLabel>
-                            <AdminSelect placeholder="请选择" value={productData.category}
-                                         onInputChange={(value) => handleInputChange('category', value)} />
+                            <Select
+                                placeholder="请选择"
+                                allowClear
+                                style={{
+                                    width: 400,
+                                }}
+                                value={currentProduct.category}
+                                onChange={(value)=>handleSelectChange("category",value)}
+                                options={[
+                                    {
+                                        value: 'jack',
+                                        label: 'Jack',
+                                    },
+                                    {
+                                        value: 'lucy',
+                                        label: 'Lucy',
+                                    },
+                                    {
+                                        value: 'Yiminghe',
+                                        label: 'yiminghe',
+                                    },
+                                ]}
+                            />
                         </div>
                     </div>
 

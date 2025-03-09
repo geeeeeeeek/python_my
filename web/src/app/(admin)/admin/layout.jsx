@@ -19,7 +19,7 @@ export default function AdminLayout({children}) {
             <SideBar></SideBar>
             <div className=" flex-1 flex flex-col  h-screen max-h-screen">
                 <Header></Header>
-                <div className="flex-1 overflow-y-auto">{children}</div>
+                <div className="flex-1 overflow-y-auto bg-gray-100">{children}</div>
             </div>
         </div>
     );

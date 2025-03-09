@@ -5,6 +5,7 @@ import ProductForm from "@/components/admin/productForm";
 import {useDispatch, useSelector} from "react-redux";
 import {setShowForm} from "@/redux/adminSettingSlice";
 import {Tabs} from "antd";
+import CategoryList from "@/components/admin/category/categoryList";
 
 
 export default function Page() {
@@ -27,7 +28,7 @@ export default function Page() {
         {
             key: '2',
             label: '产品分类',
-            children: 'Content of Tab Pane 2',
+            children: <CategoryList />,
         },
         {
             key: '3',
@@ -43,7 +44,6 @@ export default function Page() {
                         adminApp.showForm ? (
                             <ProductForm/>
                         ) : (
-                            // <ProductList/>
                             <div>
                                 <div className="bg-white h-[50px] leading-[50px] font-bold px-5">
                                     产品管理

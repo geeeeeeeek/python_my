@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   title: "",
-  category: ""
+  category: undefined
 };
 
 const productDataSlice = createSlice({
