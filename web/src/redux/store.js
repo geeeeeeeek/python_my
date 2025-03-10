@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import adminSettingReducer from "./adminSettingSlice";
-import productDataReducer from "./productDataSlice";
+import productFormReducer from "./productFormSlice";
 
 const store = configureStore({
   reducer: {
     adminSetting: adminSettingReducer,
-    productData: productDataReducer
+    productForm: productFormReducer
   },
 });
 

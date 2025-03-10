@@ -42,7 +42,9 @@ export default function RootLayout({children}) {
                             },
                             Table: {
                                 headerBorderRadius: 0,
-                                headerBg: '#fff',
+                            },
+                            Pagination: {
+                                borderRadius: 0,
                             },
                             Button: {
                                 borderRadius: 0

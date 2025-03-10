@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import {useSelector} from "react-redux";
 const items = [
   {
@@ -85,17 +85,23 @@ const items = [
   }
 ];
 const SideBar = () => {
-  const [current, setCurrent] = useState('1');
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const [current, setCurrent] = useState(pathname);
 
   const adminApp = useSelector((state) => state.adminSetting);
 
-  const router = useRouter();
+
 
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
     router.push(e.key);
   };
+
+  // console.log('currentPath------',current)
+
   return (
     <>
       <div className="bg-[#3398cc] flex flex-col gap-4">

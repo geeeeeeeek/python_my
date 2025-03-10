@@ -6,14 +6,19 @@ import {useDispatch, useSelector} from "react-redux";
 import {setShowForm} from "@/redux/adminSettingSlice";
 import {Tabs} from "antd";
 import CategoryList from "@/components/admin/category/categoryList";
+import {setIsFormOpen} from "@/redux/productFormSlice";
 
 
 export default function Page() {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
 
+    const {currentItem, isFormOpen} = useSelector((state) => state.productForm);
+
+
     useEffect(() => {
-        dispatch(setShowForm(false))
+        // 首次加载页面关闭productForm
+        dispatch(setIsFormOpen(false));
     }, [])
 
     const onChange = (key) => {
@@ -41,7 +46,7 @@ export default function Page() {
         <>
             <div className="bg-gray-100">
                     {
-                        adminApp.showForm ? (
+                        isFormOpen ? (
                             <ProductForm/>
                         ) : (
                             <div>

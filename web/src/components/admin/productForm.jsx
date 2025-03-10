@@ -19,28 +19,28 @@ import AdminInput from "@/components/admin/adminInput";
 import axios from "@/utils/axios";
 import AdminSelect from "@/components/admin/adminSelect";
 import {ArrowLeftOutlined} from "@ant-design/icons";
-import {setProductData} from "@/redux/productDataSlice";
+import {setIsFormOpen, setProductData} from "@/redux/productFormSlice";
 
 const ProductForm = () => {
-    const dispatch = useDispatch();
-    const adminApp = useSelector((state) => state.adminSetting);
+    const dispatch = useDispatch()
 
-    const productData = useSelector((state) => state.productData);
+    const {productItem, isFormOpen} = useSelector((state) => state.productForm);
 
-    const [currentProduct, setCurrentProduct] = useState(productData || {})
+    const [currentItem, setCurrentItem] = useState(productItem || {})
 
     useEffect(()=>{
-        setCurrentProduct(productData || {})
-    }, [productData])
+        setCurrentItem(currentItem || {})
+    }, [currentItem])
 
-    const hideProductForm = () => {
-        dispatch(setShowForm(false))
+    const cancel = () => {
+        dispatch(setIsFormOpen(false))
     }
 
     const commit = () => {
-        console.log("commit-->", currentProduct);
+        console.log("commit-->", currentItem);
         // 整理带传数据...
-        // doCommit(currentProduct);
+        // doCommit(currentItem);
+        dispatch(setIsFormOpen(false))
     }
 
     const doCommit = async (product) => {
@@ -61,33 +61,25 @@ const ProductForm = () => {
 
     // 更新子组件传来的值
     const handleInputChange = (name, value) => {
-        // dispatch(setProductData({
-        //     [name]: value,
-        // }))
-
-        setCurrentProduct((prev) => ({...prev, [name]: value}));
+        setCurrentItem((prev) => ({...prev, [name]: value}));
 
     };
 
     const handleSelectChange = (name,value) => {
-        // dispatch(setProductData({
-        //     [name]: value,
-        // }))
-
-        setCurrentProduct((prev) => ({...prev, [name]: value}));
+        setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
-    console.log('currentProduct-----------', currentProduct)
+    console.log('currentItem-----------', currentItem)
 
 
     return (
         <div className="flex flex-col">
 
             <div className="bg-white h-[50px] leading-[50px] font-bold px-5">
-                <ArrowLeftOutlined  onClick={hideProductForm} style={{color: '#2174ff'}} className="cursor-pointer"/>
+                <ArrowLeftOutlined  onClick={()=>cancel()} style={{color: '#2174ff'}} className="cursor-pointer"/>
                 <span className="mx-4">
                     {
-                        currentProduct.id ? '编辑产品' : '新增产品'
+                        currentItem.id ? '编辑产品' : '新增产品'
                     }
                 </span>
             </div>
@@ -98,7 +90,7 @@ const ProductForm = () => {
                     <div className="flex flex-col gap-4 px-2 py-2">
                         <div className="flex flex-row gap-4">
                             <FormLabel title="标题" required={true}></FormLabel>
-                            <Input placeholder="请输入产品名称" value={currentProduct.title} onChange={(e) => handleInputChange("title", e.target.value)} style={{width:400}}/>
+                            <Input placeholder="请输入产品名称" value={currentItem.title} onChange={(e) => handleInputChange("title", e.target.value)} style={{width:400}}/>
                         </div>
                         <div className="flex flex-row gap-4">
                             <FormLabel title="分类" required={true}></FormLabel>
@@ -108,7 +100,7 @@ const ProductForm = () => {
                                 style={{
                                     width: 400,
                                 }}
-                                value={currentProduct.category}
+                                value={currentItem.category}
                                 onChange={(value)=>handleSelectChange("category",value)}
                                 options={[
                                     {
@@ -167,7 +159,7 @@ const ProductForm = () => {
                     <Divider />
 
                     <div className="flex flex-row gap-4">
-                        <Button type="primary" onClick={commit}>提交</Button>
+                        <Button type="primary" onClick={()=>commit()}>提交</Button>
                     </div>
                 </div>
             </div>
