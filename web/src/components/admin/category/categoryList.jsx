@@ -47,8 +47,8 @@ export default function CategoryList() {
     const [currentItem, setCurrentItem] = useState(null);
 
     const openModal = (item) => {
-        setCurrentItem(item || {});
         setModalIsOpen(true);
+        setCurrentItem(item)
     };
 
     const closeModal = () => {

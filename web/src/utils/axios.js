@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
-    baseURL: 'http://abc.com', // 设置你的基础 API URL
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL, // 设置你的基础 API URL
     timeout: 3000, // 设置请求超时时间
     headers: {
         'Content-Type': 'application/json',
