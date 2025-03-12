@@ -44,10 +44,6 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
             message.error("请输入分类名称");
             return;
         }
-        if (!currentItem.sort) {
-            message.error("请输入排序号");
-            return;
-        }
         try {
             setLoading(true);
             const post_url = currentItem.id ? '/myapp/admin/category/update' : '/myapp/admin/category/create';

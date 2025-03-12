@@ -1,8 +1,5 @@
 # Create your views here.
-import os
-from pathlib import Path
 
-from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes
 
 from myapp import utils
@@ -11,7 +8,6 @@ from myapp.handler import APIResponse
 from myapp.models import Category, Thing
 from myapp.permission.permission import isDemoAdminUser
 from myapp.serializers import ThingSerializer, UpdateThingSerializer
-from server.settings import MEDIA_ROOT
 
 
 @api_view(['GET'])
@@ -100,32 +96,4 @@ def delete(request):
     return APIResponse(code=0, msg='删除成功')
 
 
-@api_view(['POST'])
-def upload(request):
-    try:
-        # 【1】 鉴权
-        authorization = request.META.get('HTTP_AUTHORIZATION')
-        print('authorization-----' + authorization)
-        myfile = request.FILES['my-file']
-        file_extension = Path(myfile.name).suffix
-        new_name = str(utils.get_timestamp()) + file_extension
-        # 【2】拼接图片保存路径+图片名
-        save_path = MEDIA_ROOT + os.path.sep + 'img' + os.path.sep + new_name
-        print('save_path-----' + save_path)
 
-        # 【3】保存图片到指定路径，因为图片是2进制式，因此用wb，
-        with open(save_path, 'wb') as f:
-            # pic.chunks()为图片的一系列数据，它是一一段段的，所以要用for逐个读取
-            for content in myfile.chunks():
-                f.write(content)
-
-        resp_json = {
-            "code": 0,
-            "data": new_name
-        }
-
-        return JsonResponse(resp_json)
-
-    except Exception as e:
-        print(str(e))
-        return APIResponse(code=1, msg='fail')

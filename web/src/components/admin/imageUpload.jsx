@@ -46,15 +46,15 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
                 if(item.response.code === 0){
                     imageUrlArray.push(item.response.data)
                 }else if(item.response.code === 1){
-                    message.error("上传失败")
+                    message.error("上传失败："+item.response.message)
                     item.status = 'error'
                 }
             }
         })
 
         onImageUploadChange(imageUrlArray);
-
     };
+
     const uploadButton = (
         <button
             style={{
@@ -76,9 +76,9 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
 
     const props = {
         name: 'my-file',
-        action: process.env.NEXT_PUBLIC_BASE_URL + '/myapp/admin/thing/upload',
+        action: process.env.NEXT_PUBLIC_BASE_URL + '/myapp/admin/cdn/uploadImg',
         headers: {
-            authorization: 'authorization-text',
+            admintoken: localStorage.getItem('admintoken') || '',
         },
     };
 
