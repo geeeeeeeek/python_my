@@ -7,25 +7,10 @@ import axiosInstance from "@/utils/axios";
 const EditModal = ({isOpen, onRequestClose, initialItem}) => {
     const [currentItem, setCurrentItem] = useState(initialItem || {});
 
-    // 为了制造Upload而用
-    const [imageList, setImageList] = useState([]);
-
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setCurrentItem(initialItem || {});
-
-        // 制造适合Upload的数据格式
-        if (initialItem?.cover?.length > 0) {
-            setImageList(initialItem?.cover?.split("#").map((item) => ({
-                success: true,
-                name: item,
-                status: 'done',
-                url: process.env.NEXT_PUBLIC_BASE_URL + '/upload/img/' + item,
-            })));
-        } else {
-            setImageList([]);
-        }
 
     }, [initialItem]);
 
@@ -33,34 +18,23 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
         setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
-    const handleImageUploadChange = (imageUrlList) => {
-        let cover = (imageUrlList && imageUrlList.length > 0) ? imageUrlList.join("#") : null;
-        setCurrentItem((prev) => ({...prev, cover: cover}));
-    };
 
     const handleSave = async () => {
-
-        if (!currentItem.title) {
-            message.error("请输入分类名称");
-            return;
-        }
-        if (!currentItem.sort) {
-            message.error("请输入排序号");
-            return;
-        }
         try {
+            if (!currentItem.username || !currentItem.password) {
+                message.error("不能为空");
+                return;
+            }
             setLoading(true);
-            const post_url = currentItem.id ? '/myapp/admin/category/update' : '/myapp/admin/category/create';
+            const post_url = currentItem.id ? '/myapp/admin/user/update' : '/myapp/admin/user/create';
             const formData = new FormData();
             if (currentItem.id) {
                 formData.append('id', currentItem.id);
             }
-            if (currentItem.cover) {
-                formData.append('cover', currentItem.cover);
-            }
-            formData.append('pid', -1);
-            formData.append('title', currentItem.title || '');
-            formData.append('sort', currentItem.sort || 0);
+            formData.append('username', currentItem.username);
+            formData.append('password', currentItem.password);
+            formData.append('role', '1');
+            formData.append('status', '0');
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
                 message.success("操作成功")
@@ -80,7 +54,7 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
 
     return (
         <Modal
-            title={currentItem.id ? '编辑分类' : '新增分类'}
+            title={currentItem.id ? '编辑' : '新增'}
             centered
             open={isOpen}
             onCancel={() => onRequestClose(false)}
@@ -94,22 +68,16 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
                         <div className="">
                             <div className="flex flex-col gap-4 pt-4 pb-0">
                                 <div className="flex flex-row gap-4">
-                                    <FormLabel title="分类名称" required={true}></FormLabel>
-                                    <Input placeholder="请输入分类名称" value={currentItem.title}
-                                           onChange={(e) => handleInputChange("title", e.target.value)}
+                                    <FormLabel title="用户名" required={true}></FormLabel>
+                                    <Input placeholder="请输入用户名" value={currentItem.username}
+                                           onChange={(e) => handleInputChange("username", e.target.value)}
                                            style={{width: 400}}/>
                                 </div>
                                 <div className="flex flex-row gap-4">
-                                    <FormLabel title="封面图"></FormLabel>
-                                    <ImageUpload maxCount={1} imageList={imageList}
-                                                 onImageUploadChange={handleImageUploadChange}/>
-                                </div>
-                                <div className="flex flex-row gap-4">
-                                    <FormLabel title="排序" required={true}></FormLabel>
-                                    <InputNumber placeholder="请输入顺序号" value={currentItem.sort}
-                                                 onChange={(value) => handleInputChange("sort", value)}
-                                                 style={{width: 400}}/>
-
+                                    <FormLabel title="密码" required={true}></FormLabel>
+                                    <Input placeholder="请输入密码" value={currentItem.password}
+                                           onChange={(e) => handleInputChange("password", e.target.value)}
+                                           style={{width: 400}}/>
                                 </div>
                             </div>
 

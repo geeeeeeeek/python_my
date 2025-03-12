@@ -50,6 +50,11 @@ const items = [
     icon: <MailOutlined />,
   },
   {
+    key: '/admin/user',
+    label: '管理员',
+    icon: <MailOutlined />,
+  },
+  {
     key: '/admin/settings',
     label: '网站设置',
     icon: <MailOutlined />,

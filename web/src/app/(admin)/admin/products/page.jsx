@@ -1,7 +1,7 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import ProductList from "@/components/admin/productList";
-import ProductForm from "@/components/admin/productForm";
+import ProductList from "@/components/admin/product/productList";
+import ProductForm from "@/components/admin/product/productForm";
 import {useDispatch, useSelector} from "react-redux";
 import {setShowForm} from "@/redux/adminSettingSlice";
 import {Tabs} from "antd";

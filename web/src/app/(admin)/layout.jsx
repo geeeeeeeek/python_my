@@ -9,8 +9,8 @@ import ReduxProvider from "@/redux/redux-provider";
 const font = Montserrat({subsets: ["latin"], weight: "400"})
 
 export const metadata = {
-    title: "后台管理",
-    description: "后台管理系统",
+    title: "网站后台管理",
+    description: "网站后台管理系统",
     icons: [{rel: "icon", url: "/favicon.ico"}],
 }
 

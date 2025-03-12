@@ -1,14 +1,13 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tag} from 'antd';
-import ProductForm from "@/components/admin/product/productForm";
+import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs, Tag} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
-import EditModal from "@/components/admin/category/editModal";
 import axios from "axios";
 import axiosInstance from "@/utils/axios";
+import EditModal from "@/components/admin/user/editModal";
 
-export default function CategoryList() {
+export default function Page() {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
@@ -22,14 +21,15 @@ export default function CategoryList() {
             render: (text) => <div>{text}</div>,
         },
         {
-            title: '分类名称',
-            dataIndex: 'title',
-            key: 'title',
+            title: '账号',
+            dataIndex: 'username',
+            key: 'username',
         },
         {
-            title: '排序',
-            dataIndex: 'sort',
-            key: 'sort',
+            title: '角色',
+            dataIndex: 'role',
+            key: 'role',
+            render: (text) => <div>{text==='1'? '管理员':'演示账号'}</div>,
         },
         {
             title: '操作',
@@ -37,7 +37,6 @@ export default function CategoryList() {
             align: 'center',
             render: (_, item) => (
                 <Space size="middle">
-                    <a onClick={() => openModal(item)}>编辑</a>
 
                     <Popconfirm
                         title="确定删除？"
@@ -55,7 +54,7 @@ export default function CategoryList() {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const {code, data} = await axiosInstance.get('/myapp/admin/category/list');
+            const {code, data} = await axiosInstance.get('/myapp/admin/user/list');
             if (code === 0) {
                 setData(data)
             } else {
@@ -91,7 +90,7 @@ export default function CategoryList() {
 
     const deleteRecord = async (item) => {
         try {
-            const {code, data} = await axiosInstance.post('/myapp/admin/category/delete', {id: item.id});
+            const {code, data} = await axiosInstance.post('/myapp/admin/user/delete', {id: item.id});
             if (code === 0) {
                 message.success("删除成功")
                 fetchData();
@@ -105,18 +104,27 @@ export default function CategoryList() {
 
     return (
         <>
-            <Spin spinning={loading} tip="">
-                <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
-                    <div className="flex flex-row gap-4">
-                        <Button type="primary" onClick={() => openModal({sort: 0})}>新增分类</Button>
+
+            <div className="bg-gray-100">
+                <div>
+                    <div className="bg-white h-[50px] leading-[50px] font-bold px-5">
+                        管理员管理
                     </div>
-                    <Table columns={columns}
-                           dataSource={data}
-                           rowKey={(record) => record.id}
-                           pagination={false}
-                           className="shadow-md bg-white"/>
+                    <Spin spinning={loading} tip="">
+                        <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
+                            <div className="flex flex-row gap-4">
+                                <Button type="primary" onClick={() => openModal({sort: 0})}>新增</Button>
+                            </div>
+                            <Table columns={columns}
+                                   dataSource={data}
+                                   rowKey={(record) => record.id}
+                                   pagination={false}
+                                   className="shadow-md bg-white"/>
+                        </div>
+                    </Spin>
                 </div>
-            </Spin>
+            </div>
+
 
             {/* 使用 EditModal 组件 */}
             <EditModal

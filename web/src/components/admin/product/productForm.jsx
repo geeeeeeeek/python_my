@@ -15,9 +15,7 @@ import {setShowForm} from "@/redux/adminSettingSlice";
 import {useDispatch, useSelector} from "react-redux";
 import LabelPanel from "@/components/admin/labelPanel";
 import FormLabel from "@/components/admin/formLabel";
-import AdminInput from "@/components/admin/adminInput";
 import axios from "@/utils/axios";
-import AdminSelect from "@/components/admin/adminSelect";
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import {setIsFormOpen, setProductData} from "@/redux/productFormSlice";
 

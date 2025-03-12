@@ -18,6 +18,7 @@ class User(models.Model):
     create_time = models.DateTimeField(auto_now_add=True, null=True)
     admin_token = models.CharField(max_length=32, blank=True, null=True)
     token = models.CharField(max_length=32, blank=True, null=True)
+    exp = models.CharField(max_length=32, blank=True, null=True)
 
     class Meta:
         db_table = "b_user"
@@ -29,6 +30,7 @@ class Category(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     cover = models.CharField(max_length=200, blank=True, null=True)
     pid = models.BigIntegerField(blank=True, null=True)
+    sort = models.IntegerField(default=0)
     create_time = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):

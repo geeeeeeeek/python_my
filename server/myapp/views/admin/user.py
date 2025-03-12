@@ -20,10 +20,12 @@ def admin_login(request):
     users = User.objects.filter(username=username, password=password)
     if len(users) > 0:
         user = users[0]
+        ts = utils.get_timestamp()
         data = {
             'username': username,
             'password': password,
-            'admin_token': md5value(username)  # 生成令牌
+            'admin_token': md5value(username + str(ts)),  # 生成令牌
+            'exp': ts + (60 * 60 * 1000)  # 刷新过期时间
         }
 
         if user.status == '1':
@@ -35,7 +37,6 @@ def admin_login(request):
         serializer = UserSerializer(user, data=data)
         if serializer.is_valid():
             serializer.save()
-            make_login_log(request)
             return APIResponse(code=0, msg='登录成功', data=serializer.data)
         else:
             print(serializer.errors)
@@ -44,15 +45,7 @@ def admin_login(request):
 
 
 @api_view(['GET'])
-def info(request):
-    if request.method == 'GET':
-        pk = request.GET.get('id', -1)
-        user = User.objects.get(pk=pk)
-        serializer = UserSerializer(user)
-        return APIResponse(code=0, msg='查询成功', data=serializer.data)
-
-
-@api_view(['GET'])
+@authentication_classes([AdminTokenAuthtication])
 def list_api(request):
     if request.method == 'GET':
         keyword = request.GET.get("keyword", '')
@@ -93,7 +86,7 @@ def update(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        pk = request.GET.get('id', -1)
+        pk = request.data['id']
         user = User.objects.get(pk=pk)
     except User.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')
@@ -157,8 +150,7 @@ def delete(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        ids = request.GET.get('ids')
-        ids_arr = ids.split(',')
+        ids_arr = [request.data['id']]
         User.objects.filter(id__in=ids_arr).delete()
     except User.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')

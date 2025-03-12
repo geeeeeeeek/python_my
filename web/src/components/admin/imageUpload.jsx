@@ -10,20 +10,6 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-let imageList = [
-    {
-        uid: '-1',
-        name: 'image.png',
-        status: 'done',
-        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-    {
-        uid: '-2',
-        name: 'image.png',
-        status: 'done',
-        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-];
 
 const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
     const [previewOpen, setPreviewOpen] = useState(false);
@@ -44,13 +30,8 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
         setPreviewOpen(true);
     };
 
-    const beforeUpload = (file) => {
-        return true;
-    };
-
     const handleChange = ({file, fileList: newFileList}) => {
         console.log('当前操作文件的状态------>',file.status)
-        console.log(newFileList)
         setFileList(newFileList);
         if (file.status === 'error') {
             message.error("上传失败")
@@ -71,9 +52,8 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
             }
         })
 
-        if (imageUrlArray.length > 0) {
-            onImageUploadChange(imageUrlArray);
-        }
+        onImageUploadChange(imageUrlArray);
+
     };
     const uploadButton = (
         <button

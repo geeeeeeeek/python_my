@@ -23,10 +23,7 @@ urlpatterns = [
     path('admin/errorLog/clear', views.admin.errorLog.clear),
     path('admin/user/list', views.admin.user.list_api),
     path('admin/user/create', views.admin.user.create),
-    path('admin/user/update', views.admin.user.update),
-    path('admin/user/updatePwd', views.admin.user.updatePwd),
     path('admin/user/delete', views.admin.user.delete),
-    path('admin/user/info', views.admin.user.info),
     path('admin/adminLogin', views.admin.user.admin_login),
 
 
