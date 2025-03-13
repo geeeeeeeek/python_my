@@ -6,7 +6,7 @@ import {
     Form,
     Input,
     InputNumber,
-    Mentions,
+    Mentions, message,
     Segmented,
     Select,
     TreeSelect,
@@ -18,13 +18,17 @@ import FormLabel from "@/components/admin/formLabel";
 import axios from "@/utils/axios";
 import {ArrowLeftOutlined} from "@ant-design/icons";
 import {setIsFormOpen, setProductData} from "@/redux/productFormSlice";
+import axiosInstance from "@/utils/axios";
 
-const ProductForm = () => {
+const ProductModal = () => {
     const dispatch = useDispatch()
 
     const {productItem, isFormOpen} = useSelector((state) => state.productForm);
 
     const [currentItem, setCurrentItem] = useState(productItem || {})
+
+    const [loading, setLoading] = useState(false);
+
 
     useEffect(()=>{
         setCurrentItem(currentItem || {})
@@ -37,23 +41,36 @@ const ProductForm = () => {
     const commit = () => {
         console.log("commit-->", currentItem);
         // 整理带传数据...
-        // doCommit(currentItem);
-        dispatch(setIsFormOpen(false))
+        // todo 检查
+        handleSave()
     }
 
-    const doCommit = async (product) => {
-        try {
-            let data = product;
-            const response = await axios.post('/admin/product/save', data);
-            console.log('数据获取成功:', response.data);
-        } catch (err) {
-            // error
-            console.error('数据获取失败:', err);
-        }
-    };
+    const handleSave = async () => {
 
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
+        if (!currentItem.title) {
+            message.error("请输入名称");
+            return;
+        }
+        try {
+            setLoading(true);
+            const post_url = currentItem.id ? '/myapp/admin/thing/update' : '/myapp/admin/thing/create';
+            const formData = new FormData();
+            if (currentItem.id) {
+                formData.append('id', currentItem.id);
+            }
+            formData.append('title', currentItem.title || '');
+            const {code, msg, data} = await axiosInstance.post(post_url, formData);
+            if (code === 0) {
+                message.success("操作成功")
+                dispatch(setIsFormOpen(false))
+            } else {
+                message.error(msg || '网络异常')
+            }
+            setLoading(false);
+        } catch (err) {
+            console.log(err)
+            setLoading(false)
+        }
     };
 
 
@@ -157,7 +174,7 @@ const ProductForm = () => {
                     <Divider />
 
                     <div className="flex flex-row gap-4">
-                        <Button type="primary" onClick={()=>commit()}>提交</Button>
+                        <Button loading={loading}  type="primary" onClick={()=>commit()}>提交</Button>
                     </div>
                 </div>
             </div>
@@ -167,4 +184,4 @@ const ProductForm = () => {
         </div>
     );
 };
-export default ProductForm;
+export default ProductModal;

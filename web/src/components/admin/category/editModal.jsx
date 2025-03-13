@@ -54,7 +54,7 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
             if (currentItem.cover) {
                 formData.append('cover', currentItem.cover);
             }
-            formData.append('pid', -1);
+            formData.append('pid', currentItem.pid);
             formData.append('title', currentItem.title || '');
             formData.append('sort', currentItem.sort || 0);
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
@@ -88,7 +88,7 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
                 <div className="flex flex-col">
                     <div className="">
                         <div className="">
-                            <div className="flex flex-col gap-4 pt-4 pb-0">
+                            <div className="flex flex-col gap-4 pt-4 pb-0 overflow-y-auto max-h-[70vh]">
                                 <div className="flex flex-row gap-4">
                                     <FormLabel title="分类名称" required={true}></FormLabel>
                                     <Input placeholder="请输入分类名称" value={currentItem.title}

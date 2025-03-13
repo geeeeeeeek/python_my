@@ -1,4 +1,6 @@
 # Create your views here.
+from collections import defaultdict
+
 from django.db import connection
 from django.db.models import Q
 from rest_framework.decorators import api_view, authentication_classes
@@ -15,9 +17,16 @@ from myapp.utils import dict_fetchall
 @authentication_classes([AdminTokenAuthtication])
 def list_api(request):
     if request.method == 'GET':
-        categorys = Category.objects.all().order_by('-create_time')
-        serializer = CategorySerializer(categorys, many=True)
+        # 获取所有顶级分类，并根据 sort 排序
+        top_level_categories = Category.objects.filter(pid=-1).order_by('sort','-id')
+
+        # 序列化顶级分类
+        serializer = CategorySerializer(top_level_categories, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data)
+
+        # categorys = Category.objects.all().order_by('-create_time')
+        # serializer = CategorySerializer(categorys, many=True)
+        # return APIResponse(code=0, msg='查询成功', data=serializer.data)
 
 
 @api_view(['POST'])
@@ -67,9 +76,9 @@ def delete(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        ids_arr = [request.data['id']]
+        pk = request.data['id']
         # 删除自身和自身的子孩子
-        Category.objects.filter(Q(id__in=ids_arr)).delete()
+        Category.objects.filter(Q(id=pk) | Q(pid=pk)).delete()
     except Category.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')
     return APIResponse(code=0, msg='删除成功')

@@ -2,8 +2,8 @@ from rest_framework.response import Response
 
 
 class APIResponse(Response):
-    def __init__(self, code=0, msg='', data=None, status=200, headers=None, content_type=None, **kwargs):
-        dic = {'code': code, 'msg': msg}
+    def __init__(self, code=0, msg='', data=None, total=0, status=200, headers=None, content_type=None, **kwargs):
+        dic = {'code': code, 'msg': msg, 'total': total}
         if data is not None:
             dic['data'] = data
 

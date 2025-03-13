@@ -1,7 +1,7 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tag} from 'antd';
-import ProductForm from "@/components/admin/product/productForm";
+import ProductModal from "@/components/admin/product/productModal";
 import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
 import EditModal from "@/components/admin/category/editModal";
@@ -16,12 +16,6 @@ export default function CategoryList() {
 
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
-            render: (text) => <div>{text}</div>,
-        },
-        {
             title: '分类名称',
             dataIndex: 'title',
             key: 'title',
@@ -34,11 +28,19 @@ export default function CategoryList() {
         {
             title: '操作',
             key: 'action',
-            align: 'center',
+            align: 'left',
+            width: '260px',
             render: (_, item) => (
                 <Space size="middle">
-                    <a onClick={() => openModal(item)}>编辑</a>
 
+                    <a onClick={() => openModal(item)}>编辑</a>
+                    {
+                        item.pid === -1 ? (
+                            <a onClick={() => openModal({sort: 0, pid: item.id})}>
+                                添加子分类
+                            </a>
+                        ) : (null)
+                    }
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
@@ -108,7 +110,7 @@ export default function CategoryList() {
             <Spin spinning={loading} tip="">
                 <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
                     <div className="flex flex-row gap-4">
-                        <Button type="primary" onClick={() => openModal({sort: 0})}>新增分类</Button>
+                        <Button type="primary" onClick={() => openModal({sort: 0, pid: -1})}>新增分类</Button>
                     </div>
                     <Table columns={columns}
                            dataSource={data}

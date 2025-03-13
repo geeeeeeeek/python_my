@@ -1,6 +1,7 @@
 # Create your views here.
 
 from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.pagination import PageNumberPagination
 
 from myapp import utils
 from myapp.auth.authentication import AdminTokenAuthtication
@@ -8,6 +9,12 @@ from myapp.handler import APIResponse
 from myapp.models import Category, Thing
 from myapp.permission.permission import isDemoAdminUser
 from myapp.serializers import ThingSerializer, UpdateThingSerializer
+
+
+class MyPageNumberPagination(PageNumberPagination):
+    page_size = 10  # 每页的默认项
+    page_size_query_param = 'pageSize'  # 允许通过 URL 参数设置每页的大小
+    max_page_size = 100  # 最大页尺寸
 
 
 @api_view(['GET'])
@@ -19,12 +26,17 @@ def list_api(request):
             things = Thing.objects.filter(title__contains=keyword).order_by('-create_time')
         elif c:
             category = Category.objects.get(pk=c)
-            things = Category.category_thing.all()
+            things = category.category_thing.all()
         else:
             things = Thing.objects.all().order_by('-create_time')
 
-        serializer = ThingSerializer(things, many=True)
-        return APIResponse(code=0, msg='查询成功', data=serializer.data)
+        # 分页
+        paginator = MyPageNumberPagination()
+        paginated_things = paginator.paginate_queryset(things, request)
+        total = len(things)
+
+        serializer = ThingSerializer(paginated_things, many=True)
+        return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)
 
 
 @api_view(['GET'])
@@ -65,7 +77,7 @@ def update(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        pk = request.GET.get('id', -1)
+        pk = request.data['id']
         thing = Thing.objects.get(pk=pk)
     except Thing.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')
@@ -88,12 +100,8 @@ def delete(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        ids = request.GET.get('ids')
-        ids_arr = ids.split(',')
-        Thing.objects.filter(id__in=ids_arr).delete()
+        pk = request.data['id']
+        Thing.objects.filter(id=pk).delete()
     except Thing.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')
     return APIResponse(code=0, msg='删除成功')
-
-
-

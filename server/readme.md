@@ -1,53 +1,8 @@
-### 后端部署步骤
+### 运行说明
 
-> 部署过程中，如遇问题可咨询：lengqin1024（微信）
-
-1. 安装mysql数据库，启动服务
-2. 打开cmd命令行，进入mysql，并新建数据库
-```
-mysql -u root -p
-CREATE DATABASE IF NOT EXISTS python_one DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
-```
-3. 恢复sql数据
-```
-use xxx
-source xxxx.sql
-```
-4. 修改settings.py中的配置信息
-5. 复制资源，将upload文件夹复制到server目录下
-6. 安装python 3.8
-7. 安装依赖包
-```
-pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple
-```
-运行项目
-```
-python manage.py runserver
-```
-7. 后期维护改动
-
-将修改的py文件覆盖服务器的py文件即可，重启django
-
-### 删除数据库
-
-drop database if exists xxx;
-
-### 创建数据库
-
-CREATE DATABASE IF NOT EXISTS xxx DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+修改settings.py中的Debug
 
 
-### 迁移数据库表
-
-```
-python manage.py makemigrations;
-
-python manage.py migrate;
-
-python manage.py makemigrations myapp;
-
-python manage.py migrate myapp;
-```
 
 
 

@@ -28,8 +28,8 @@ class UpdateThingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Thing
+        fields = '__all__'
         # 排除多对多字段
-        exclude = ('wish', 'collect',)
 
 
 class ListThingSerializer(serializers.ModelSerializer):
@@ -43,10 +43,19 @@ class ListThingSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    children = serializers.SerializerMethodField()
+
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['id', 'pid', 'title', 'sort', 'cover', 'children']
 
+    def get_children(self, obj):
+        # 获取当前类别的所有子类别，并根据 sort 排序
+        children = Category.objects.filter(pid=obj.id).order_by('sort','-id')
+        # 如果有子类，继续序列化；如果没有则返回 None
+        if children.exists():
+            return CategorySerializer(children, many=True).data
+        return None  # 如果没有子类则返回 None
 
 class UserSerializer(serializers.ModelSerializer):
     create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
@@ -54,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
-        #exclude = ('password',)
+        # exclude = ('password',)
 
 
 class OpLogSerializer(serializers.ModelSerializer):

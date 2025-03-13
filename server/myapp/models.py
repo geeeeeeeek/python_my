@@ -29,7 +29,7 @@ class Category(models.Model):
     id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=100, blank=True, null=True)
     cover = models.CharField(max_length=200, blank=True, null=True)
-    pid = models.BigIntegerField(blank=True, null=True)
+    pid = models.BigIntegerField(default=-1)
     sort = models.IntegerField(default=0)
     create_time = models.DateTimeField(auto_now_add=True, null=True)
 
