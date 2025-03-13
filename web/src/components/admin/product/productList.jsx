@@ -1,18 +1,29 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Table, Tag} from 'antd';
-import {useDispatch, useSelector} from "react-redux";
-import {setProductItem, setIsFormOpen} from "@/redux/productFormSlice";
+import {Button, message, Pagination, Popconfirm, Space, Table} from 'antd';
 import Search from "antd/es/input/Search";
 import axiosInstance from "@/utils/axios";
+import ProductModal from "@/components/admin/product/productModal";
 
 
 export default function ProductList() {
-    const adminApp = useSelector((state) => state.adminSetting);
-    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [currentItem, setCurrentItem] = useState(null);
 
+    const openModal = (item) => {
+        setModalIsOpen(true);
+        setCurrentItem(item)
+    };
+
+    const closeModal = (shouldRefresh) => {
+        setModalIsOpen(false);
+        setCurrentItem(null);
+        if (shouldRefresh) {
+            fetchData();
+        }
+    };
 
     const [paginationParams, setPaginationParams] = useState({
         current: 1,
@@ -32,7 +43,7 @@ export default function ProductList() {
             key: 'action',
             render: (_, item) => (
                 <Space size="middle">
-                    <a onClick={() => showProductForm(item)}>编辑</a>
+                    <a onClick={() => openModal(item)}>编辑</a>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
@@ -48,11 +59,6 @@ export default function ProductList() {
     ];
 
     const preview = (item) => {
-    }
-
-    const showProductForm = (item) => {
-        dispatch(setIsFormOpen(true));
-        dispatch(setProductItem(item))
     }
 
     const deleteRecord = async (item) => {
@@ -76,7 +82,6 @@ export default function ProductList() {
                 page: paginationParams.current,
                 pageSize: paginationParams.pageSize
             };
-            console.log('parms----', params)
             const {code, total, data} = await axiosInstance.get('/myapp/admin/thing/list', {params});
             if (code === 0) {
                 setData(data)
@@ -113,7 +118,7 @@ export default function ProductList() {
         <>
             <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
                 <div className="flex flex-row gap-4">
-                    <Button type="primary" onClick={() => showProductForm({})}>新增产品</Button>
+                    <Button type="primary" onClick={() => openModal({})}>新增产品</Button>
                     <Button>删除</Button>
                     <Search
                         placeholder="搜索产品"
@@ -143,6 +148,13 @@ export default function ProductList() {
                 </div>
 
             </div>
+
+            {/* 使用 EditModal 组件 */}
+            <ProductModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                initialItem={currentItem}
+            />
         </>
     );
 };

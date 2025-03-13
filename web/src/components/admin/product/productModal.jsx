@@ -1,47 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import {
     Button,
-    Cascader,
     DatePicker, Divider,
     Form,
     Input,
-    InputNumber,
-    Mentions, message,
+    Mentions, message, Modal,
     Segmented,
     Select,
     TreeSelect,
 } from 'antd';
-import {setShowForm} from "@/redux/adminSettingSlice";
-import {useDispatch, useSelector} from "react-redux";
 import LabelPanel from "@/components/admin/labelPanel";
 import FormLabel from "@/components/admin/formLabel";
-import axios from "@/utils/axios";
-import {ArrowLeftOutlined} from "@ant-design/icons";
-import {setIsFormOpen, setProductData} from "@/redux/productFormSlice";
 import axiosInstance from "@/utils/axios";
 
-const ProductModal = () => {
-    const dispatch = useDispatch()
+const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
-    const {productItem, isFormOpen} = useSelector((state) => state.productForm);
-
-    const [currentItem, setCurrentItem] = useState(productItem || {})
+    const [currentItem, setCurrentItem] = useState(initialItem || {})
 
     const [loading, setLoading] = useState(false);
 
+    const divRef = React.useRef(null);
 
-    useEffect(()=>{
-        setCurrentItem(currentItem || {})
-    }, [currentItem])
 
-    const cancel = () => {
-        dispatch(setIsFormOpen(false))
-    }
+    useEffect(() => {
+        setCurrentItem(initialItem || {})
+        if (divRef.current) {
+            divRef.current.scrollTop = 0; // 滚动到 0
+        }
+    }, [initialItem])
 
     const commit = () => {
         console.log("commit-->", currentItem);
-        // 整理带传数据...
-        // todo 检查
+        // todo 参数检查
         handleSave()
     }
 
@@ -62,7 +52,7 @@ const ProductModal = () => {
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
                 message.success("操作成功")
-                dispatch(setIsFormOpen(false))
+                onRequestClose(true)
             } else {
                 message.error(msg || '网络异常')
             }
@@ -77,111 +67,134 @@ const ProductModal = () => {
     // 更新子组件传来的值
     const handleInputChange = (name, value) => {
         setCurrentItem((prev) => ({...prev, [name]: value}));
-
     };
 
-    const handleSelectChange = (name,value) => {
+    const handleSelectChange = (name, value) => {
         setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
-    console.log('currentItem-----------', currentItem)
+
+    const modalStyles = {
+        mask: {
+            backdropFilter: 'blur(10px)',
+        },
+    };
+
+    console.log('currentItem----------->', currentItem)
 
 
     return (
-        <div className="flex flex-col">
-
-            <div className="bg-white h-[50px] leading-[50px] font-bold px-5">
-                <ArrowLeftOutlined  onClick={()=>cancel()} style={{color: '#2174ff'}} className="cursor-pointer"/>
-                <span className="mx-4">
-                    {
-                        currentItem.id ? '编辑产品' : '新增产品'
-                    }
-                </span>
-            </div>
-
-            <div className="px-4 py-4">
-                <div className="px-4 py-4 bg-white shadow-md">
-                    <LabelPanel title="基本信息"></LabelPanel>
-                    <div className="flex flex-col gap-4 px-2 py-2">
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="标题" required={true}></FormLabel>
-                            <Input placeholder="请输入产品名称" value={currentItem.title} onChange={(e) => handleInputChange("title", e.target.value)} style={{width:400}}/>
+        <Modal
+            title={currentItem.id ? '编辑' : '新增'}
+            centered
+            open={isOpen}
+            onCancel={() => onRequestClose(false)}
+            footer={null}
+            width={800}
+            styles={{
+                mask: {
+                    backdropFilter: 'blur(10px)',
+                },
+            }}
+        >
+            <div className="flex flex-col">
+                <div>
+                    <div ref={divRef} className="max-h-[70vh] overflow-y-auto">
+                        <LabelPanel title="基本信息"></LabelPanel>
+                        <div className="flex flex-col gap-4 px-2 py-2">
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="标题" required={true}></FormLabel>
+                                <Input placeholder="请输入产品名称" value={currentItem.title}
+                                       onChange={(e) => handleInputChange("title", e.target.value)}
+                                       style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="分类" required={true}></FormLabel>
+                                <Select
+                                    placeholder="请选择"
+                                    allowClear
+                                    style={{
+                                        width: 400,
+                                    }}
+                                    value={currentItem.category}
+                                    onChange={(value) => handleSelectChange("category", value)}
+                                    options={[
+                                        {
+                                            value: 'jack',
+                                            label: 'Jack',
+                                        },
+                                        {
+                                            value: 'lucy',
+                                            label: 'Lucy',
+                                        },
+                                        {
+                                            value: 'Yiminghe',
+                                            label: 'yiminghe',
+                                        },
+                                    ]}
+                                />
+                            </div>
                         </div>
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="分类" required={true}></FormLabel>
-                            <Select
-                                placeholder="请选择"
-                                allowClear
-                                style={{
-                                    width: 400,
-                                }}
-                                value={currentItem.category}
-                                onChange={(value)=>handleSelectChange("category",value)}
-                                options={[
-                                    {
-                                        value: 'jack',
-                                        label: 'Jack',
-                                    },
-                                    {
-                                        value: 'lucy',
-                                        label: 'Lucy',
-                                    },
-                                    {
-                                        value: 'Yiminghe',
-                                        label: 'yiminghe',
-                                    },
-                                ]}
-                            />
+
+                        <Divider/>
+
+                        <LabelPanel title="SEO信息"></LabelPanel>
+                        <div className="flex flex-col gap-4 px-2 py-2">
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO标题"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO描述"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
                         </div>
+
+                        <Divider/>
+
+                        <LabelPanel title="属性信息"></LabelPanel>
+                        <div className="flex flex-col gap-4 px-2 py-2">
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO标题"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO描述"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="input something" style={{width: 400}}/>
+                            </div>
+                        </div>
+
                     </div>
-
-                    <Divider />
-
-                    <LabelPanel title="SEO信息"></LabelPanel>
-                    <div className="flex flex-col gap-4 px-2 py-2">
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO标题"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO描述"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO关键词"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                    </div>
-
-                    <Divider />
-
-                    <LabelPanel title="属性信息"></LabelPanel>
-                    <div className="flex flex-col gap-4 px-2 py-2">
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO标题"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO描述"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                        <div className="flex flex-row gap-4">
-                            <FormLabel title="SEO关键词"></FormLabel>
-                            <Input placeholder="input something" style={{width: 400}}/>
-                        </div>
-                    </div>
-
-                    <Divider />
+                    <Divider/>
 
                     <div className="flex flex-row gap-4">
-                        <Button loading={loading}  type="primary" onClick={()=>commit()}>提交</Button>
+                        <Button loading={loading} type="primary" onClick={() => commit()}>提交</Button>
+                        <Button onClick={() => onRequestClose(false)}>取消</Button>
                     </div>
                 </div>
+
             </div>
-
-
-
-        </div>
+        </Modal>
     );
 };
 export default ProductModal;
