@@ -11,6 +11,8 @@ export default function ProductList() {
     const [data, setData] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
+    const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+
 
     const openModal = (item) => {
         setModalIsOpen(true);
@@ -39,6 +41,12 @@ export default function ProductList() {
             render: (text) => <div>{text}</div>,
         },
         {
+            title: '分类',
+            dataIndex: 'category_title',
+            key: 'category_title',
+            render: (text) => <div>{text}</div>,
+        },
+        {
             title: '操作',
             key: 'action',
             render: (_, item) => (
@@ -48,7 +56,7 @@ export default function ProductList() {
                         title="确定删除？"
                         okText="确定"
                         cancelText="取消"
-                        onConfirm={() => deleteRecord(item)}
+                        onConfirm={() => deleteRecord([item.id])}
                     >
                         <a>删除</a>
                     </Popconfirm>
@@ -58,12 +66,21 @@ export default function ProductList() {
         },
     ];
 
+    const onSelectChange = (newSelectedRowKeys) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
+
     const preview = (item) => {
     }
 
-    const deleteRecord = async (item) => {
+    const deleteRecord = async (selected_ids) => {
         try {
-            const {code, data} = await axiosInstance.post('/myapp/admin/thing/delete', {id: item.id});
+            const {code, data} = await axiosInstance.post('/myapp/admin/thing/delete', {ids: selected_ids.join(',')});
             if (code === 0) {
                 message.success("删除成功")
                 fetchData();
@@ -105,7 +122,7 @@ export default function ProductList() {
 
     const onSearch = (value, _e, info) => console.log(info?.source, value);
 
-    const handleChangePage = (page,pageSize) => {
+    const handleChangePage = (page, pageSize) => {
         setPaginationParams(pre => ({
             ...pre,
             current: page,
@@ -119,7 +136,14 @@ export default function ProductList() {
             <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
                 <div className="flex flex-row gap-4">
                     <Button type="primary" onClick={() => openModal({})}>新增产品</Button>
-                    <Button>删除</Button>
+                    <Popconfirm
+                        title="确定删除？"
+                        okText="确定"
+                        cancelText="取消"
+                        onConfirm={() => deleteRecord(selectedRowKeys)}
+                    >
+                        <Button disabled={!selectedRowKeys.length > 0 }>删除</Button>
+                    </Popconfirm>
                     <Search
                         placeholder="搜索产品"
                         allowClear
@@ -133,6 +157,7 @@ export default function ProductList() {
                 <div className="bg-white shadow-md">
                     <Table columns={columns}
                            dataSource={data}
+                           rowSelection={rowSelection}
                            rowKey={(record) => record.id}
                            pagination={false}
                            showSizeChanger={false}/>

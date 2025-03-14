@@ -2,7 +2,8 @@
 import "@/styles/globals.css";
 import {AppstoreOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
-import {setCollapsed, setShowForm} from "@/redux/adminSettingSlice";
+import {setCollapsed} from "@/redux/adminSettingSlice";
+import {useEffect, useState} from "react";
 
 
 const Header = () => {
@@ -10,7 +11,12 @@ const Header = () => {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
 
-    let username = localStorage.getItem('username') || '';
+    const [username, setUsername] = useState('');
+
+    useEffect (() => {
+        let username = localStorage.getItem('username') || '';
+        setUsername(username);
+    }, []);
 
     const toggleSideBar = () => {
         let collapsed = adminApp.collapsed;

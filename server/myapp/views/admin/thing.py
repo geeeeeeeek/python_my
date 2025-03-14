@@ -100,8 +100,9 @@ def delete(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        pk = request.data['id']
-        Thing.objects.filter(id=pk).delete()
+        ids = request.data['ids']
+        ids_arr = ids.split(',')
+        Thing.objects.filter(id__in=ids_arr).delete()
     except Thing.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')
     return APIResponse(code=0, msg='删除成功')

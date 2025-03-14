@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {
-    Button,
+    Button, Cascader,
     DatePicker, Divider,
     Form,
     Input,
     Mentions, message, Modal,
-    Segmented,
     Select,
     TreeSelect,
 } from 'antd';
@@ -21,12 +20,39 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
     const divRef = React.useRef(null);
 
+    const [categoryOptions, setCategoryOptions] = useState([]);
+
+    const fetchCategoryData = async () => {
+        try {
+            const {code, msg, data} = await axiosInstance.get('/myapp/admin/category/list');
+            console.log(data)
+            if (code === 0) {
+                setCategoryOptions(data.map((item) => ({
+                    value: item.id,
+                    label: item.title,
+                })));
+            } else {
+                message.error(msg || '网络异常')
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    };
 
     useEffect(() => {
-        setCurrentItem(initialItem || {})
-        if (divRef.current) {
-            divRef.current.scrollTop = 0; // 滚动到 0
-        }
+
+        const handler = setTimeout(() => {
+            setCurrentItem(initialItem || {})
+            if (divRef.current) {
+                divRef.current.scrollTop = 0; // 滚动到 0
+            }
+            fetchCategoryData()
+        }, 200); // 200ms延迟防抖
+
+        // 清除实现防抖
+        return () => {
+            clearTimeout(handler);
+        };
     }, [initialItem])
 
     const commit = () => {
@@ -41,6 +67,10 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
             message.error("请输入名称");
             return;
         }
+        if (!currentItem.category) {
+            message.error("请选择分类");
+            return;
+        }
         try {
             setLoading(true);
             const post_url = currentItem.id ? '/myapp/admin/thing/update' : '/myapp/admin/thing/create';
@@ -49,6 +79,7 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
                 formData.append('id', currentItem.id);
             }
             formData.append('title', currentItem.title || '');
+            formData.append('category', currentItem.category);
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
                 message.success("操作成功")
@@ -70,9 +101,16 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
     };
 
     const handleSelectChange = (name, value) => {
+        console.log('value----', value)
         setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
+    const handleCasChange = (name, value) => {
+        setCurrentItem((prev) => ({
+            ...prev,
+            [name]: value?.length > 0 ? value[0] : null,
+        }));
+    };
 
     const modalStyles = {
         mask: {
@@ -110,29 +148,21 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
                             </div>
                             <div className="flex flex-row gap-4">
                                 <FormLabel title="分类" required={true}></FormLabel>
-                                <Select
-                                    placeholder="请选择"
+                                <Cascader
                                     allowClear
                                     style={{
                                         width: 400,
                                     }}
                                     value={currentItem.category}
-                                    onChange={(value) => handleSelectChange("category", value)}
-                                    options={[
-                                        {
-                                            value: 'jack',
-                                            label: 'Jack',
-                                        },
-                                        {
-                                            value: 'lucy',
-                                            label: 'Lucy',
-                                        },
-                                        {
-                                            value: 'Yiminghe',
-                                            label: 'yiminghe',
-                                        },
-                                    ]}
-                                />
+                                    options={categoryOptions}
+                                    onChange={(value) => handleCasChange("category", value)}
+                                    placeholder="请选择" />
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="价格"></FormLabel>
+                                <Input placeholder="请输入产品价格" value={currentItem.price}
+                                       onChange={(e) => handleInputChange("price", e.target.value)}
+                                       style={{width: 400}}/>
                             </div>
                         </div>
 

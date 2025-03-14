@@ -1,14 +1,11 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import ProductList from "@/components/admin/product/productList";
-import {useSelector} from "react-redux";
 import {Tabs} from "antd";
 import CategoryList from "@/components/admin/category/categoryList";
 
 
 export default function Page() {
-
-    const {currentItem, isFormOpen} = useSelector((state) => state.productForm);
 
 
     useEffect(() => {
