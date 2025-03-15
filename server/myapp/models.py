@@ -49,8 +49,9 @@ class Thing(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True,
                                  related_name='category_thing')
     title = models.CharField(max_length=100, blank=True, null=True)
-    cover = models.ImageField(upload_to='cover/', null=True)
-    description = models.TextField(max_length=1000, blank=True, null=True)
+    summary = models.CharField(max_length=500, blank=True, null=True)
+    cover = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     price = models.CharField(max_length=10, blank=True, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
     create_time = models.DateTimeField(auto_now_add=True, null=True)

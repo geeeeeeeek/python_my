@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view, authentication_classes
 from myapp import utils
 from myapp.auth.authentication import AdminTokenAuthtication
 from myapp.handler import APIResponse
-from server.settings import MEDIA_ROOT
+from server.settings import MEDIA_ROOT, BASE_HOST_URL
 
 
 @api_view(['POST'])
@@ -61,31 +61,53 @@ def upload_img(request):
     return JsonResponse({"code": 1, "message": "Invalid request method."})
 
 
-
-
 @api_view(['POST'])
 @authentication_classes([AdminTokenAuthtication])
 def upload_file(request):
-    try:
-        myfile = request.FILES['my-file']
+    if request.method == 'POST':
+        # 确保存在文件
+        myfile = request.FILES.get('my-file')
+        if not myfile:
+            return JsonResponse({"errno": 1, "message": "No file uploaded."}, status=400)
+
+        # 打印文件大小
+        file_size = myfile.size
+        print('Uploaded file size:', file_size)
+
+        # 文件类型和大小验证
+        max_size = 5 * 1024 * 1024  # 5MB
+        valid_extensions = ['.mp4']  # 允许的文件扩展名
+
+        if file_size > max_size:
+            return JsonResponse({"errno": 1, "message": "图片太大，需小于5MB"})
+
         file_extension = Path(myfile.name).suffix
-        new_name = str(utils.get_timestamp()) + file_extension
+        if file_extension not in valid_extensions:
+            return JsonResponse({"errno": 1, "message": "非法文件格式"})
 
-        save_path = MEDIA_ROOT + os.path.sep + 'file' + os.path.sep + new_name
-        print('save_path-----' + save_path)
+        # 生成新文件名
+        new_name = f"{utils.get_timestamp()}{file_extension}"
 
-        with open(save_path, 'wb') as f:
-            # pic.chunks()为图片的一系列数据，它是一一段段的，所以要用for逐个读取
-            for content in myfile.chunks():
-                f.write(content)
+        # 拼接保存路径
+        save_path = os.path.join(MEDIA_ROOT, 'file', new_name)
+        print('save_path------------', save_path)
 
-        resp_json = {
-            "code": 0,
-            "data": new_name
-        }
+        # 保存文件
+        try:
+            # 使用 Django 的默认存储来保存文件
+            full_path = default_storage.save(os.path.join('file', new_name), myfile)
+            print('File saved at:', full_path)
 
-        return JsonResponse(resp_json)
+            resp_json = {
+                "errno": 0,
+                "data": {
+                    "url":  BASE_HOST_URL + '/upload/file/' + new_name,
+                }
+            }
+            return JsonResponse(resp_json)
 
-    except Exception as e:
-        print(str(e))
-        return APIResponse(code=1, msg='fail')
+        except Exception as e:
+            print('Error saving file:', e)
+            return JsonResponse({"errno": 1, "message": "Error saving file."})
+
+    return JsonResponse({"errno": 1, "message": "Invalid request method."})
