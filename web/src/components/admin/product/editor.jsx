@@ -114,7 +114,8 @@ function WangEditor({htmlText, onHtmlResult}) {
 
     return (
         <>
-            <div style={{border: '1px solid #ccc', zIndex: 100}}>
+            <div style={{border: '1px solid #ccc', zIndex: 100}}
+                 onClick={()=> editor.focus()}>
                 <Toolbar
                     editor={editor}
                     defaultConfig={toolbarConfig}

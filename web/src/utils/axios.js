@@ -32,7 +32,7 @@ axiosInstance.interceptors.response.use(
         const { response } = error;
         if (response) {
             // 处理 401 错误
-            if (response.status >= 401 && response.status < 500) {
+            if (response.status === 401 || response.status === 403) {
                 // 可以在这里执行登出等操作
                 console.error('未授权，请重新登录');
                 localStorage.removeItem('admintoken');

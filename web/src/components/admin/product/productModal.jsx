@@ -11,7 +11,9 @@ import FormLabel from "@/components/admin/formLabel";
 import axiosInstance from "@/utils/axios";
 import ImageUpload from "@/components/admin/imageUpload";
 import TextArea from "antd/es/input/TextArea";
+import { Space } from "antd";
 import dynamic  from 'next/dynamic'
+import PropertyPanel from "@/components/admin/product/propertyPanel";
 
 const WangEditor = dynamic(
     () => import('/src/components/admin/product/editor.jsx'),
@@ -30,6 +32,8 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
     // 为了制造Upload而用
     const [imageList, setImageList] = useState([]);
+
+    const propertyRef = useRef(null);
 
 
     const fetchCategoryData = async () => {
@@ -97,6 +101,11 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
             message.error("请上传图片");
             return;
         }
+
+        if(!propertyRef.current.handleCheckSubmit()){
+            message.error("参数不能留空");
+            return;
+        }
         try {
             setLoading(true);
             const post_url = currentItem.id ? '/myapp/admin/thing/update' : '/myapp/admin/thing/create';
@@ -105,11 +114,16 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
                 formData.append('id', currentItem.id);
             }
             formData.append('title', currentItem.title || '');
-            formData.append('summary', currentItem.summary || '');
-            formData.append('description', currentItem.description || '');
             formData.append('category', currentItem.category);
+            formData.append('summary', currentItem.summary || '');
             formData.append('price', currentItem.price || '');
             formData.append('cover', currentItem.cover || '');
+            formData.append('description', currentItem.description || '');
+            formData.append('seo_title', currentItem.seo_title || '');
+            formData.append('seo_description', currentItem.seo_description || '');
+            formData.append('seo_keywords', currentItem.seo_keywords || '');
+            formData.append('properties', currentItem.properties || '');
+
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
                 message.success("操作成功")
@@ -149,6 +163,10 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
     const handleHtmlChange = (value) => {
         setCurrentItem((prev) => ({...prev, description: value}));
+    };
+
+    const handlePropertyChange = (value) => {
+        setCurrentItem((prev) => ({...prev, properties: JSON.stringify(value || [])}));
     };
 
     const modalStyles = {
@@ -235,49 +253,41 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
                         <Divider/>
 
-                        <LabelPanel title="SEO信息"></LabelPanel>
+                        <LabelPanel title="产品参数"></LabelPanel>
                         <div className="flex flex-col gap-4 px-2 py-2">
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO标题"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO描述"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO关键词"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
+                            <PropertyPanel ref={propertyRef} properties={currentItem.properties} handlePropertyChange={handlePropertyChange}/>
                         </div>
 
                         <Divider/>
 
-                        <LabelPanel title="属性信息"></LabelPanel>
+                        <LabelPanel title="SEO优化"></LabelPanel>
                         <div className="flex flex-col gap-4 px-2 py-2">
                             <div className="flex flex-row gap-4">
                                 <FormLabel title="SEO标题"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
+                                <Input placeholder="请输入SEO标题" value={currentItem.seo_title}
+                                       onChange={(e) => handleInputChange("seo_title", e.target.value)}
+                                       style={{width: 600}}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="SEO关键词"></FormLabel>
+                                <Input placeholder="请输入SEO关键词" value={currentItem.seo_keywords}
+                                       onChange={(e) => handleInputChange("seo_keywords", e.target.value)}
+                                       style={{width: 600}}/>
                             </div>
                             <div className="flex flex-row gap-4">
                                 <FormLabel title="SEO描述"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO关键词"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO关键词"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO关键词"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
-                            </div>
-                            <div className="flex flex-row gap-4">
-                                <FormLabel title="SEO关键词"></FormLabel>
-                                <Input placeholder="input something" style={{width: 400}}/>
+                                <TextArea
+                                    placeholder="请输入SEO描述"
+                                    autoSize={{
+                                        minRows: 3,
+                                        maxRows: 6,
+                                    }}
+                                    showCount
+                                    maxLength={200}
+                                    value={currentItem.seo_description}
+                                    onChange={(e) => handleInputChange("seo_description", e.target.value)}
+                                    style={{width: 600}}
+                                />
                             </div>
                         </div>
 

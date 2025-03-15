@@ -12,7 +12,13 @@ export default function ProductList() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
 
+    const [paginationParams, setPaginationParams] = useState({
+        current: 1,
+        pageSize: 10,
+        total: 0
+    });
 
     const openModal = (item) => {
         setModalIsOpen(true);
@@ -27,11 +33,6 @@ export default function ProductList() {
         }
     };
 
-    const [paginationParams, setPaginationParams] = useState({
-        current: 1,
-        pageSize: 10,
-        total: 0
-    });
 
     const columns = [
         {
@@ -97,7 +98,8 @@ export default function ProductList() {
             setLoading(true);
             const params = {
                 page: paginationParams.current,
-                pageSize: paginationParams.pageSize
+                pageSize: paginationParams.pageSize,
+                keyword: searchValue
             };
             const {code, total, data} = await axiosInstance.get('/myapp/admin/thing/list', {params});
             if (code === 0) {
@@ -117,10 +119,17 @@ export default function ProductList() {
 
     useEffect(() => {
         fetchData();
-    }, [paginationParams.current])
+    }, [paginationParams.current, searchValue])
 
 
-    const onSearch = (value, _e, info) => console.log(info?.source, value);
+    const onSearch = (value, _e, info) => {
+        console.log(info?.source, value);
+        setPaginationParams(pre => ({
+            ...pre,
+            current: 1,
+        }))
+        setSearchValue(value || '');
+    }
 
     const handleChangePage = (page, pageSize) => {
         setPaginationParams(pre => ({
