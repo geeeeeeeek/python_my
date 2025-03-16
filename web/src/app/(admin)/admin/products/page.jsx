@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import ProductList from "@/components/admin/product/productList";
 import {Tabs} from "antd";
 import CategoryList from "@/components/admin/category/categoryList";
+import PageConfig from "@/components/admin/product/pageConfig";
 
 
 export default function Page() {
@@ -27,8 +28,8 @@ export default function Page() {
         },
         {
             key: '3',
-            label: '网页信息',
-            children: 'Content of Tab Pane 3',
+            label: '网页配置',
+            children: <PageConfig />,
         },
     ];
 

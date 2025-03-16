@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
 import axios from "axios";
 import axiosInstance from "@/utils/axios";
-import EditModal from "@/components/admin/user/editModal";
+import NewsModal from "@/components/admin/news/newsModal";
 
 export default function Page() {
     const adminApp = useSelector((state) => state.adminSetting);
@@ -126,8 +126,8 @@ export default function Page() {
             </div>
 
 
-            {/* 使用 EditModal 组件 */}
-            <EditModal
+            {/* 使用 CategoryModal 组件 */}
+            <NewsModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 initialItem={currentItem}

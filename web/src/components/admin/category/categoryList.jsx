@@ -4,7 +4,7 @@ import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, S
 import ProductModal from "@/components/admin/product/productModal";
 import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
-import EditModal from "@/components/admin/category/editModal";
+import CategoryModal from "@/components/admin/category/categoryModal";
 import axios from "axios";
 import axiosInstance from "@/utils/axios";
 
@@ -120,8 +120,8 @@ export default function CategoryList() {
                 </div>
             </Spin>
 
-            {/* 使用 EditModal 组件 */}
-            <EditModal
+            {/* 使用 CategoryModal 组件 */}
+            <CategoryModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 initialItem={currentItem}

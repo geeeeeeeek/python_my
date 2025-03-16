@@ -15,8 +15,8 @@ const items = [
     icon: <MailOutlined />,
   },
   {
-    key: '/admin/home',
-    label: '首页管理',
+    key: '/admin/news',
+    label: '新闻管理',
     icon: <MailOutlined />,
   },
   {
@@ -27,11 +27,6 @@ const items = [
   {
     key: '/admin/about',
     label: '关于管理',
-    icon: <MailOutlined />,
-  },
-  {
-    key: '/admin/news',
-    label: '新闻管理',
     icon: <MailOutlined />,
   },
   {

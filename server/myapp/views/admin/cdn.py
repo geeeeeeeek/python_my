@@ -76,7 +76,7 @@ def upload_file(request):
 
         # 文件类型和大小验证
         max_size = 5 * 1024 * 1024  # 5MB
-        valid_extensions = ['.mp4']  # 允许的文件扩展名
+        valid_extensions = ['.mp4', '.jpeg', '.jpg', '.png']  # 允许的文件扩展名
 
         if file_size > max_size:
             return JsonResponse({"errno": 1, "message": "图片太大，需小于5MB"})
@@ -101,7 +101,7 @@ def upload_file(request):
             resp_json = {
                 "errno": 0,
                 "data": {
-                    "url":  BASE_HOST_URL + '/upload/file/' + new_name,
+                    "url": BASE_HOST_URL + '/upload/file/' + new_name,
                 }
             }
             return JsonResponse(resp_json)

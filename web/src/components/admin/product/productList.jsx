@@ -39,6 +39,9 @@ export default function ProductList() {
             title: '产品名称',
             dataIndex: 'title',
             key: 'title',
+            width: '240px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (text) => <div>{text}</div>,
         },
         {
@@ -48,8 +51,21 @@ export default function ProductList() {
             render: (text) => <div>{text}</div>,
         },
         {
+            title: '摘要',
+            dataIndex: 'summary',
+            key: 'summary',
+            render: (text) => <div>{text}</div>,
+        },
+        {
+            title: '创建时间',
+            dataIndex: 'create_time',
+            key: 'create_time',
+            render: (text) => <div>{text}</div>,
+        },
+        {
             title: '操作',
             key: 'action',
+            fixed: 'right',
             render: (_, item) => (
                 <Space size="middle">
                     <a onClick={() => openModal(item)}>编辑</a>
@@ -169,6 +185,7 @@ export default function ProductList() {
                            rowSelection={rowSelection}
                            rowKey={(record) => record.id}
                            pagination={false}
+                           scroll={{ x: 'max-content' }}
                            showSizeChanger={false}/>
                     <div className="p-4">
                         <Pagination align='end'
@@ -183,7 +200,7 @@ export default function ProductList() {
 
             </div>
 
-            {/* 使用 EditModal 组件 */}
+            {/* 使用 CategoryModal 组件 */}
             <ProductModal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}

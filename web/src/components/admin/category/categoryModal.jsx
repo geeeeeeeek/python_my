@@ -4,7 +4,7 @@ import FormLabel from "@/components/admin/formLabel";
 import ImageUpload from "@/components/admin/imageUpload";
 import axiosInstance from "@/utils/axios";
 
-const EditModal = ({isOpen, onRequestClose, initialItem}) => {
+const CategoryModal = ({isOpen, onRequestClose, initialItem}) => {
     const [currentItem, setCurrentItem] = useState(initialItem || {});
 
     // 为了制造Upload而用
@@ -124,4 +124,4 @@ const EditModal = ({isOpen, onRequestClose, initialItem}) => {
     );
 };
 
-export default EditModal;
+export default CategoryModal;

@@ -1,9 +1,10 @@
 from rest_framework import serializers
 
-from myapp.models import Thing, Category, User, OpLog, ErrorLog
+from myapp.models import Thing, Category, User, OpLog, ErrorLog, News
 
 
 class ThingSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
     # 额外字段
     category_title = serializers.ReadOnlyField(source='category.title')
 
@@ -33,6 +34,7 @@ class UpdateThingSerializer(serializers.ModelSerializer):
 
 
 class ListThingSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
     # 额外字段
     category_title = serializers.ReadOnlyField(source='category.title')
 
@@ -51,11 +53,20 @@ class CategorySerializer(serializers.ModelSerializer):
 
     def get_children(self, obj):
         # 获取当前类别的所有子类别，并根据 sort 排序
-        children = Category.objects.filter(pid=obj.id).order_by('sort','-id')
+        children = Category.objects.filter(pid=obj.id).order_by('sort', '-id')
         # 如果有子类，继续序列化；如果没有则返回 None
         if children.exists():
             return CategorySerializer(children, many=True).data
         return None  # 如果没有子类则返回 None
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = News
+        fields = '__all__'
+
 
 class UserSerializer(serializers.ModelSerializer):
     create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)

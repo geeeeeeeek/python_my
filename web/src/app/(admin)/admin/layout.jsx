@@ -2,9 +2,6 @@
 import {Montserrat} from 'next/font/google';
 import "@/styles/globals.css";
 import SideBar from "@/components/admin/sidebar";
-import {AppstoreOutlined} from "@ant-design/icons";
-import {useDispatch, useSelector} from "react-redux";
-import {setCollapsed, setShowForm} from "@/redux/adminSettingSlice";
 import Header from "@/components/admin/header";
 
 

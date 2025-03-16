@@ -4,19 +4,19 @@ import {
     Button, Cascader,
     Divider,
     Input,
-    message, Modal,
+    message, Modal, TreeSelect,
 } from 'antd';
 import LabelPanel from "@/components/admin/labelPanel";
 import FormLabel from "@/components/admin/formLabel";
 import axiosInstance from "@/utils/axios";
 import ImageUpload from "@/components/admin/imageUpload";
 import TextArea from "antd/es/input/TextArea";
-import { Space } from "antd";
-import dynamic  from 'next/dynamic'
+import {Space} from "antd";
+import dynamic from 'next/dynamic'
 import PropertyPanel from "@/components/admin/product/propertyPanel";
 
 const WangEditor = dynamic(
-    () => import('/src/components/admin/product/editor.jsx'),
+    () => import('/src/components/admin/wangEditor.jsx'),
     {ssr: false}
 )
 
@@ -40,10 +40,7 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
         try {
             const {code, msg, data} = await axiosInstance.get('/myapp/admin/category/list');
             if (code === 0) {
-                setCategoryOptions(data.map((item) => ({
-                    value: item.id,
-                    label: item.title,
-                })));
+                setCategoryOptions(data);
             } else {
                 message.error(msg || '网络异常')
             }
@@ -102,7 +99,7 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
             return;
         }
 
-        if(!propertyRef.current.handleCheckSubmit()){
+        if (!propertyRef.current.handleCheckSubmit()) {
             message.error("参数不能留空");
             return;
         }
@@ -149,10 +146,10 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
         setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
-    const handleCasChange = (name, value) => {
+    const handleTreeSelectChange = (name, value) => {
         setCurrentItem((prev) => ({
             ...prev,
-            [name]: value?.length > 0 ? value[0] : null,
+            [name]: value,
         }));
     };
 
@@ -205,15 +202,19 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
                             <div className="flex flex-row gap-4">
                                 <FormLabel title="分类" required={true}></FormLabel>
-                                <Cascader
-                                    allowClear
+                                <TreeSelect
+                                    dropdownStyle={{maxHeight: 300, overflow: 'auto', minWidth: 300}}
                                     style={{
                                         width: 300,
                                     }}
+                                    placeholder="Please select"
                                     value={currentItem.category}
-                                    options={categoryOptions}
-                                    onChange={(value) => handleCasChange("category", value)}
-                                    placeholder="请选择" />
+                                    placement='bottomLeft'
+                                    allowClear
+                                    fieldNames={{label: 'title', value: 'id', children: 'children'}}
+                                    onChange={(value) => handleTreeSelectChange("category", value)}
+                                    treeData={categoryOptions}
+                                />
                             </div>
                             <div className="flex flex-row gap-4">
                                 <FormLabel title="价格"></FormLabel>
@@ -246,16 +247,15 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
 
                         <LabelPanel title="产品详情"></LabelPanel>
                         <div className="flex flex-col gap-4 px-2 py-2">
-
                             <WangEditor htmlText={currentItem.description} onHtmlResult={handleHtmlChange}/>
-
                         </div>
 
                         <Divider/>
 
                         <LabelPanel title="产品参数"></LabelPanel>
                         <div className="flex flex-col gap-4 px-2 py-2">
-                            <PropertyPanel ref={propertyRef} properties={currentItem.properties} handlePropertyChange={handlePropertyChange}/>
+                            <PropertyPanel ref={propertyRef} properties={currentItem.properties}
+                                           handlePropertyChange={handlePropertyChange}/>
                         </div>
 
                         <Divider/>

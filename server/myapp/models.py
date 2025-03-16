@@ -46,7 +46,7 @@ class Thing(models.Model):
         ('1', '下架'),
     )
     id = models.BigAutoField(primary_key=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True,
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True,
                                  related_name='category_thing')
     title = models.CharField(max_length=100, blank=True, null=True)
     summary = models.CharField(max_length=500, blank=True, null=True)
@@ -64,6 +64,28 @@ class Thing(models.Model):
 
     class Meta:
         db_table = "b_thing"
+
+
+class News(models.Model):
+    STATUS_CHOICES = (
+        ('0', '上架'),
+        ('1', '下架'),
+    )
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    summary = models.CharField(max_length=500, blank=True, null=True)
+    source = models.CharField(max_length=100, blank=True, null=True)
+    cover = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    seo_title = models.CharField(max_length=100, blank=True, null=True)
+    seo_description = models.CharField(max_length=500, blank=True, null=True)
+    seo_keywords = models.CharField(max_length=200, blank=True, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
+    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    pv = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "b_news"
 
 
 class OpLog(models.Model):

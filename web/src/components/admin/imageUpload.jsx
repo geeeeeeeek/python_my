@@ -69,7 +69,7 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
                     marginTop: 8,
                 }}
             >
-                Upload
+                上传
             </div>
         </button>
     );
@@ -84,30 +84,35 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
 
     return (
         <>
-            <Upload
-                accept="image/*"
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-                maxCount={maxCount}
-                {...props}
-            >
-                {fileList.length >= maxCount ? null : uploadButton}
-            </Upload>
-            {previewImage && (
-                <Image
-                    wrapperStyle={{
-                        display: 'none',
-                    }}
-                    preview={{
-                        visible: previewOpen,
-                        onVisibleChange: (visible) => setPreviewOpen(visible),
-                        afterOpenChange: (visible) => !visible && setPreviewImage(''),
-                    }}
-                    src={previewImage}
-                />
-            )}
+            <div className="flex flex-col gap-2">
+                <div>
+                    <Upload
+                        accept="image/*"
+                        listType="picture-card"
+                        fileList={fileList}
+                        onPreview={handlePreview}
+                        onChange={handleChange}
+                        maxCount={maxCount}
+                        {...props}
+                    >
+                        {fileList.length >= maxCount ? null : uploadButton}
+                    </Upload>
+                    {previewImage && (
+                        <Image
+                            wrapperStyle={{
+                                display: 'none',
+                            }}
+                            preview={{
+                                visible: previewOpen,
+                                onVisibleChange: (visible) => setPreviewOpen(visible),
+                                afterOpenChange: (visible) => !visible && setPreviewImage(''),
+                            }}
+                            src={previewImage}
+                        />
+                    )}
+                </div>
+                <div className="text-gray-500 text-sm">图片大小限制2MB</div>
+            </div>
         </>
     );
 };
