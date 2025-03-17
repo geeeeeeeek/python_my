@@ -88,6 +88,42 @@ class News(models.Model):
         db_table = "b_news"
 
 
+class Case(models.Model):
+    STATUS_CHOICES = (
+        ('0', '上架'),
+        ('1', '下架'),
+    )
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    cover = models.CharField(max_length=1000, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    seo_title = models.CharField(max_length=100, blank=True, null=True)
+    seo_description = models.CharField(max_length=500, blank=True, null=True)
+    seo_keywords = models.CharField(max_length=200, blank=True, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
+    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    pv = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "b_case"
+
+
+class Faq(models.Model):
+    STATUS_CHOICES = (
+        ('0', '上架'),
+        ('1', '下架'),
+    )
+    id = models.BigAutoField(primary_key=True)
+    question = models.CharField(max_length=200, blank=True, null=True)
+    reply = models.CharField(max_length=500, blank=True, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
+    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    pv = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "b_faq"
+
+
 class OpLog(models.Model):
     id = models.BigAutoField(primary_key=True)
     re_ip = models.CharField(max_length=100, blank=True, null=True)

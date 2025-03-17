@@ -20,6 +20,16 @@ const items = [
     icon: <MailOutlined />,
   },
   {
+    key: '/admin/case',
+    label: '案例管理',
+    icon: <MailOutlined />,
+  },
+  {
+    key: '/admin/faq',
+    label: 'FAQ管理',
+    icon: <MailOutlined />,
+  },
+  {
     key: '/admin/contact',
     label: '联系管理',
     icon: <MailOutlined />,

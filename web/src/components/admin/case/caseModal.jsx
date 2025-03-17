@@ -7,7 +7,7 @@ import TextArea from "antd/es/input/TextArea";
 import LabelPanel from "@/components/admin/labelPanel";
 import WangEditor from "@/components/admin/wangEditor";
 
-const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
+const CaseModal = ({isOpen, onRequestClose, initialItem}) => {
     const [currentItem, setCurrentItem] = useState(initialItem || {});
     const [imageList, setImageList] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -45,7 +45,7 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
 
     const handleSave = async () => {
         try {
-            const post_url = currentItem.id ? '/myapp/admin/news/update' : '/myapp/admin/news/create';
+            const post_url = currentItem.id ? '/myapp/admin/case/update' : '/myapp/admin/case/create';
             const formData = new FormData();
             if (currentItem.id) {
                 formData.append('id', currentItem.id);
@@ -60,8 +60,6 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
             }
             formData.append('title', currentItem.title || '');
             formData.append('cover', currentItem.cover || '');
-            formData.append('source', currentItem.source || '');
-            formData.append('summary', currentItem.summary || '');
             formData.append('description', currentItem.description || '');
             formData.append('seo_title', currentItem.seo_title || '');
             formData.append('seo_keywords', currentItem.seo_keywords || '');
@@ -106,37 +104,16 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
                                            style={{width: 600}}/>
                                 </div>
                                 <div className="flex flex-row gap-4">
-                                    <FormLabel title="新闻来源"></FormLabel>
-                                    <Input placeholder="请输入来源" value={currentItem.source}
-                                           onChange={(e) => handleInputChange("source", e.target.value)}
-                                           style={{width: 600}}/>
-                                </div>
-                                <div className="flex flex-row gap-4">
-                                    <FormLabel title="封面图"></FormLabel>
+                                    <FormLabel title="封面图" required={true}></FormLabel>
                                     <ImageUpload maxCount={1} imageList={imageList}
                                                  onImageUploadChange={handleImageUploadChange}/>
-                                </div>
-                                <div className="flex flex-row gap-4">
-                                    <FormLabel title="摘要" required={true}></FormLabel>
-                                    <TextArea
-                                        placeholder="请输入摘要"
-                                        autoSize={{
-                                            minRows: 3,
-                                            maxRows: 6,
-                                        }}
-                                        showCount
-                                        maxLength={500}
-                                        value={currentItem.summary}
-                                        onChange={(e) => handleInputChange("summary", e.target.value)}
-                                        style={{width: 600}}
-                                    />
                                 </div>
 
                             </div>
 
                             <Divider/>
 
-                            <LabelPanel title="新闻详情"></LabelPanel>
+                            <LabelPanel title="案例详情"></LabelPanel>
                             <div className="flex flex-col gap-4 px-2 py-2">
                                 <WangEditor htmlText={currentItem.description} onHtmlResult={handleHtmlChange}/>
                             </div>
@@ -187,4 +164,4 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
     );
 };
 
-export default NewsModal;
+export default CaseModal;

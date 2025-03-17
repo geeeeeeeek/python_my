@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from myapp.models import Thing, Category, User, OpLog, ErrorLog, News
+from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq
 
 
 class ThingSerializer(serializers.ModelSerializer):
@@ -65,6 +65,22 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
+        fields = '__all__'
+
+
+class FaqSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Faq
+        fields = '__all__'
+
+
+class CaseSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Case
         fields = '__all__'
 
 
