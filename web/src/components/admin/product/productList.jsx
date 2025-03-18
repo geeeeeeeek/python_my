@@ -57,6 +57,12 @@ export default function ProductList() {
             render: (text) => <div>{text}</div>,
         },
         {
+            title: '是否启用',
+            dataIndex: 'status',
+            key: 'status',
+            render: (text) => <div>{text === '0'?'是':'否'}</div>,
+        },
+        {
             title: '创建时间',
             dataIndex: 'create_time',
             key: 'create_time',
@@ -160,7 +166,7 @@ export default function ProductList() {
         <>
             <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
                 <div className="flex flex-row gap-4">
-                    <Button type="primary" onClick={() => openModal({})}>新增产品</Button>
+                    <Button type="primary" onClick={() => openModal({status:'0'})}>新增产品</Button>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"

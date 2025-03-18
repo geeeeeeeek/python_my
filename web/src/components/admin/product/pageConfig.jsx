@@ -22,7 +22,9 @@ function PageConfig() {
                 <div className="bg-white shadow-md">
                     <div className="flex flex-row gap-4">
                         <FormLabel title="封面图"></FormLabel>
-                        <ImageUpload maxCount={1} imageList={imageList}
+                        <ImageUpload maxCount={1}
+                                     accept="image/*"
+                                     imageList={imageList}
                                      onImageUploadChange={handleImageUploadChange}/>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import {
     Button, Cascader,
     Divider,
     Input,
-    message, Modal, TreeSelect,
+    message, Modal, Select, TreeSelect,
 } from 'antd';
 import LabelPanel from "@/components/admin/labelPanel";
 import FormLabel from "@/components/admin/formLabel";
@@ -120,6 +120,7 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
             formData.append('seo_description', currentItem.seo_description || '');
             formData.append('seo_keywords', currentItem.seo_keywords || '');
             formData.append('properties', currentItem.properties || '');
+            formData.append('status', currentItem.status || '0');
 
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
@@ -239,8 +240,24 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
                             </div>
                             <div className="flex flex-row gap-4 min-h-[100px]">
                                 <FormLabel title="图片"></FormLabel>
-                                <ImageUpload maxCount={5} imageList={imageList}
+                                <ImageUpload maxCount={5}
+                                             accept="image/*"
+                                             imageList={imageList}
                                              onImageUploadChange={handleImageUploadChange}/>
+                            </div>
+                            <div className="flex flex-row gap-4">
+                                <FormLabel title="是否启用"></FormLabel>
+                                <Select
+                                    defaultValue="0"
+                                    placeholder="请选择状态"
+                                    value={currentItem.status}
+                                    style={{ width: 400 }}
+                                    onChange={(value)=>handleSelectChange('status', value)}
+                                    options={[
+                                        { value: '0', label: '是' },
+                                        { value: '1', label: '否' },
+                                    ]}
+                                />
                             </div>
                         </div>
                         <Divider/>

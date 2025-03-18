@@ -11,7 +11,7 @@ const getBase64 = (file) =>
     });
 
 
-const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
+const ImageUpload = ({maxCount,accept, imageList, onImageUploadChange}) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [fileList, setFileList] = useState(imageList);
@@ -60,6 +60,8 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
             style={{
                 border: 0,
                 background: 'none',
+                display: 'flex',
+                alignItems:  'center'
             }}
             type="button"
         >
@@ -69,7 +71,6 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
                     marginTop: 8,
                 }}
             >
-                上传
             </div>
         </button>
     );
@@ -87,7 +88,7 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
             <div className="flex flex-col gap-2">
                 <div>
                     <Upload
-                        accept="image/*"
+                        accept={accept}
                         listType="picture-card"
                         fileList={fileList}
                         onPreview={handlePreview}
@@ -111,7 +112,7 @@ const ImageUpload = ({maxCount, imageList, onImageUploadChange}) => {
                         />
                     )}
                 </div>
-                <div className="text-gray-500 text-sm">图片大小限制2MB</div>
+                <div className="text-gray-500 text-sm">图片大小2MB以内</div>
             </div>
         </>
     );

@@ -30,6 +30,11 @@ const items = [
     icon: <MailOutlined />,
   },
   {
+    key: '/admin/basicInfo',
+    label: '基本信息',
+    icon: <MailOutlined />,
+  },
+  {
     key: '/admin/contact',
     label: '联系管理',
     icon: <MailOutlined />,
