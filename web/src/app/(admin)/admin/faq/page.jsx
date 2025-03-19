@@ -1,9 +1,7 @@
 'use client';
-import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs, Tag} from 'antd';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Button, message, Pagination, Popconfirm, Space, Spin, Table} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import Search from "antd/es/input/Search";
-import axios from "axios";
 import axiosInstance from "@/utils/axios";
 import FaqModal from "@/components/admin/faq/faqModal";
 
@@ -62,7 +60,7 @@ export default function Page() {
         },
     ];
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         try {
             setLoading(true);
             const params = {
@@ -84,11 +82,11 @@ export default function Page() {
         } catch (err) {
             console.log(err)
         }
-    }
+    },[paginationParams.current, searchValue])
 
     useEffect(() => {
         fetchData();
-    }, [paginationParams.current, searchValue])
+    }, [fetchData])
 
 
     const [data, setData] = useState([]);
@@ -164,6 +162,7 @@ export default function Page() {
                             </div>
                             <Table columns={columns}
                                    dataSource={data}
+                                   size="middle"
                                    rowSelection={rowSelection}
                                    rowKey={(record) => record.id}
                                    pagination={false}

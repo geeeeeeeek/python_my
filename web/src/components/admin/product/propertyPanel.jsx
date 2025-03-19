@@ -76,4 +76,6 @@ const PropertyPanel = React.forwardRef(({ properties, handlePropertyChange}, ref
     );
 });
 
+PropertyPanel.displayName = 'PropertyPanel'; // 设置 displayName
+
 export default PropertyPanel

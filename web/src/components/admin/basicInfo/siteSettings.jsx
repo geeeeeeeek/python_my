@@ -1,4 +1,4 @@
-import HeadLabel from "@/components/admin/headLabel";
+'use client';
 import FormLabel from "@/components/admin/formLabel";
 import React, {useEffect, useState} from "react";
 import {Button, Input, Radio} from 'antd';

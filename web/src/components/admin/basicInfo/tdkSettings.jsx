@@ -1,8 +1,9 @@
+'use client';
+
 import HeadLabel from "@/components/admin/headLabel";
 import FormLabel from "@/components/admin/formLabel";
 import React, {useEffect, useState} from "react";
 import {Button, Input, Radio} from 'antd';
-import ImageUpload from "@/components/admin/imageUpload";
 import TextArea from "antd/es/input/TextArea";
 import {Divider} from "antd/lib";
 

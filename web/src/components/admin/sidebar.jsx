@@ -30,18 +30,23 @@ const items = [
     icon: <MailOutlined />,
   },
   {
+    key: '/admin/about',
+    label: '关于页',
+    icon: <MailOutlined />,
+  },
+  {
     key: '/admin/basicInfo',
     label: '基本信息',
     icon: <MailOutlined />,
   },
   {
-    key: '/admin/contact',
-    label: '联系管理',
+    key: '/admin/inquiry',
+    label: '询盘管理',
     icon: <MailOutlined />,
   },
   {
-    key: '/admin/about',
-    label: '关于管理',
+    key: '/admin/contact',
+    label: '联系管理',
     icon: <MailOutlined />,
   },
   {

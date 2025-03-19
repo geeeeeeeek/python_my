@@ -21,14 +21,15 @@ class MyPageNumberPagination(PageNumberPagination):
 def list_api(request):
     if request.method == 'GET':
         faq = Faq.objects.order_by('-create_time')
-
-        # 分页
-        paginator = MyPageNumberPagination()
-        paginated_faq = paginator.paginate_queryset(faq, request)
         total = len(faq)
 
+        paginator = MyPageNumberPagination()
+        paginated_faq = paginator.paginate_queryset(faq, request)
         serializer = FaqSerializer(paginated_faq, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)
+
+
+
 
 
 @api_view(['POST'])

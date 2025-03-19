@@ -117,6 +117,7 @@ export default function Page() {
                             </div>
                             <Table columns={columns}
                                    dataSource={data}
+                                   size="middle"
                                    rowKey={(record) => record.id}
                                    pagination={false}
                                    className="shadow-md bg-white"/>

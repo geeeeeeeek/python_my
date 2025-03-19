@@ -1,3 +1,4 @@
+'use client';
 import HeadLabel from "@/components/admin/headLabel";
 import FormLabel from "@/components/admin/formLabel";
 import React, {useEffect, useState} from "react";
@@ -9,27 +10,35 @@ import {Divider} from "antd/lib";
 const AdditionalSettings = () => {
 
     const [currentItem, setCurrentItem] = useState({});
-    // 为了制造Upload而用
-    const [imageList, setImageList] = useState([]);
+
+    // 为了制造Upload而用(关于配图)
+    const [aboutImageList, setAboutImageList] = useState([]);
+
+    // 为了制造Upload而用(工厂配图)
+    const [companyImageList, setCompanyImageList] = useState([]);
 
 
 
     useEffect(() => {
 
-        // 制造适合Upload的数据格式
-        if (currentItem?.global_wechat_qrcode?.length > 0) {
-            setImageList(currentItem?.global_wechat_qrcode?.split("#").map((item) => ({
-                success: true,
-                name: item,
-                status: 'done',
-                url: process.env.NEXT_PUBLIC_BASE_URL + '/upload/img/' + item,
-            })));
-        } else {
-            setImageList([]);
-        }
+        // 制造适合Upload的数据格式(关于配图)
+        setAboutImageList(createImageList(currentItem?.global_addition_about_image));
+
+        // 制造适合Upload的数据格式(工厂配图)
+        setCompanyImageList(createImageList(currentItem?.global_addition_company_image));
 
     }, []);
 
+    const createImageList = (imageString) => {
+        return imageString?.length > 0
+            ? imageString.split("#").map((item) => ({
+                success: true,
+                name: item,
+                status: 'done',
+                url: `${process.env.NEXT_PUBLIC_BASE_URL}/upload/img/${item}`,
+            }))
+            : [];
+    };
 
     const handleInputChange = (name, value) => {
         setCurrentItem((prev) => ({...prev, [name]: value}));
@@ -39,9 +48,9 @@ const AdditionalSettings = () => {
         console.log(currentItem);
     };
 
-    const handleImageUploadChange = (imageUrlList) => {
-        let cover = (imageUrlList && imageUrlList.length > 0) ? imageUrlList.join("#") : null;
-        setCurrentItem((prev) => ({...prev, cover: cover}));
+    const handleImageUploadChange = (imageUrlList, name) => {
+        let value = (imageUrlList && imageUrlList.length > 0) ? imageUrlList.join("#") : null;
+        setCurrentItem((prev) => ({...prev, [name]: value}));
     };
 
     return (
@@ -82,11 +91,21 @@ const AdditionalSettings = () => {
 
 
                     <div className="flex flex-row gap-4">
-                        <FormLabel title="微信二维码"></FormLabel>
+                        <FormLabel title="关于配图"></FormLabel>
                         <ImageUpload maxCount={1}
+                                     maxSize={2}
                                      accept="image/*"
-                                     imageList={imageList}
-                                     onImageUploadChange={handleImageUploadChange}/>
+                                     imageList={aboutImageList}
+                                     onImageUploadChange={(imageUrlList)=>handleImageUploadChange(imageUrlList, 'global_addition_about_image')}/>
+                    </div>
+
+                    <div className="flex flex-row gap-4">
+                        <FormLabel title="工厂图片"></FormLabel>
+                        <ImageUpload maxCount={4}
+                                     maxSize={2}
+                                     accept="image/*"
+                                     imageList={companyImageList}
+                                     onImageUploadChange={(imageUrlList)=>handleImageUploadChange(imageUrlList, 'global_addition_company_image')}/>
                     </div>
                 </div>
 

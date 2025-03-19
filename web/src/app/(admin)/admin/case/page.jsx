@@ -174,6 +174,7 @@ export default function Page() {
                             </div>
                             <Table columns={columns}
                                    dataSource={data}
+                                   size="middle"
                                    rowSelection={rowSelection}
                                    rowKey={(record) => record.id}
                                    pagination={false}

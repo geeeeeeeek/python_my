@@ -124,6 +124,25 @@ class Faq(models.Model):
         db_table = "b_faq"
 
 
+class Inquiry(models.Model):
+    STATUS_CHOICES = (
+        ('0', '上架'),
+        ('1', '下架'),
+    )
+    id = models.BigAutoField(primary_key=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    tel = models.CharField(max_length=50, blank=True, null=True)
+    email = models.CharField(max_length=30, blank=True, null=True)
+    company = models.CharField(max_length=100, blank=True, null=True)
+    message = models.CharField(max_length=500, blank=True, null=True)
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
+    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    pv = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "b_inquiry"
+
+
 class OpLog(models.Model):
     id = models.BigAutoField(primary_key=True)
     re_ip = models.CharField(max_length=100, blank=True, null=True)

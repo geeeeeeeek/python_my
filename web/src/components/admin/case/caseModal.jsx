@@ -5,8 +5,11 @@ import ImageUpload from "@/components/admin/imageUpload";
 import axiosInstance from "@/utils/axios";
 import TextArea from "antd/es/input/TextArea";
 import LabelPanel from "@/components/admin/labelPanel";
-import WangEditor from "@/components/admin/wangEditor";
-
+import dynamic from "next/dynamic";
+const WangEditor = dynamic(
+    () => import('/src/components/admin/wangEditor.jsx'),
+    {ssr: false}
+)
 const CaseModal = ({isOpen, onRequestClose, initialItem}) => {
     const [currentItem, setCurrentItem] = useState(initialItem || {});
     const [imageList, setImageList] = useState([]);

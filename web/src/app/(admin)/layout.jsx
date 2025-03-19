@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import {ThemeProvider} from "@/theme/theme-provider";
 import {Montserrat} from 'next/font/google';
 import "@/styles/globals.css";
@@ -9,11 +9,11 @@ import ReduxProvider from "@/redux/redux-provider";
 
 const font = Montserrat({subsets: ["latin"], weight: "400"})
 
-// export const metadata = {
-//     title: "网站后台管理",
-//     description: "网站后台管理系统",
-//     icons: [{rel: "icon", url: "/favicon.ico"}],
-// }
+export const metadata = {
+    title: "网站后台管理",
+    description: "网站后台管理系统",
+    icons: [{rel: "icon", url: "/favicon.ico"}],
+}
 
 
 export default function RootLayout({children}) {
@@ -43,6 +43,13 @@ export default function RootLayout({children}) {
                             },
                             Table: {
                                 headerBorderRadius: 0,
+                                headerBg: '#3398cc',
+                                headerColor: '#fff',
+                                borderRadius: 0,
+                                colorBorderSecondary: '#fff',
+                                cellFontSizeMD:14, // middle尺寸的
+                                cellPaddingBlockMD: 8,
+                                cellPaddingInlineMD: 8,
                             },
                             Pagination: {
                                 borderRadius: 0,

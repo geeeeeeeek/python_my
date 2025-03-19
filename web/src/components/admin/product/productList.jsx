@@ -188,6 +188,7 @@ export default function ProductList() {
                 <div className="bg-white shadow-md">
                     <Table columns={columns}
                            dataSource={data}
+                           size="middle"
                            rowSelection={rowSelection}
                            rowKey={(record) => record.id}
                            pagination={false}

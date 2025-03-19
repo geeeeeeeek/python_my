@@ -1,13 +1,11 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import {Tabs} from "antd";
-import ProductList from "@/components/admin/product/productList";
-import CategoryList from "@/components/admin/category/categoryList";
-import PageConfig from "@/components/admin/product/pageConfig";
 import SiteSettings from "@/components/admin/basicInfo/siteSettings";
 import TdkSettings from "@/components/admin/basicInfo/tdkSettings";
 import GlobalSettings from "@/components/admin/basicInfo/globalSettings";
 import AdditionalSettings from "@/components/admin/basicInfo/additionalSettings";
+import BannerSettings from "@/components/admin/basicInfo/bannerSettings";
 
 export default function Page() {
     const onChange = (key) => {
@@ -26,11 +24,16 @@ export default function Page() {
         },
         {
             key: '3',
+            label: 'Banner信息',
+            children: <BannerSettings />,
+        },
+        {
+            key: '4',
             label: '全局变量',
             children: <GlobalSettings />,
         },
         {
-            key: '4',
+            key: '5',
             label: '附加变量',
             children: <AdditionalSettings />,
         },

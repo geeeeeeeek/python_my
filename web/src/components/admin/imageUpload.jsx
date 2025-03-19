@@ -11,14 +11,18 @@ const getBase64 = (file) =>
     });
 
 
-const ImageUpload = ({maxCount,accept, imageList, onImageUploadChange}) => {
+const ImageUpload = ({maxCount, maxSize,accept, imageList, onImageUploadChange}) => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [fileList, setFileList] = useState(imageList);
+    const [admintoken, setAdmintoken] = useState('');
     
     useEffect(() => {
         setFileList(imageList)
 
+        if (localStorage.getItem('admintoken')) {
+            setAdmintoken(localStorage.getItem('admintoken'))
+        }
     }, [imageList]);
 
 
@@ -79,7 +83,7 @@ const ImageUpload = ({maxCount,accept, imageList, onImageUploadChange}) => {
         name: 'my-file',
         action: process.env.NEXT_PUBLIC_BASE_URL + '/myapp/admin/cdn/uploadImg',
         headers: {
-            admintoken: localStorage.getItem('admintoken') || '',
+            admintoken: admintoken,
         },
     };
 
@@ -112,7 +116,7 @@ const ImageUpload = ({maxCount,accept, imageList, onImageUploadChange}) => {
                         />
                     )}
                 </div>
-                <div className="text-gray-500 text-sm">图片大小2MB以内</div>
+                <div className="text-gray-400 text-sm">图片大小{maxSize}MB以内，最多{maxCount}张图片</div>
             </div>
         </>
     );

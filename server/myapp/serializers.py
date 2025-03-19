@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq
+from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq, Inquiry
 
 
 class ThingSerializer(serializers.ModelSerializer):
@@ -73,6 +73,14 @@ class FaqSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faq
+        fields = '__all__'
+
+
+class InquirySerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Inquiry
         fields = '__all__'
 
 
