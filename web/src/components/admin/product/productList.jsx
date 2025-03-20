@@ -8,17 +8,17 @@ import ProductModal from "@/components/admin/product/productModal";
 
 export default function ProductList() {
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
+    const [dataList, setDataList] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
-    const [paginationParams, setPaginationParams] = useState({
-        current: 1,
-        pageSize: 10,
-        total: 0
-    });
+    // 分页变量
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [total, setTotal] = useState(0);
+
 
     const openModal = (item) => {
         setModalIsOpen(true);
@@ -29,7 +29,7 @@ export default function ProductList() {
         setModalIsOpen(false);
         setCurrentItem(null);
         if (shouldRefresh) {
-            fetchData();
+            fetchData(page, pageSize);
         }
     };
 
@@ -60,7 +60,7 @@ export default function ProductList() {
             title: '是否启用',
             dataIndex: 'status',
             key: 'status',
-            render: (text) => <div>{text === '0'?'是':'否'}</div>,
+            render: (text) => <div>{text === '0' ? '是' : '否'}</div>,
         },
         {
             title: '创建时间',
@@ -106,7 +106,11 @@ export default function ProductList() {
             const {code, data} = await axiosInstance.post('/myapp/admin/thing/delete', {ids: selected_ids.join(',')});
             if (code === 0) {
                 message.success("删除成功")
-                fetchData();
+                if (selected_ids.length === dataList.length && page > 1) {
+                    setPage(page - 1);
+                } else {
+                    fetchData(page, pageSize);
+                }
             } else {
                 message.error("删除失败")
             }
@@ -115,50 +119,45 @@ export default function ProductList() {
         }
     }
 
-    const fetchData = async () => {
+    const fetchData = async (page, pageSize) => {
         try {
             setLoading(true);
             const params = {
-                page: paginationParams.current,
-                pageSize: paginationParams.pageSize,
+                page: page,
+                pageSize: pageSize,
                 keyword: searchValue
             };
             const {code, total, data} = await axiosInstance.get('/myapp/admin/thing/list', {params});
             if (code === 0) {
-                setData(data)
-                setPaginationParams({
-                    ...paginationParams,
-                    total: total
-                })
+                setDataList(data)
+                setTotal(total)
+                setPage(page);
+                setPageSize(pageSize);
             } else {
                 message.error("数据获取失败")
             }
             setLoading(false);
         } catch (err) {
             console.log(err)
+            message.error("网络异常")
+            setLoading(false);
         }
     }
 
     useEffect(() => {
-        fetchData();
-    }, [paginationParams.current, searchValue])
+        fetchData(page, pageSize);
+    }, [page, searchValue])
 
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value);
-        setPaginationParams(pre => ({
-            ...pre,
-            current: 1,
-        }))
-        setSearchValue(value || '');
+        setPage(1)
+        setSearchValue(value || '')
     }
 
     const handleChangePage = (page, pageSize) => {
-        setPaginationParams(pre => ({
-            ...pre,
-            current: page,
-            pageSize: pageSize
-        }))
+        setPage(page);
+        setPageSize(pageSize);
     }
 
 
@@ -166,14 +165,14 @@ export default function ProductList() {
         <>
             <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
                 <div className="flex flex-row gap-4">
-                    <Button type="primary" onClick={() => openModal({status:'0'})}>新增产品</Button>
+                    <Button type="primary" onClick={() => openModal({status: '0'})}>新增产品</Button>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
                         cancelText="取消"
                         onConfirm={() => deleteRecord(selectedRowKeys)}
                     >
-                        <Button disabled={!selectedRowKeys.length > 0 }>删除</Button>
+                        <Button disabled={!selectedRowKeys.length > 0}>删除</Button>
                     </Popconfirm>
                     <Search
                         placeholder="搜索产品"
@@ -187,18 +186,18 @@ export default function ProductList() {
                 </div>
                 <div className="bg-white shadow-md">
                     <Table columns={columns}
-                           dataSource={data}
+                           dataSource={dataList}
                            size="middle"
                            rowSelection={rowSelection}
                            rowKey={(record) => record.id}
                            pagination={false}
-                           scroll={{ x: 'max-content' }}
+                           scroll={{x: 'max-content'}}
                            showSizeChanger={false}/>
                     <div className="p-4">
                         <Pagination align='end'
-                                    current={paginationParams.current}
-                                    pageSize={paginationParams.pageSize}
-                                    total={paginationParams.total}
+                                    current={page}
+                                    pageSize={pageSize}
+                                    total={total}
                                     showTotal={(total) => `共 ${total} 条`}
                                     onChange={handleChangePage}
                         />

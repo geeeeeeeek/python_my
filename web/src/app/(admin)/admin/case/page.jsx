@@ -1,25 +1,23 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs, Tag} from 'antd';
+import {Button, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
-import axios from "axios";
 import axiosInstance from "@/utils/axios";
 import CaseModal from "@/components/admin/case/caseModal";
 
 export default function Page() {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
+    const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
-
-    const [paginationParams, setPaginationParams] = useState({
-        current: 1,
-        pageSize: 10,
-        total: 0
-    });
+    // 分页变量
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [total, setTotal] = useState(0);
 
     const columns = [
         {
@@ -55,21 +53,20 @@ export default function Page() {
         },
     ];
 
-    const fetchData = async () => {
+    const fetchData = async (page, pageSize) => {
         try {
             setLoading(true);
             const params = {
-                page: paginationParams.current,
-                pageSize: paginationParams.pageSize,
+                page: page,
+                pageSize: pageSize,
                 keyword: searchValue
             };
             const {code,total, data} = await axiosInstance.get('/myapp/admin/case/list',{params});
             if (code === 0) {
-                setData(data)
-                setPaginationParams({
-                    ...paginationParams,
-                    total: total
-                })
+                setDataList(data)
+                setTotal(total)
+                setPage(page);
+                setPageSize(pageSize);
             } else {
                 message.error("数据获取失败")
             }
@@ -80,11 +77,11 @@ export default function Page() {
     }
 
     useEffect(() => {
-        fetchData();
-    }, [paginationParams.current, searchValue])
+        fetchData(page, pageSize);
+    }, [page, searchValue])
 
 
-    const [data, setData] = useState([]);
+
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
 
@@ -97,18 +94,17 @@ export default function Page() {
         setModalIsOpen(false);
         setCurrentItem(null);
         if (shouldRefresh) {
-            fetchData();
+            fetchData(page, pageSize);
         }
     };
 
     const deleteRecord = async (selected_ids) => {
         try {
             const {code, data} = await axiosInstance.post('/myapp/admin/case/delete', {ids: selected_ids.join(',')});
-            if (code === 0) {
-                message.success("删除成功")
-                fetchData();
+            if (selected_ids.length === dataList.length && page > 1) {
+                setPage(page - 1);
             } else {
-                message.error("删除失败")
+                fetchData(page, pageSize);
             }
         } catch (err) {
             console.log(err)
@@ -127,19 +123,13 @@ export default function Page() {
 
     const onSearch = (value, _e, info) => {
         console.log(info?.source, value);
-        setPaginationParams(pre => ({
-            ...pre,
-            current: 1,
-        }))
-        setSearchValue(value || '');
+        setPage(1)
+        setSearchValue(value || '')
     }
 
     const handleChangePage = (page, pageSize) => {
-        setPaginationParams(pre => ({
-            ...pre,
-            current: page,
-            pageSize: pageSize
-        }))
+        setPage(page);
+        setPageSize(pageSize);
     }
 
     return (
@@ -173,7 +163,7 @@ export default function Page() {
                                 />
                             </div>
                             <Table columns={columns}
-                                   dataSource={data}
+                                   dataSource={dataList}
                                    size="middle"
                                    rowSelection={rowSelection}
                                    rowKey={(record) => record.id}
@@ -184,9 +174,9 @@ export default function Page() {
 
                             <div className="p-4">
                                 <Pagination align='end'
-                                            current={paginationParams.current}
-                                            pageSize={paginationParams.pageSize}
-                                            total={paginationParams.total}
+                                            current={page}
+                                            pageSize={pageSize}
+                                            total={total}
                                             showTotal={(total) => `共 ${total} 条`}
                                             onChange={handleChangePage}
                                 />

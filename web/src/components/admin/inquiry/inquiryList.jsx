@@ -1,11 +1,8 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs, Tag} from 'antd';
+import {Button, message, Modal, Pagination, Popconfirm, Space, Spin, Table} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import Search from "antd/es/input/Search";
-import axios from "axios";
 import axiosInstance from "@/utils/axios";
-import NewsModal from "@/components/admin/news/newsModal";
 
 export default function InquiryList() {
     const adminApp = useSelector((state) => state.adminSetting);
@@ -15,7 +12,7 @@ export default function InquiryList() {
 
     // 分页变量
     const [page, setPage] = useState(1);
-    const [pageSize, setPageSize] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
     const [total, setTotal] = useState(0);
 
 
@@ -82,8 +79,7 @@ export default function InquiryList() {
         },
     ];
 
-    const fetchData = async (page) => {
-        setPage(page);
+    const fetchData = async (page, pageSize) => {
         try {
             setLoading(true);
             const params = {
@@ -94,33 +90,32 @@ export default function InquiryList() {
             if (code === 0) {
                 setDataList(data)
                 setTotal(total)
+                setPage(page);
+                setPageSize(pageSize);
             } else {
                 message.error("数据获取失败")
             }
             setLoading(false);
         } catch (err) {
             console.log(err)
+            message.error("网络异常")
+            setLoading(false);
         }
     }
 
     useEffect(() => {
-        fetchData(page);
+        fetchData(page, pageSize);
     }, [])
-
-
-    const [currentItem, setCurrentItem] = useState(null);
-
 
     const deleteRecord = async (item) => {
         try {
             const {code, data} = await axiosInstance.post('/myapp/admin/inquiry/delete', {ids: item.id + ''});
             if (code === 0) {
                 message.success("删除成功")
-                console.log('kkkkkkkkkkkk', dataList.size, page)
-                if (dataList.length <= 1 && page > 1) {
-                    fetchData(page - 1);
+                if (dataList.length === 1 && page > 1) {
+                    fetchData(page - 1, pageSize);
                 } else {
-                    fetchData(page);
+                    fetchData(page, pageSize);
                 }
             } else {
                 message.error("删除失败")
@@ -131,9 +126,7 @@ export default function InquiryList() {
     }
 
     const handleChangePage = (page, pageSize) => {
-        fetchData(page);
-        setPage(page);
-        setPageSize(pageSize)
+        fetchData(page, pageSize);
     }
 
     return (
