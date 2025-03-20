@@ -29,11 +29,8 @@ export default function Page() {
 
     return (
         <>
-            <div className="bg-gray-100">
-                <div>
-                    <div className="bg-white h-[50px] leading-[50px] font-bold px-5">
-                        产品管理
-                    </div>
+            <div className="bg-gray-100 px-4 py-4">
+                <div className="">
                     <Tabs
                         tabBarStyle={{paddingLeft: '20px', outline: 'none'}}
                         className="bg-white custom-tab" defaultActiveKey="1" items={items} onChange={onChange}/>

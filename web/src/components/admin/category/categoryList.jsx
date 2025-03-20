@@ -108,7 +108,7 @@ export default function CategoryList() {
     return (
         <>
             <Spin spinning={loading} tip="">
-                <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
+                <div className="bg-white px-4 py-4 flex flex-col gap-4">
                     <div className="flex flex-row gap-4">
                         <Button type="primary" onClick={() => openModal({sort: 0, pid: -1})}>新增分类</Button>
                     </div>
@@ -117,7 +117,7 @@ export default function CategoryList() {
                            size="middle"
                            rowKey={(record) => record.id}
                            pagination={false}
-                           className="shadow-md bg-white"/>
+                    />
                 </div>
             </Spin>
 

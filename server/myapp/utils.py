@@ -11,8 +11,9 @@ def get_timestamp():
 
 
 def md5value(key):
+    salt = "987654321hello"
     input_name = hashlib.md5()
-    input_name.update(key.encode("utf-8"))
+    input_name.update((key + salt).encode("utf-8"))
     md5str = (input_name.hexdigest()).lower()
     return md5str
 

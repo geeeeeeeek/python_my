@@ -113,7 +113,7 @@ def updatePwd(request):
         return APIResponse(code=1, msg='演示帐号无法操作')
 
     try:
-        pk = request.GET.get('id', -1)
+        pk = request.data.get('id', None)
         user = User.objects.get(pk=pk)
     except User.DoesNotExist:
         return APIResponse(code=1, msg='对象不存在')

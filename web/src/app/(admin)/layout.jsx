@@ -29,6 +29,7 @@ export default function RootLayout({children}) {
                             Menu: {
                                 itemBorderRadius: 0,
                                 itemMarginInline: 0,
+                                itemPaddingInline: 48,
                                 darkItemBg: '#3398cc', // 整体背景色
                                 darkSubMenuItemBg: '#3398cc', // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色

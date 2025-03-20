@@ -163,7 +163,7 @@ export default function ProductList() {
 
     return (
         <>
-            <div className=" bg-gray-100 px-4 py-4 flex flex-col gap-4">
+            <div className="bg-white px-4 py-4 flex flex-col gap-4">
                 <div className="flex flex-row gap-4">
                     <Button type="primary" onClick={() => openModal({status: '0'})}>新增产品</Button>
                     <Popconfirm
@@ -184,7 +184,7 @@ export default function ProductList() {
                         }}
                     />
                 </div>
-                <div className="bg-white shadow-md">
+                <div className="bg-white">
                     <Table columns={columns}
                            dataSource={dataList}
                            size="middle"

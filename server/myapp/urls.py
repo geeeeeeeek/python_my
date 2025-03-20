@@ -35,12 +35,12 @@ urlpatterns = [
     path('admin/category/update', views.admin.category.update),
     path('admin/category/delete', views.admin.category.delete),
     path('admin/opLog/list', views.admin.opLog.list_api),
-    path('admin/opLog/clear', views.admin.opLog.clear),
-    path('admin/errorLog/list', views.admin.errorLog.list_api),
-    path('admin/errorLog/clear', views.admin.errorLog.clear),
+    path('admin/opLog/deleteAll', views.admin.opLog.deleteAll),
+    path('admin/opLog/delete', views.admin.opLog.delete),
     path('admin/user/list', views.admin.user.list_api),
     path('admin/user/create', views.admin.user.create),
     path('admin/user/delete', views.admin.user.delete),
+    path('admin/user/updatePwd', views.admin.user.updatePwd),
     path('admin/adminLogin', views.admin.user.admin_login),
 
 
