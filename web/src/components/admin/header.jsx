@@ -32,8 +32,7 @@ const Header = () => {
     return (
         <>
             <div className="h-12 px-4 flex flex-row items-center bg-white border-b border-b-gray-300 ">
-                <MenuOutlined className="cursor-pointer" onClick={toggleSideBar}
-                                  style={{fontSize: '24px', color: '#3398cc'}}/>
+                <img src="/admin/menu.png" className="h-8 w-8 cursor-pointer" onClick={toggleSideBar}/>
 
                 <div className="ml-auto cursor-pointer">
                     <span className={"ml-2 mr-2 text-gray-500 text-sm"} >管理员{username}</span>

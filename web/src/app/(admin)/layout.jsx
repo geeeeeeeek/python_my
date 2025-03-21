@@ -24,6 +24,7 @@ export default function RootLayout({children}) {
 
             <AntdRegistry>
                 <ConfigProvider
+                    wave={{ disabled: true }}
                     theme={{
                         components: {
                             Menu: {

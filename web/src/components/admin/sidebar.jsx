@@ -12,7 +12,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import {useSelector} from "react-redux";
 const items = [
   {
-    key: '/admin/main',
+    key: '/admin/overview',
     label: '总览',
     icon: <HomeOutlined />,
   },
@@ -87,8 +87,13 @@ const SideBar = () => {
 
   return (
     <>
-      <div className="bg-[#3398cc] flex flex-col gap-4">
-        <div className="font-bold text-white">CMS</div>
+      <div className="bg-[#3398cc] flex flex-col">
+        <div className="font-bold text-white flex flex-row items-center justify-center py-4 cursor-pointer">
+          <img src="/admin/logo.png" style={{width:'24px',height:'24px'}}/>
+          {
+            adminApp.collapsed ? null : <div className="ml-2">后台管理</div>
+          }
+        </div>
         <Menu
             theme="dark"
             onClick={onClick}
