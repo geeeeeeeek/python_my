@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq, Inquiry
+from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq, Inquiry, Download
 
 
 class ThingSerializer(serializers.ModelSerializer):
@@ -89,6 +89,14 @@ class CaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Case
+        fields = '__all__'
+
+
+class DownloadSerializer(serializers.ModelSerializer):
+    create_time = serializers.DateTimeField(format='%Y-%m-%d %H:%M:%S', required=False)
+
+    class Meta:
+        model = Download
         fields = '__all__'
 
 

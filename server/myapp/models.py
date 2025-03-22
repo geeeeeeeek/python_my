@@ -143,6 +143,24 @@ class Inquiry(models.Model):
         db_table = "b_inquiry"
 
 
+class Download(models.Model):
+    STATUS_CHOICES = (
+        ('0', '上架'),
+        ('1', '下架'),
+    )
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=100, blank=True, null=True)
+    summary = models.CharField(max_length=1000, blank=True, null=True)
+    raw = models.CharField(max_length=1000, blank=True, null=True)
+    link = models.CharField(max_length=1000, blank=True, null=True)  # 外部链接
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
+    create_time = models.DateTimeField(auto_now_add=True, null=True)
+    pv = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "b_download"
+
+
 class OpLog(models.Model):
     id = models.BigAutoField(primary_key=True)
     re_ip = models.CharField(max_length=100, blank=True, null=True)

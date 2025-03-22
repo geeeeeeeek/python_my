@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  AppstoreOutlined, CompassOutlined, FileOutlined, FileWordOutlined, FunnelPlotOutlined,
+  AppstoreOutlined, CompassOutlined, DownloadOutlined, FileOutlined, FileWordOutlined, FunnelPlotOutlined,
   HomeOutlined,
   MailOutlined,
   ProductOutlined,
@@ -12,18 +12,18 @@ import { useRouter, usePathname } from 'next/navigation';
 import {useSelector} from "react-redux";
 const items = [
   {
-    key: '/admin/overview',
+    key: '/admin/main',
     label: '总览',
     icon: <HomeOutlined />,
   },
   {
     key: '/admin/products',
-    label: '产品管理',
+    label: '产品中心',
     icon: <ProductOutlined />,
   },
   {
     key: '/admin/news',
-    label: '新闻管理',
+    label: '新闻页',
     icon: <FileWordOutlined />,
   },
   {
@@ -33,17 +33,17 @@ const items = [
   },
   {
     key: '/admin/case',
-    label: '案例管理',
+    label: '案例页',
     icon: <FunnelPlotOutlined />,
   },
   {
     key: '/admin/download',
-    label: '下载管理',
-    icon: <FileOutlined />,
+    label: '下载页',
+    icon:  <DownloadOutlined />,
   },
   {
     key: '/admin/faq',
-    label: 'FAQ管理',
+    label: 'FAQ页',
     icon: <CompassOutlined />,
   },
   {

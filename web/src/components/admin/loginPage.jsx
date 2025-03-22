@@ -47,7 +47,7 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-blue-300 w-screen">
+        <div className="flex flex-col gap-4 items-center justify-center min-h-screen bg-blue-300 w-screen">
             <form className="bg-white p-8 rounded shadow-md w-96">
                 <h2 className="text-xl mb-6 text-center">管理员登录</h2>
                 <div className="mb-4">
@@ -67,6 +67,8 @@ const LoginPage = () => {
 
                 <Button loading={loading} type="primary" className="w-full" onClick={() => login()}>登录</Button>
             </form>
+            <span className="text-yellow-100 text-sm">技术客服微信：lengqin1024</span>
+
         </div>
     );
 };

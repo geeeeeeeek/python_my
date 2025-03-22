@@ -1,25 +1,21 @@
 'use client';
-import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from "react";
-import axios from "axios";
-
+import React, {useEffect, useState} from 'react';
+import OverViewInfo from "@/components/admin/main/overViewInfo";
+import VisitInfo from "@/components/admin/main/visitInfo";
+import SysInfo from "@/components/admin/main/sysInfo";
 
 export default function Page() {
 
 
-
-
-        const router = useRouter();
-
-
-        return (
-                <div className="flex flex-col items-center justify-center gap-y-4 p-4">
-                        main page
- 
-
-
+    return (
+        <>
+            <div className="bg-gray-100 px-4 py-4">
+                <div className="flex flex-col gap-4">
+                    <OverViewInfo />
+                    <VisitInfo />
+                    <SysInfo />
                 </div>
-        );
-
-}
+            </div>
+        </>
+    );
+};

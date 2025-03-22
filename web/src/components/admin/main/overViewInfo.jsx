@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import axiosInstance from "@/utils/axios";
 import FaqModal from "@/components/admin/faq/faqModal";
 import {ProfileOutlined} from "@ant-design/icons";
+import Image from 'next/image';
+import DataIcon from '/public/admin/icon_data.svg';
 
 export default function OverViewInfo() {
     const adminApp = useSelector((state) => state.adminSetting);
@@ -32,8 +34,12 @@ export default function OverViewInfo() {
         <>
 
             <div className="bg-white px-4 py-4 flex flex-col gap-4">
-                <h2 className="">
-                    <ProfileOutlined />
+                <h2 className="flex flex-row">
+                    <Image
+                        src={DataIcon}
+                        width={20} // 指定宽度
+                        height={20} // 指定高度
+                    />
                     <span className="ml-1 text-gray-500">数据统计</span>
                 </h2>
                 <div className=" flex flex-row gap-4">

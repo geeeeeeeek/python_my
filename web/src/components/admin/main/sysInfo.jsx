@@ -5,6 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import axiosInstance from "@/utils/axios";
 import FaqModal from "@/components/admin/faq/faqModal";
 import {ProfileOutlined} from "@ant-design/icons";
+import SysIcon from '/public/admin/icon_sys.svg';
+import Image from "next/image";
+import VisitIcon from "../../../../public/admin/icon_visit.svg";
 
 export default function SysInfo() {
     const adminApp = useSelector((state) => state.adminSetting);
@@ -47,8 +50,12 @@ export default function SysInfo() {
         <>
 
             <div className="bg-white px-4 py-4 flex flex-col gap-4">
-                <h2 className="">
-                    <ProfileOutlined />
+                <h2 className="flex flex-row">
+                    <Image
+                        src={SysIcon}
+                        width={20} // 指定宽度
+                        height={20} // 指定高度
+                    />
                     <span className="ml-1 text-gray-500">系统信息</span>
                 </h2>
                 <div className=" flex flex-row gap-4">

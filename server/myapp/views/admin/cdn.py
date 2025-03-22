@@ -11,6 +11,7 @@ from myapp.handler import APIResponse
 from server.settings import MEDIA_ROOT, BASE_HOST_URL
 
 
+# 用于普通上传图片
 @api_view(['POST'])
 @authentication_classes([AdminTokenAuthtication])
 def upload_img(request):
@@ -61,6 +62,58 @@ def upload_img(request):
     return JsonResponse({"code": 1, "message": "Invalid request method."})
 
 
+# 用于普通上传文件（下载管理）
+@api_view(['POST'])
+@authentication_classes([AdminTokenAuthtication])
+def upload_normal_file(request):
+    if request.method == 'POST':
+        # 确保存在文件
+        myfile = request.FILES.get('my-file')
+        if not myfile:
+            return JsonResponse({"code": 1, "message": "No file uploaded."}, status=400)
+
+        # 打印文件大小
+        file_size = myfile.size
+        print('Uploaded file size:', file_size)
+
+        # 文件类型和大小验证
+        max_size = 500 * 1024 * 1024  # 500MB
+        valid_extensions = ['.jpg', '.jpeg', '.png', '.docx', '.pdf', '.zip', '.rar']  # 允许的文件扩展名
+
+        if file_size > max_size:
+            return JsonResponse({"code": 1, "message": "图片太大，需小于500MB"})
+
+        file_extension = Path(myfile.name).suffix
+        if file_extension not in valid_extensions:
+            return JsonResponse({"code": 1, "message": "非法文件格式"})
+
+        # 生成新文件名
+        new_name = f"{utils.get_timestamp()}{file_extension}"
+
+        # 拼接保存路径
+        save_path = os.path.join(MEDIA_ROOT, 'file', new_name)
+        print('save_path------------', save_path)
+
+        # 保存文件
+        try:
+            # 使用 Django 的默认存储来保存文件
+            full_path = default_storage.save(os.path.join('file', new_name), myfile)
+            print('File saved at:', full_path)
+
+            resp_json = {
+                "code": 0,
+                "data": new_name
+            }
+            return JsonResponse(resp_json)
+
+        except Exception as e:
+            print('Error saving file:', e)
+            return JsonResponse({"code": 1, "message": "Error saving file."})
+
+    return JsonResponse({"code": 1, "message": "Invalid request method."})
+
+
+# 用于富文本上传文件
 @api_view(['POST'])
 @authentication_classes([AdminTokenAuthtication])
 def upload_file(request):

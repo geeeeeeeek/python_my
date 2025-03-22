@@ -7,14 +7,17 @@ export default function Page() {
     const router = useRouter();
 
     useEffect(() => {
-        // 在页面加载后重定向
-        router.push('/admin/main');
-    }, [router]);
+        let admintoken = localStorage.getItem('admintoken');
+        if(!admintoken){
+            router.push('/adminLogin');
+        }else {
+            router.push('/admin/main');
+        }
+    }, []);
 
     return (
         <div>
-            <h1>Welcome</h1>
-            <p>欢迎回来..........</p>
+
         </div>
     )
 }

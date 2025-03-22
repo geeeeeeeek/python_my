@@ -1,13 +1,13 @@
 'use client';
 import React, {useEffect, useState} from 'react';
-import {Button, ConfigProvider, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs, Tag} from 'antd';
+import {Button, message, Modal, Pagination, Popconfirm, Space, Spin, Table, Tabs} from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import Search from "antd/es/input/Search";
-import axios from "axios";
 import axiosInstance from "@/utils/axios";
-import NewsModal from "@/components/admin/news/newsModal";
+import CaseModal from "@/components/admin/case/caseModal";
+import DownloadModal from "@/components/admin/download/downloadModal";
 
-export default function OpLogList() {
+export default function DownloadList() {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
     const [dataList, setDataList] = useState([]);
@@ -22,52 +22,32 @@ export default function OpLogList() {
 
     const columns = [
         {
-            title: 'ID',
-            dataIndex: 'id',
-            key: 'id',
-            width: '100px',
+            title: '文件名称',
+            dataIndex: 'title',
+            key: 'title',
+            width: '400px',
             textWrap: 'word-break',
         },
         {
-            title: 'IP',
-            dataIndex: 're_ip',
-            key: 're_ip',
-            width: '120px',
+            title: '文件简介',
+            dataIndex: 'summary',
+            key: 'summary',
+            width: '400px',
             textWrap: 'word-break',
-            render: (text) => <div>{text}</div>,
-        },
-        {
-            title: '请求方式',
-            dataIndex: 're_method',
-            key: 're_method',
-            width: '90px',
-            textWrap: 'word-break',
-            render: (text) => <div>{text}</div>,
-        },
-        {
-            title: 'api接口',
-            dataIndex: 're_url',
-            key: 're_url',
-            width: '240px',
-            textWrap: 'word-break',
-            render: (text) => <div>{text}</div>,
-        },
-        {
-            title: '耗时(ms)',
-            dataIndex: 'access_time',
-            key: 'access_time',
         },
         {
             title: '创建时间',
-            dataIndex: 're_time',
-            key: 're_time',
+            dataIndex: 'create_time',
+            key: 'create_time',
         },
         {
             title: '操作',
             key: 'action',
             align: 'center',
+            width: '180px',
             render: (_, item) => (
                 <Space size="middle">
+                    <a onClick={() => openModal(item)}>编辑</a>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
@@ -89,7 +69,7 @@ export default function OpLogList() {
                 pageSize: pageSize,
                 keyword: searchValue
             };
-            const {code,total, data} = await axiosInstance.get('/myapp/admin/opLog/list',{params});
+            const {code,total, data} = await axiosInstance.get('/myapp/admin/download/list',{params});
             if (code === 0) {
                 setDataList(data)
                 setTotal(total)
@@ -109,41 +89,45 @@ export default function OpLogList() {
     }, [page, searchValue])
 
 
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
 
+    const openModal = (item) => {
+        setModalIsOpen(true);
+        setCurrentItem(item)
+    };
+
+    const closeModal = (shouldRefresh) => {
+        setModalIsOpen(false);
+        setCurrentItem(null);
+        if (shouldRefresh) {
+            fetchData(page, pageSize);
+        }
+    };
 
     const deleteRecord = async (selected_ids) => {
         try {
-            const {code, data} = await axiosInstance.post('/myapp/admin/opLog/delete', {ids: selected_ids.join(',')});
-            if (code === 0) {
-                message.success("删除成功")
-                if (selected_ids.length === dataList.length && page > 1) {
-                    setPage(page - 1);
-                } else {
-                    fetchData(page, pageSize);
-                }
+            const {code, data} = await axiosInstance.post('/myapp/admin/download/delete', {ids: selected_ids.join(',')});
+            if (selected_ids.length === dataList.length && page > 1) {
+                setPage(page - 1);
             } else {
-                message.error("删除失败")
+                fetchData(page, pageSize);
             }
         } catch (err) {
             console.log(err)
         }
     }
 
-    const clearAllRecord = async () => {
-        try {
-            const {code, data} = await axiosInstance.post('/myapp/admin/opLog/deleteAll');
-            if (code === 0) {
-                message.success("删除成功")
-                setSelectedRowKeys([]);
-                fetchData(1, pageSize);
-            } else {
-                message.error("删除失败")
-            }
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    const onSelectChange = (newSelectedRowKeys) => {
+        console.log('selectedRowKeys changed: ', newSelectedRowKeys);
+        setSelectedRowKeys(newSelectedRowKeys);
+    };
+
+    const rowSelection = {
+        selectedRowKeys,
+        onChange: onSelectChange,
+    };
 
     const handleChangePage = (page, pageSize) => {
         setPage(page);
@@ -158,29 +142,30 @@ export default function OpLogList() {
                     <Spin spinning={loading} tip="">
                         <div className=" px-4 py-4 flex flex-col gap-4">
                             <div className="flex flex-row gap-4">
+                                <Button type="primary" onClick={() => openModal({sort: 0})}>新增</Button>
                                 <Popconfirm
-                                    title="确定清空？"
+                                    title="确定删除？"
                                     okText="确定"
                                     cancelText="取消"
-                                    onConfirm={() => clearAllRecord()}
+                                    onConfirm={() => deleteRecord(selectedRowKeys)}
                                 >
-                                    <Button>清空</Button>
+                                    <Button disabled={!selectedRowKeys.length > 0 }>删除</Button>
                                 </Popconfirm>
                             </div>
                             <Table columns={columns}
                                    dataSource={dataList}
                                    size="middle"
+                                   rowSelection={rowSelection}
                                    rowKey={(record) => record.id}
                                    pagination={false}
                                    scroll={{ x: 'max-content' }}
                                    showSizeChanger={false}
-                                   className="shadow-md"/>
+                            />
 
                             <div className="p-4">
                                 <Pagination align='end'
                                             current={page}
                                             pageSize={pageSize}
-                                            showSizeChanger={false}
                                             total={total}
                                             showTotal={(total) => `共 ${total} 条`}
                                             onChange={handleChangePage}
@@ -190,6 +175,13 @@ export default function OpLogList() {
                     </Spin>
                 </div>
             </div>
+
+
+            <DownloadModal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                initialItem={currentItem}
+            />
 
         </>
     );
