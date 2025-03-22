@@ -10,6 +10,9 @@ import {
 import { Menu } from 'antd';
 import { useRouter, usePathname } from 'next/navigation';
 import {useSelector} from "react-redux";
+import Image from "next/image";
+import LogoIcon from "/public/admin/logo.png";
+
 const items = [
   {
     key: '/admin/main',
@@ -89,7 +92,12 @@ const SideBar = () => {
     <>
       <div className="bg-[#3398cc] flex flex-col">
         <div className="font-bold text-white flex flex-row items-center justify-center py-4 cursor-pointer">
-          <img src="/admin/logo.png" style={{width:'24px',height:'24px'}}/>
+          <Image
+              src={LogoIcon}
+              alt="logo"
+              width={24}
+              height={24}
+          />
           {
             adminApp.collapsed ? null : <div className="ml-2">后台管理</div>
           }
@@ -98,7 +106,7 @@ const SideBar = () => {
             theme="dark"
             onClick={onClick}
             style={{
-              maxWidth: 220,
+              maxWidth: 280,
             }}
             defaultOpenKeys={['sub1']}
             selectedKeys={[current]}

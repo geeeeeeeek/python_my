@@ -41,8 +41,8 @@ export default function SysInfo() {
     const data = [
         { id: 1, name1: '系统名称：', name2: '外贸后台管理系统', name3: '系统版本：', name4: '1.0.1'},
         { id: 2, name1: '操作系统', name2: 'Linux', name3: '系统平台', name4: 'x86_64'},
-        { id: 3, name1: 'Python版本', name2: '3.8', name3: '数据库', name4: 'MySQL'},
-        { id: 4, name1: '负载均衡', name2: 'nginx', name3: '系统语言', name4: 'CN'},
+        { id: 3, name1: 'Python版本', name2: '3.8', name3: '数据库', name4: 'MySQL57'},
+        { id: 4, name1: '网站框架', name2: 'Javascript', name3: '系统语言', name4: 'CN'},
         { id: 5, name1: '负载均衡', name2: 'nginx', name3: '版权所有', name4: 'ByteSoft'},
     ];
 
@@ -53,8 +53,8 @@ export default function SysInfo() {
                 <h2 className="flex flex-row">
                     <Image
                         src={SysIcon}
-                        width={20} // 指定宽度
-                        height={20} // 指定高度
+                        width={20}
+                        height={20}
                     />
                     <span className="ml-1 text-gray-500">系统信息</span>
                 </h2>

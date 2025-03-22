@@ -30,11 +30,12 @@ export default function RootLayout({children}) {
                             Menu: {
                                 itemBorderRadius: 0,
                                 itemMarginInline: 0,
-                                itemPaddingInline: 48,
+                                itemPaddingInline: 56,
                                 darkItemBg: '#3398cc', // 整体背景色
                                 darkSubMenuItemBg: '#3398cc', // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色
                                 darkItemSelectedBg: '#2189be', // 选中颜色
+                                motionDurationSlow: '0.1s', // 动效速度
                             },
                             Tabs: {
                                 itemActiveColor: '#000',
@@ -45,12 +46,13 @@ export default function RootLayout({children}) {
                             },
                             Table: {
                                 headerBorderRadius: 0,
-                                headerBg: '#3398cc',
-                                headerColor: '#fff',
+                                headerBg: '#fafafa',
+                                headerColor: '#333',
                                 borderRadius: 0,
-                                colorBorderSecondary: '#fff',
+                                colorBorderSecondary: '#f1f1f1',
+                                borderColor: '#eee',
                                 cellFontSizeMD:14, // middle尺寸的
-                                cellPaddingBlockMD: 8,
+                                cellPaddingBlockMD: 12,
                                 cellPaddingInlineMD: 8,
                             },
                             Pagination: {

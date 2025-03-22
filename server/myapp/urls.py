@@ -6,7 +6,7 @@ app_name = 'myapp'
 urlpatterns = [
     # 后台管理api
     path('admin/overview/count', views.admin.overview.count),
-    path('admin/overview/sysInfo', views.admin.overview.sysInfo),
+    path('admin/overview/dataCount', views.admin.overview.dataCount),
     path('admin/thing/list', views.admin.thing.list_api),
     path('admin/thing/detail', views.admin.thing.detail),
     path('admin/thing/create', views.admin.thing.create),
