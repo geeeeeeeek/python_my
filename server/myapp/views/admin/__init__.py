@@ -6,6 +6,7 @@ from myapp.views.admin.case import *
 from myapp.views.admin.faq import *
 from myapp.views.admin.inquiry import *
 from myapp.views.admin.download import *
+from myapp.views.admin.basicSite import *
 from myapp.views.admin.overview import *
 from myapp.views.admin.opLog import *
 from myapp.views.admin.errorLog import *

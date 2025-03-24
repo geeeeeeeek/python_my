@@ -70,8 +70,8 @@ export default function VisitInfo() {
                 <h2 className="flex flex-row items-center justify-center">
                     <Image
                         src={VisitIcon}
-                        width={20}
-                        height={20}
+                        alt="访问统计"
+                        style={{width:'20px',height:'auto'}}
                     />
                     <span className="ml-1 text-gray-500 ">访问统计</span>
                     <div className="ml-auto min-w-[290px]">

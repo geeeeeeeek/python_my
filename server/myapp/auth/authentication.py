@@ -10,6 +10,9 @@ class AdminTokenAuthtication(BaseAuthentication):
     def authenticate(self, request):
         adminToken = request.META.get("HTTP_ADMINTOKEN")
 
+        if not adminToken:
+            adminToken = "0000000000"
+
         print("检查adminToken==>" + adminToken)
         users = User.objects.filter(admin_token=adminToken)
         """

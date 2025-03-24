@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 
@@ -159,6 +160,33 @@ class Download(models.Model):
 
     class Meta:
         db_table = "b_download"
+
+
+class BasicSite(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    status = models.CharField(max_length=2, blank=True, null=True)  # 网站状态
+    site_name = models.CharField(max_length=100, blank=True, null=True)  # 网站名称
+    site_nickname = models.CharField(max_length=100, blank=True, null=True)  # 网站简称
+    site_logo = models.CharField(max_length=100, blank=True, null=True)  # 网站logo
+    site_ico = models.CharField(max_length=100, blank=True, null=True)  # 网站ico
+    site_address = models.CharField(max_length=100, blank=True, null=True)  # 网站网址
+    site_copyright = models.CharField(max_length=100, blank=True, null=True)  # 版权信息
+    site_code = models.CharField(max_length=1000, blank=True, null=True)  # 第三方代码
+
+    class Meta:
+        db_table = "b_basic_site"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and BasicSite.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
 
 
 class OpLog(models.Model):

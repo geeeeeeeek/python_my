@@ -1,5 +1,4 @@
 // 'use client';
-import {ThemeProvider} from "@/theme/theme-provider";
 import {Montserrat} from 'next/font/google';
 import "@/styles/globals.css";
 import {AntdRegistry} from '@ant-design/nextjs-registry';
@@ -17,6 +16,9 @@ export const metadata = {
 
 
 export default function RootLayout({children}) {
+
+    const primaryColor = '#3399cc';
+
     return (
         <ReduxProvider>
             <html lang="en">
@@ -31,15 +33,15 @@ export default function RootLayout({children}) {
                                 itemBorderRadius: 0,
                                 itemMarginInline: 0,
                                 itemPaddingInline: 56,
-                                darkItemBg: '#3398cc', // 整体背景色
-                                darkSubMenuItemBg: '#3398cc', // 子菜单背景色
+                                darkItemBg: primaryColor, // 整体背景色
+                                darkSubMenuItemBg: primaryColor, // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色
                                 darkItemSelectedBg: '#2189be', // 选中颜色
                                 motionDurationSlow: '0.1s', // 动效速度
                             },
                             Tabs: {
                                 itemActiveColor: '#000',
-                                itemSelectedColor: '#3398cc',
+                                itemSelectedColor: primaryColor,
                                 itemHoverColor: '#000',
                                 colorPrimaryBorder: '#fff',// 描边
                                 horizontalMargin: '0 0 0 0',
@@ -59,7 +61,8 @@ export default function RootLayout({children}) {
                                 borderRadius: 0,
                             },
                             Button: {
-                                borderRadius: 0
+                                borderRadius: 0,
+                                colorPrimary: primaryColor,
                             },
                             Input: {
                                 borderRadius: 0

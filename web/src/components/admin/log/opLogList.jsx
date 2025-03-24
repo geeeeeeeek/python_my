@@ -174,7 +174,7 @@ export default function OpLogList() {
                                    pagination={false}
                                    scroll={{ x: 'max-content' }}
                                    showSizeChanger={false}
-                                   className="shadow-md"/>
+                            />
 
                             <div className="p-4">
                                 <Pagination align='end'

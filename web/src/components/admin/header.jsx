@@ -36,6 +36,7 @@ const Header = () => {
             <div className="h-12 px-4 flex flex-row items-center bg-white border-b border-b-gray-300 ">
                 <Image
                     src={MenuIcon}
+                    alt="menu"
                     width={26}
                     height={26}
                     className="cursor-pointer"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   AppstoreOutlined, CompassOutlined, DownloadOutlined, FileOutlined, FileWordOutlined, FunnelPlotOutlined,
   HomeOutlined,
@@ -78,19 +78,20 @@ const SideBar = () => {
 
   const adminApp = useSelector((state) => state.adminSetting);
 
-
+  useEffect(()=>{
+    setCurrent(pathname);
+  },[pathname])
 
   const onClick = (e) => {
-    console.log('click ', e);
     setCurrent(e.key);
     router.push(e.key);
   };
 
-  // console.log('currentPath------',current)
+  console.log('sidebar path------',current)
 
   return (
     <>
-      <div className="bg-[#3398cc] flex flex-col">
+      <div className="bg-[#3399cc] flex flex-col">
         <div className="font-bold text-white flex flex-row items-center justify-center py-4 cursor-pointer">
           <Image
               src={LogoIcon}

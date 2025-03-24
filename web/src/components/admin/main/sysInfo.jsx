@@ -53,8 +53,8 @@ export default function SysInfo() {
                 <h2 className="flex flex-row">
                     <Image
                         src={SysIcon}
-                        width={20}
-                        height={20}
+                        alt="系统信息"
+                        style={{width:'20px',height:'auto'}}
                     />
                     <span className="ml-1 text-gray-500">系统信息</span>
                 </h2>

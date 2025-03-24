@@ -27,7 +27,7 @@ def upload_img(request):
 
         # 文件类型和大小验证
         max_size = 5 * 1024 * 1024  # 5MB
-        valid_extensions = ['.jpg', '.jpeg', '.png', '.gif']  # 允许的文件扩展名
+        valid_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.ico']  # 允许的文件扩展名
 
         if file_size > max_size:
             return JsonResponse({"code": 1, "message": "图片太大，需小于5MB"})
