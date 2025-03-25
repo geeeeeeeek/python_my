@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq, Inquiry, Download, BasicSite
+from myapp.models import Thing, Category, User, OpLog, ErrorLog, News, Case, Faq, Inquiry, Download, BasicSite, \
+    BasicTdk, BasicBanner
 
 
 class ThingSerializer(serializers.ModelSerializer):
@@ -103,6 +104,18 @@ class DownloadSerializer(serializers.ModelSerializer):
 class BasicSiteSerializer(serializers.ModelSerializer):
     class Meta:
         model = BasicSite
+        fields = '__all__'
+
+
+class BasicTdkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BasicTdk
+        fields = '__all__'
+
+
+class BasicBannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BasicBanner
         fields = '__all__'
 
 

@@ -15,7 +15,7 @@ export default function Page() {
         <>
             <div className="bg-gray-100 px-4 py-4">
                 <div className="flex flex-col gap-4">
-                    <Button>
+                    <Button size="lg" variant="default">
                         <MailOpen /> Login with Email
                     </Button>
                     <OverViewInfo/>

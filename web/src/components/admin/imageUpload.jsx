@@ -90,7 +90,7 @@ const ImageUpload = ({maxCount, maxSize,accept, imageList, onImageUploadChange})
     return (
         <>
             <div className="flex flex-col gap-2">
-                <div>
+                <div className=" min-h-[102px]">
                     <Upload
                         accept={accept}
                         listType="picture-card"

@@ -189,6 +189,75 @@ class BasicSite(models.Model):
         return super().save(*args, **kwargs)
 
 
+class BasicTdk(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    tdk_home_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_home_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_home_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_product_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_product_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_product_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_about_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_about_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_about_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_contact_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_contact_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_contact_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_news_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_news_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_news_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_case_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_case_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_case_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_download_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_download_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_download_description = models.CharField(max_length=500, blank=True, null=True)
+    tdk_faq_title = models.CharField(max_length=100, blank=True, null=True)
+    tdk_faq_keywords = models.CharField(max_length=200, blank=True, null=True)
+    tdk_faq_description = models.CharField(max_length=500, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_basic_tdk"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and BasicTdk.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
+
+
+class BasicBanner(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    banner_home = models.CharField(max_length=300, blank=True, null=True)
+    banner_product = models.CharField(max_length=100, blank=True, null=True)
+    banner_about = models.CharField(max_length=100, blank=True, null=True)
+    banner_contact = models.CharField(max_length=100, blank=True, null=True)
+    banner_news = models.CharField(max_length=100, blank=True, null=True)
+    banner_case = models.CharField(max_length=100, blank=True, null=True)
+    banner_download = models.CharField(max_length=100, blank=True, null=True)
+    banner_faq = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_basic_banner"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and BasicBanner.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
+
 class OpLog(models.Model):
     id = models.BigAutoField(primary_key=True)
     re_ip = models.CharField(max_length=100, blank=True, null=True)
