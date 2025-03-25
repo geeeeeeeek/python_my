@@ -136,6 +136,7 @@ class Inquiry(models.Model):
     email = models.CharField(max_length=30, blank=True, null=True)
     company = models.CharField(max_length=100, blank=True, null=True)
     message = models.CharField(max_length=500, blank=True, null=True)
+    ip = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='0')
     create_time = models.DateTimeField(auto_now_add=True, null=True)
     pv = models.IntegerField(default=0)
@@ -257,6 +258,100 @@ class BasicBanner(models.Model):
         if not self.pk and BasicBanner.objects.exists():
             raise ValueError("There can only be one instance.")
         return super().save(*args, **kwargs)
+
+
+class BasicGlobal(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    global_phone = models.CharField(max_length=100, blank=True, null=True)
+    global_email = models.CharField(max_length=100, blank=True, null=True)
+    global_company_name = models.CharField(max_length=100, blank=True, null=True)
+    global_address = models.CharField(max_length=100, blank=True, null=True)
+    global_wechat = models.CharField(max_length=100, blank=True, null=True)
+    global_wechat_qrcode = models.CharField(max_length=200, blank=True, null=True)
+    global_facebook = models.CharField(max_length=100, blank=True, null=True)
+    global_twitter = models.CharField(max_length=100, blank=True, null=True)
+    global_linkedin = models.CharField(max_length=100, blank=True, null=True)
+    global_whatsapp = models.CharField(max_length=100, blank=True, null=True)
+    global_youtube = models.CharField(max_length=100, blank=True, null=True)
+    global_instagram = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_basic_global"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and BasicGlobal.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
+
+
+class BasicAdditional(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    additional_mission = models.CharField(max_length=500, blank=True, null=True)
+    additional_task = models.CharField(max_length=500, blank=True, null=True)
+    global_addition_about_image = models.CharField(max_length=100, blank=True, null=True)
+    global_addition_company_image = models.CharField(max_length=100, blank=True, null=True)
+    param_one_name = models.CharField(max_length=100, blank=True, null=True)
+    param_one_value = models.CharField(max_length=100, blank=True, null=True)
+    param_two_name = models.CharField(max_length=100, blank=True, null=True)
+    param_two_value = models.CharField(max_length=100, blank=True, null=True)
+    param_three_name = models.CharField(max_length=100, blank=True, null=True)
+    param_three_value = models.CharField(max_length=100, blank=True, null=True)
+    param_four_name = models.CharField(max_length=100, blank=True, null=True)
+    param_four_value = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_basic_additional"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and BasicAdditional.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    comment_name = models.CharField(max_length=100, blank=True, null=True)
+    comment_location = models.CharField(max_length=100, blank=True, null=True)
+    comment_content = models.CharField(max_length=300, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_comment"
+
+
+class About(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    about_introduction = models.CharField(max_length=1000, blank=True, null=True)
+    about_cover = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = "b_about"
+
+    @classmethod
+    def get_solo(cls):
+        try:
+            return cls.objects.get()
+        except ObjectDoesNotExist:
+            return None
+
+    def save(self, *args, **kwargs):
+        if not self.pk and About.objects.exists():
+            raise ValueError("There can only be one instance.")
+        return super().save(*args, **kwargs)
+
 
 class OpLog(models.Model):
     id = models.BigAutoField(primary_key=True)

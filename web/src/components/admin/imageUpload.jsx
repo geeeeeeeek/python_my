@@ -100,7 +100,7 @@ const ImageUpload = ({maxCount, maxSize,accept, imageList, onImageUploadChange})
                         maxCount={maxCount}
                         {...props}
                     >
-                        {fileList.length >= maxCount ? null : uploadButton}
+                        {fileList?.length >= maxCount ? null : uploadButton}
                     </Upload>
                     {previewImage && (
                         <Image

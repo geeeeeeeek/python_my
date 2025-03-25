@@ -52,6 +52,11 @@ export default function InquiryList() {
             key: 'message',
         },
         {
+            title: '所属IP',
+            dataIndex: 'ip',
+            key: 'ip',
+        },
+        {
             title: '时间',
             dataIndex: 'create_time',
             key: 'create_time',

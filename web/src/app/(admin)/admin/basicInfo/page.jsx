@@ -6,6 +6,7 @@ import TdkSettings from "@/components/admin/basicInfo/tdkSettings";
 import GlobalSettings from "@/components/admin/basicInfo/globalSettings";
 import AdditionalSettings from "@/components/admin/basicInfo/additionalSettings";
 import BannerSettings from "@/components/admin/basicInfo/bannerSettings";
+import CommentSettings from "@/components/admin/basicInfo/commentSettings";
 
 export default function Page() {
     const onChange = (key) => {
@@ -36,6 +37,11 @@ export default function Page() {
             key: '5',
             label: '附加变量',
             children: <AdditionalSettings />,
+        },
+        {
+            key: '6',
+            label: '客评变量',
+            children: <CommentSettings />,
         },
     ];
 

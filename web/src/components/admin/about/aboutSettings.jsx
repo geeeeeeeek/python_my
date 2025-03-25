@@ -2,24 +2,47 @@
 import HeadLabel from "@/components/admin/headLabel";
 import FormLabel from "@/components/admin/formLabel";
 import React, {useEffect, useState} from "react";
-import {Button, Input, Radio} from 'antd';
+import {Button, Input, message, Radio} from 'antd';
 import ImageUpload from "@/components/admin/imageUpload";
 import TextArea from "antd/es/input/TextArea";
 import {Divider} from "antd/lib";
+import axiosInstance from "@/utils/axios";
 
 const AboutSettings = () => {
 
     const [currentItem, setCurrentItem] = useState({});
+    const [loading, setLoading] = useState(false);
 
     // 为了制造Upload而用(关于配图)
     const [aboutImageList, setAboutImageList] = useState([]);
 
 
-    useEffect(() => {
+    const fetchData = async () => {
+        try {
+            setLoading(true)
+            const {code, msg, data} = await axiosInstance.get('/myapp/admin/about/list');
+            if (code === 0) {
+                setCurrentItem(data);
+                fixToImageData(data);
+            } else {
+                message.error(msg || '网络异常')
+            }
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+            message.error('网络异常')
+            setLoading(false)
+        }
+    };
 
-        // 制造适合Upload的数据格式(关于配图)
-        setAboutImageList(createImageList(currentItem?.about_cover));
+    const fixToImageData = (initialData) => {
+        setAboutImageList(createImageList(initialData?.about_cover));
+    }
+
+    useEffect(() => {
+        fetchData();
     }, []);
+
 
     const createImageList = (imageString) => {
         return imageString?.length > 0
@@ -38,6 +61,21 @@ const AboutSettings = () => {
 
     const handleSave = async () => {
         console.log(currentItem);
+        try {
+            const post_url = '/myapp/admin/about/update';
+            const formData = new FormData();
+            formData.append('about_introduction', currentItem.about_introduction || '');
+            formData.append('about_cover', currentItem.about_cover || '');
+            const {code, msg, data} = await axiosInstance.post(post_url, formData);
+            if (code === 0) {
+                message.success("操作成功");
+                fetchData()
+            } else {
+                message.error(msg || '网络异常')
+            }
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     const handleImageUploadChange = (imageUrlList, name) => {
