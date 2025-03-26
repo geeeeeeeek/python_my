@@ -39,7 +39,7 @@ def count(request):
         )
 
         results_dict = [
-            dict(day=row['day'], pv=row['pv'] + random.randint(1, 50), uv=row['uv'] + random.randint(10, 20)) for row in
+            dict(day=row['day'], pv=row['pv'], uv=row['uv']) for row in
             results]
 
         data = {

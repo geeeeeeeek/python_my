@@ -55,14 +55,14 @@ const items = [
     icon: <MailOutlined />,
   },
   {
-    key: '/admin/basicInfo',
-    label: '基本信息',
-    icon: <SettingOutlined />,
-  },
-  {
     key: '/admin/log',
     label: '日志管理',
     icon: <TableOutlined />,
+  },
+  {
+    key: '/admin/basicInfo',
+    label: '基本信息',
+    icon: <SettingOutlined />,
   },
   {
     key: '/admin/user',
@@ -88,8 +88,6 @@ const SideBar = () => {
   };
 
   console.log('sidebar path------',current)
-
-  const adminPrimaryColor = 'adminPrimaryColor';
 
   return (
     <>

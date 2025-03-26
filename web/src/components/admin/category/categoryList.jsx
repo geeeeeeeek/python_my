@@ -36,7 +36,7 @@ export default function CategoryList() {
                     <a className="text-adminPrimaryColor" onClick={() => openModal(item)}>编辑</a>
                     {
                         item.pid === -1 ? (
-                            <a onClick={() => openModal({sort: 0, pid: item.id})}>
+                            <a className="text-adminPrimaryColor"  onClick={() => openModal({sort: 0, pid: item.id})}>
                                 添加子分类
                             </a>
                         ) : (null)
@@ -47,7 +47,7 @@ export default function CategoryList() {
                         cancelText="取消"
                         onConfirm={() => deleteRecord(item)}
                     >
-                        <a>删除</a>
+                        <a className="text-adminPrimaryColor" >删除</a>
                     </Popconfirm>
                 </Space>
             ),

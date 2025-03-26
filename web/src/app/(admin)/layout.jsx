@@ -40,7 +40,7 @@ export default function RootLayout({children}) {
                                 darkItemBg: adminPrimaryColor, // 整体背景色
                                 darkSubMenuItemBg: adminPrimaryColor, // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色
-                                darkItemSelectedBg: '#2189be', // 选中颜色
+                                darkItemSelectedBg: '#2e8ab8', // 选中颜色
                                 motionDurationSlow: '0.1s', // 动效速度
                             },
                             Tabs: {
@@ -53,11 +53,11 @@ export default function RootLayout({children}) {
                             Table: {
                                 headerBorderRadius: 0,
                                 headerBg: '#fafafa',
-                                headerColor: '#333',
+                                headerColor: '#555',
                                 borderRadius: 0,
                                 colorBorderSecondary: '#f1f1f1',
                                 borderColor: '#eee',
-                                cellFontSizeMD:14, // middle尺寸的
+                                cellFontSizeMD:13, // middle尺寸的
                                 cellPaddingBlockMD: 12,
                                 cellPaddingInlineMD: 8,
                             },
