@@ -74,16 +74,16 @@ export default function ProductList() {
             fixed: 'right',
             render: (_, item) => (
                 <Space size="middle">
-                    <a onClick={() => openModal(item)}>编辑</a>
+                    <a className="text-adminPrimaryColor" onClick={() => openModal(item)}>编辑</a>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
                         cancelText="取消"
                         onConfirm={() => deleteRecord([item.id])}
                     >
-                        <a>删除</a>
+                        <a className="text-adminPrimaryColor">删除</a>
                     </Popconfirm>
-                    <a onClick={() => preview(item)}>预览</a>
+                    <a className="text-adminPrimaryColor" onClick={() => preview(item)}>预览</a>
                 </Space>
             ),
         },

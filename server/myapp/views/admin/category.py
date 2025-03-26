@@ -24,9 +24,6 @@ def list_api(request):
         serializer = CategorySerializer(top_level_categories, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data)
 
-        # categorys = Category.objects.all().order_by('-create_time')
-        # serializer = CategorySerializer(categorys, many=True)
-        # return APIResponse(code=0, msg='查询成功', data=serializer.data)
 
 
 @api_view(['POST'])

@@ -7,5 +7,5 @@ class MyRateThrottle(AnonRateThrottle):
 
 
 class UserRateThrottle(AnonRateThrottle):
-    # 限流 每分钟5次
-    THROTTLE_RATES = {"anon": "5/min"}
+    # 限流 每分钟10次
+    THROTTLE_RATES = {"anon": "10/min"}

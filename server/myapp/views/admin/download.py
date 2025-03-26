@@ -21,7 +21,7 @@ class MyPageNumberPagination(PageNumberPagination):
 def list_api(request):
     if request.method == 'GET':
         download = Download.objects.order_by('-create_time')
-        total = len(download)
+        total = download.count()
 
         paginator = MyPageNumberPagination()
         paginated_download = paginator.paginate_queryset(download, request)

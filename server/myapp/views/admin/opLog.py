@@ -24,7 +24,7 @@ def list_api(request):
             # 分页
             paginator = MyPageNumberPagination()
             paginated_logs = paginator.paginate_queryset(opLog, request)
-            total = len(opLog)
+            total = opLog.count()
 
             serializer = OpLogSerializer(paginated_logs, many=True)
             return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)

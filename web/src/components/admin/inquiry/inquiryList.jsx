@@ -77,7 +77,7 @@ export default function InquiryList() {
                         cancelText="取消"
                         onConfirm={() => deleteRecord(item)}
                     >
-                        <a>删除</a>
+                        <a className="text-adminPrimaryColor">删除</a>
                     </Popconfirm>
                 </Space>
             ),

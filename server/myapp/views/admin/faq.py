@@ -21,7 +21,7 @@ class MyPageNumberPagination(PageNumberPagination):
 def list_api(request):
     if request.method == 'GET':
         faq = Faq.objects.order_by('-create_time')
-        total = len(faq)
+        total = faq.count()
 
         paginator = MyPageNumberPagination()
         paginated_faq = paginator.paginate_queryset(faq, request)

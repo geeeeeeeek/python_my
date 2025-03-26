@@ -67,7 +67,7 @@ const PropertyPanel = React.forwardRef(({ properties, handlePropertyChange}, ref
                             value={item.value}
                             onChange={(e) => handleInputChange(index, 'value', e.target.value)}
                         />
-                        <a onClick={() => handleDeleteItem(index)} style={{width: '80px',lineHeight:'32px',textAlign:'center', marginLeft:'16px'}}>删除</a>
+                        <a className="text-adminPrimaryColor" onClick={() => handleDeleteItem(index)} style={{width: '80px',lineHeight:'32px',textAlign:'center', marginLeft:'16px'}}>删除</a>
                     </li>
                 ))}
             </ul>

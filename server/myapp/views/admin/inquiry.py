@@ -25,7 +25,7 @@ def list_api(request):
         # 分页
         paginator = MyPageNumberPagination()
         paginated_inquiry = paginator.paginate_queryset(inquiry, request)
-        total = len(inquiry)
+        total = inquiry.count()
 
         serializer = InquirySerializer(paginated_inquiry, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)

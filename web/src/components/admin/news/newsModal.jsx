@@ -95,12 +95,17 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
             open={isOpen}
             onCancel={() => onRequestClose(false)}
             footer={null}
-            width={900}
+            width={1100}
+            styles={{
+                mask: {
+                    backdropFilter: 'blur(10px)',
+                },
+            }}
         >
 
             <Spin spinning={loading} tip="">
                 <div className="flex flex-col">
-                    <div className="">
+                    <div className="max-h-[70vh] overflow-y-auto">
                         <div className="">
                             <div className="flex flex-col gap-4 pt-4 pb-0">
                                 <div className="flex flex-row gap-4">
@@ -179,6 +184,7 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
                                     />
                                 </div>
                             </div>
+                            <Divider/>
 
                             <div className="flex flex-row gap-4 justify-start">
                                 <Button type="primary" onClick={handleSave}>提交</Button>

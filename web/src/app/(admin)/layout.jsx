@@ -17,7 +17,8 @@ export const metadata = {
 
 export default function RootLayout({children}) {
 
-    const primaryColor = '#3399cc';
+    const adminPrimaryColor = '#3399cc';
+
 
     return (
         <ReduxProvider>
@@ -28,20 +29,23 @@ export default function RootLayout({children}) {
                 <ConfigProvider
                     wave={{ disabled: true }}
                     theme={{
+                        token: {
+                            colorPrimary: adminPrimaryColor,
+                        },
                         components: {
                             Menu: {
                                 itemBorderRadius: 0,
                                 itemMarginInline: 0,
                                 itemPaddingInline: 56,
-                                darkItemBg: primaryColor, // 整体背景色
-                                darkSubMenuItemBg: primaryColor, // 子菜单背景色
+                                darkItemBg: adminPrimaryColor, // 整体背景色
+                                darkSubMenuItemBg: adminPrimaryColor, // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色
                                 darkItemSelectedBg: '#2189be', // 选中颜色
                                 motionDurationSlow: '0.1s', // 动效速度
                             },
                             Tabs: {
                                 itemActiveColor: '#000',
-                                itemSelectedColor: primaryColor,
+                                itemSelectedColor: adminPrimaryColor,
                                 itemHoverColor: '#000',
                                 colorPrimaryBorder: '#fff',// 描边
                                 horizontalMargin: '0 0 0 0',
@@ -62,7 +66,7 @@ export default function RootLayout({children}) {
                             },
                             Button: {
                                 borderRadius: 0,
-                                colorPrimary: primaryColor,
+                                colorPrimary: adminPrimaryColor,
                             },
                             Input: {
                                 borderRadius: 0

@@ -33,7 +33,7 @@ export default function CategoryList() {
             render: (_, item) => (
                 <Space size="middle">
 
-                    <a onClick={() => openModal(item)}>编辑</a>
+                    <a className="text-adminPrimaryColor" onClick={() => openModal(item)}>编辑</a>
                     {
                         item.pid === -1 ? (
                             <a onClick={() => openModal({sort: 0, pid: item.id})}>

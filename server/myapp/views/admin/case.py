@@ -26,7 +26,7 @@ def list_api(request):
         # 分页
         paginator = MyPageNumberPagination()
         paginated_case = paginator.paginate_queryset(case, request)
-        total = len(case)
+        total = case.count()
 
         serializer = CaseSerializer(paginated_case, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)

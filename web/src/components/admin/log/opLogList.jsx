@@ -74,7 +74,7 @@ export default function OpLogList() {
                         cancelText="取消"
                         onConfirm={() => deleteRecord([item.id])}
                     >
-                        <a>删除</a>
+                        <a className="text-adminPrimaryColor">删除</a>
                     </Popconfirm>
                 </Space>
             ),

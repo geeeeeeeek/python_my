@@ -39,14 +39,14 @@ export default function UserList() {
             render: (_, item) => (
                 <Space size="middle">
 
-                    <a onClick={() => openPasswordModal(item)}>修改密码</a>
+                    <a className="text-adminPrimaryColor" onClick={() => openPasswordModal(item)}>修改密码</a>
                     <Popconfirm
                         title="确定删除？"
                         okText="确定"
                         cancelText="取消"
                         onConfirm={() => deleteRecord(item)}
                     >
-                        <a>删除</a>
+                        <a className="text-adminPrimaryColor">删除</a>
                     </Popconfirm>
                 </Space>
             ),

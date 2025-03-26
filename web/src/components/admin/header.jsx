@@ -1,11 +1,13 @@
 'use client';
 import "@/styles/globals.css";
-import {AppstoreOutlined, MenuOutlined} from "@ant-design/icons";
+import {AppstoreOutlined, DownOutlined, MenuOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {setCollapsed} from "@/redux/adminSettingSlice";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import MenuIcon from "/public/admin/menu.png";
+import AvatarIcon from "/public/admin/icon_avatar.svg";
+import {Dropdown, Space} from "antd";
 
 
 const Header = () => {
@@ -13,9 +15,9 @@ const Header = () => {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('-');
 
-    useEffect (() => {
+    useEffect(() => {
         let username = localStorage.getItem('username') || '';
         setUsername(username);
     }, []);
@@ -31,9 +33,26 @@ const Header = () => {
         window.location.href = '/adminLogin';
     }
 
+    const items = [
+        {
+            key: '1',
+            label: (
+                <a>
+                    退出
+                </a>
+            ),
+        },
+    ];
+
+    const handleMenuClick = (e) => {
+        if (e.key === '1') {
+            logout();
+        }
+    };
+
     return (
         <>
-            <div className="h-12 px-4 flex flex-row items-center bg-white border-b border-b-gray-300 ">
+            <div className="h-14 px-4 flex flex-row items-center bg-white border-b border-b-gray-300 ">
                 <Image
                     src={MenuIcon}
                     alt="menu"
@@ -42,9 +61,29 @@ const Header = () => {
                     className="cursor-pointer"
                     onClick={toggleSideBar}
                 />
-                <div className="ml-auto cursor-pointer">
-                    <span className={"ml-2 mr-2 text-gray-500 text-sm"} >管理员{username}</span>
-                    <a className="cursor-pointer text-blue-500" onClick={() => logout()}>退出</a>
+                <div className="flex flex-row gap-2 items-center justify-center ml-auto pr-4">
+                    <div className="flex flex-col items-end">
+                        <div className={"ml-2 leading-[14px] text-gray-700 text-[12px]"}>{username}</div>
+                        <div className={"ml-2 leading-[14px] text-gray-400 text-[11px]"}>超级管理员</div>
+                    </div>
+
+                    <Dropdown
+                        menu={{
+                            items,
+                            onClick: handleMenuClick,
+                        }}
+                    >
+                        <div size="4" className="cursor-pointer flex flex-row gap-1">
+                            <Image
+                                src={AvatarIcon}
+                                alt="avatar"
+                                width={38}
+                                height={38}
+                            />
+                            <DownOutlined style={{ fontSize: '10px', color: '#aaa' }}/>
+                        </div>
+                    </Dropdown>
+
                 </div>
             </div>
         </>

@@ -1,9 +1,10 @@
 # Create your views here.
 import datetime
 
-from rest_framework.decorators import api_view, authentication_classes
+from rest_framework.decorators import api_view, authentication_classes, throttle_classes
 
 from myapp import utils
+from myapp.auth.MyRateThrottle import UserRateThrottle
 from myapp.auth.authentication import AdminTokenAuthtication
 from myapp.handler import APIResponse
 from myapp.models import User
@@ -13,6 +14,7 @@ from myapp.utils import md5value
 
 
 @api_view(['POST'])
+@throttle_classes([UserRateThrottle])
 def admin_login(request):
     username = request.data['username']
     password = utils.md5value(request.data['password'])

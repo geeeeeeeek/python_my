@@ -89,9 +89,11 @@ const SideBar = () => {
 
   console.log('sidebar path------',current)
 
+  const adminPrimaryColor = 'adminPrimaryColor';
+
   return (
     <>
-      <div className="bg-[#3399cc] flex flex-col">
+      <div className={`bg-adminPrimaryColor flex flex-col`}>
         <div className="font-bold text-white flex flex-row items-center justify-center py-4 cursor-pointer">
           <Image
               src={LogoIcon}

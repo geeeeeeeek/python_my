@@ -33,7 +33,7 @@ def list_api(request):
         # 分页
         paginator = MyPageNumberPagination()
         paginated_things = paginator.paginate_queryset(things, request)
-        total = len(things)
+        total = things.count()
 
         serializer = ThingSerializer(paginated_things, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data, total=total)

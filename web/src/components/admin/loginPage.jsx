@@ -17,11 +17,11 @@ const LoginPage = () => {
     };
 
     const login = async () => {
-        if(currentItem.username.length === 0 || currentItem.password.length === 0){
+        if (currentItem.username.length === 0 || currentItem.password.length === 0) {
             message.error('用户名或密码不能为空')
             return;
         }
-        try{
+        try {
             setLoading(true);
             const post_url = '/myapp/admin/adminLogin';
             const formData = new FormData();
@@ -37,17 +37,25 @@ const LoginPage = () => {
                 message.error(msg || '网络异常')
             }
             setLoading(false);
-        }catch (err) {
+        } catch (err) {
             console.log(err)
-            message.error('网络异常')
+            message.error(err.detail || '网络异常')
             setLoading(false)
         }
 
 
     }
+    const bgImage = "linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);";
 
     return (
-        <div className="flex flex-col gap-4 items-center justify-center min-h-screen bg-blue-300 w-screen">
+        <div
+            style={{
+                backgroundImage: `${bgImage}`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+            }}
+            className="flex flex-col gap-4 items-center justify-center min-h-screen  w-screen">
             <form className="bg-white p-8 rounded shadow-md w-96">
                 <h2 className="text-xl mb-6 text-center">管理员登录</h2>
                 <div className="mb-4">
@@ -55,14 +63,14 @@ const LoginPage = () => {
                         用户名
                     </label>
                     <Input placeholder="请输入用户名" value={currentItem.username}
-                           onChange={(e) => handleInputChange("username", e.target.value)} />
+                           onChange={(e) => handleInputChange("username", e.target.value)}/>
                 </div>
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm" htmlFor="password">
                         密码
                     </label>
                     <Input.Password placeholder="请输入密码" value={currentItem.password}
-                           onChange={(e) => handleInputChange("password", e.target.value)} />
+                                    onChange={(e) => handleInputChange("password", e.target.value)}/>
                 </div>
 
                 <Button loading={loading} type="primary" className="w-full" onClick={() => login()}>登录</Button>

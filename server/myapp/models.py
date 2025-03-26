@@ -364,6 +364,9 @@ class OpLog(models.Model):
 
     class Meta:
         db_table = "b_op_log"
+        indexes = [
+            models.Index(fields=['re_time'], name='re_time'),  # 指定索引名称
+        ]
 
 
 class ErrorLog(models.Model):
