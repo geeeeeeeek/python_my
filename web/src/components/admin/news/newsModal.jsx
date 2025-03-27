@@ -109,7 +109,7 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
                         <div className="">
                             <div className="flex flex-col gap-4 pt-4 pb-0">
                                 <div className="flex flex-row gap-4">
-                                    <FormLabel title="标题" required={true}></FormLabel>
+                                    <FormLabel title="新闻标题" required={true}></FormLabel>
                                     <Input placeholder="请输入标题" value={currentItem.title}
                                            onChange={(e) => handleInputChange("title", e.target.value)}
                                            style={{width: 600}}/>
@@ -123,6 +123,7 @@ const NewsModal = ({isOpen, onRequestClose, initialItem}) => {
                                 <div className="flex flex-row gap-4">
                                     <FormLabel title="封面图"></FormLabel>
                                     <ImageUpload maxCount={1}
+                                                 maxSize={2}
                                                  accept="image/*"
                                                  imageList={imageList}
                                                  onImageUploadChange={handleImageUploadChange}/>

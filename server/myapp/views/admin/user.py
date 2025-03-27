@@ -27,7 +27,7 @@ def admin_login(request):
             'username': username,
             'password': password,
             'admin_token': md5value(username + str(ts)),  # 生成令牌
-            'exp': ts + (60 * 60 * 1000)  # 刷新过期时间
+            'exp': ts + (24 * 60 * 60 * 1000)  # 刷新过期时间
         }
 
         if user.status == '1':

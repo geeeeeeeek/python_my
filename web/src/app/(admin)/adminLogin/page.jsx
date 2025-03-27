@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import {useRouter} from 'next/navigation';
-import LoginPage from "@/components/admin/loginPage";
+import LoginPage from "@/components/admin/login/loginPage";
 
 
 export default function Page() {

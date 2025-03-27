@@ -19,12 +19,18 @@ export default function UserList() {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
+            width: '90px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (text) => <div>{text}</div>,
         },
         {
             title: '账号',
             dataIndex: 'username',
             key: 'username',
+            width: '220px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '角色',
@@ -35,7 +41,11 @@ export default function UserList() {
         {
             title: '操作',
             key: 'action',
+            fixed: 'right',
             align: 'center',
+            width: '180px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (_, item) => (
                 <Space size="middle">
 

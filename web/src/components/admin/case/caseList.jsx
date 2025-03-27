@@ -21,10 +21,10 @@ export default function CaseList() {
 
     const columns = [
         {
-            title: '标题',
+            title: '案例标题',
             dataIndex: 'title',
             key: 'title',
-            width: '400px',
+            width: '450px',
             textWrap: 'word-break',
         },
         {

@@ -1,13 +1,14 @@
 'use client';
 import "@/styles/globals.css";
-import {AppstoreOutlined, DownOutlined, MenuOutlined} from "@ant-design/icons";
+import {DownOutlined} from "@ant-design/icons";
 import {useDispatch, useSelector} from "react-redux";
 import {setCollapsed} from "@/redux/adminSettingSlice";
 import React, {useEffect, useState} from "react";
 import Image from "next/image";
 import MenuIcon from "/public/admin/menu.png";
 import AvatarIcon from "/public/admin/icon_avatar.svg";
-import {Dropdown, Space} from "antd";
+import {Dropdown} from "antd";
+import HomeIcon from "/public/admin/icon_home.svg";
 
 
 const Header = () => {
@@ -31,6 +32,10 @@ const Header = () => {
         localStorage.removeItem('admintoken');
         localStorage.removeItem('username');
         window.location.href = '/adminLogin';
+    }
+
+    const goHome = () => {
+        window.open(window.location.origin, '_blank');
     }
 
     const items = [
@@ -62,6 +67,16 @@ const Header = () => {
                     onClick={toggleSideBar}
                 />
                 <div className="flex flex-row gap-2 items-center justify-center ml-auto pr-4">
+                    <div className="flex flex-row gap-1 mr-4 cursor-pointer"
+                         onClick={()=>goHome()}>
+                        <Image
+                            src={HomeIcon}
+                            alt="home"
+                            style={{width: '20px', height: 'auto'}}
+                            className="cursor-pointer"
+                        />
+                        <div className="text-[14px] text-gray-900">网站首页</div>
+                    </div>
                     <div className="flex flex-col items-end">
                         <div className={"ml-2 leading-[14px] text-gray-700 text-[12px]"}>{username}</div>
                         <div className={"ml-2 leading-[14px] text-gray-400 text-[11px]"}>超级管理员</div>

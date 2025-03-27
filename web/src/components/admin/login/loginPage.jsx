@@ -45,7 +45,7 @@ const LoginPage = () => {
 
 
     }
-    const bgImage = "linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);";
+    const bgImage = "linear-gradient(to right, #92fe9d 0%, #00c9ff 100%)";
 
     return (
         <div

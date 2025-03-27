@@ -45,16 +45,24 @@ export default function InquiryList() {
             title: '公司',
             dataIndex: 'company',
             key: 'company',
+            width: '120px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '消息',
             dataIndex: 'message',
             key: 'message',
+            width: '120px',
+            textWrap: 'word-break',
         },
         {
             title: '所属IP',
             dataIndex: 'ip',
             key: 'ip',
+            width: '120px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '时间',
@@ -68,6 +76,9 @@ export default function InquiryList() {
             title: '操作',
             key: 'action',
             align: 'center',
+            width: '120px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (_, item) => (
                 <Space size="middle">
 

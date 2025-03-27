@@ -191,11 +191,11 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
         >
             <div className="flex flex-col">
                 <div>
-                    <div ref={divRef} className="max-h-[70vh] overflow-y-auto">
+                    <div ref={divRef} className="max-h-[75vh] overflow-y-auto">
                         <LabelPanel title="基本信息"></LabelPanel>
                         <div className="flex flex-col gap-6 px-2 py-2">
                             <div className="flex flex-row gap-4">
-                                <FormLabel title="标题" required={true}></FormLabel>
+                                <FormLabel title="名称" required={true}></FormLabel>
                                 <Input placeholder="请输入产品名称" value={currentItem.title}
                                        onChange={(e) => handleInputChange("title", e.target.value)}
                                        style={{width: 300}}/>
@@ -239,8 +239,9 @@ const ProductModal = ({isOpen, onRequestClose, initialItem}) => {
                                 />
                             </div>
                             <div className="flex flex-row gap-4 min-h-[100px]">
-                                <FormLabel title="图片"></FormLabel>
+                                <FormLabel title="图片" required={true}></FormLabel>
                                 <ImageUpload maxCount={5}
+                                             maxSize={5}
                                              accept="image/*"
                                              imageList={imageList}
                                              onImageUploadChange={handleImageUploadChange}/>

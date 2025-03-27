@@ -1,17 +1,14 @@
 // 'use client';
-import {Montserrat} from 'next/font/google';
 import "@/styles/globals.css";
 import {AntdRegistry} from '@ant-design/nextjs-registry';
 import {ConfigProvider} from "antd";
 import ReduxProvider from "@/redux/redux-provider";
 
 
-const font = Montserrat({subsets: ["latin"], weight: "400"})
-
 export const metadata = {
     title: "后台管理",
     description: "后台管理系统",
-    icons: [{rel: "icon", url: "/favicon.ico"}],
+    icons: [{rel: "icon", url: "/admin/ico.png"}],
 }
 
 
@@ -36,7 +33,7 @@ export default function RootLayout({children}) {
                             Menu: {
                                 itemBorderRadius: 0,
                                 itemMarginInline: 0,
-                                itemPaddingInline: 56,
+                                itemPaddingInline: 60,
                                 darkItemBg: adminPrimaryColor, // 整体背景色
                                 darkSubMenuItemBg: adminPrimaryColor, // 子菜单背景色
                                 darkItemColor: '#fff', // 文字颜色
@@ -44,9 +41,6 @@ export default function RootLayout({children}) {
                                 motionDurationSlow: '0.1s', // 动效速度
                             },
                             Tabs: {
-                                itemActiveColor: '#000',
-                                itemSelectedColor: adminPrimaryColor,
-                                itemHoverColor: '#000',
                                 colorPrimaryBorder: '#fff',// 描边
                                 horizontalMargin: '0 0 0 0',
                             },
@@ -66,7 +60,6 @@ export default function RootLayout({children}) {
                             },
                             Button: {
                                 borderRadius: 0,
-                                colorPrimary: adminPrimaryColor,
                             },
                             Input: {
                                 borderRadius: 0

@@ -1,6 +1,9 @@
 
 ## Getting Started
 
+富文本编辑器的上传文件带baseurl
+主题色 #3399cc
+
 
 ```bash
 npm run dev

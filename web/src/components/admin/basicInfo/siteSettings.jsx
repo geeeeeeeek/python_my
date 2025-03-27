@@ -6,6 +6,7 @@ import ImageUpload from "@/components/admin/imageUpload";
 import TextArea from "antd/es/input/TextArea";
 import {Divider} from "antd/lib";
 import axiosInstance from "@/utils/axios";
+import HeadLabel from "@/components/admin/headLabel";
 
 const SiteSettings = () => {
 
@@ -93,6 +94,14 @@ const SiteSettings = () => {
             formData.append('site_address', currentItem.site_address || '');
             formData.append('site_copyright', currentItem.site_copyright || '');
             formData.append('site_code', currentItem.site_code || '');
+            formData.append('site_switch_product', currentItem.site_switch_product || '1');
+            formData.append('site_switch_about', currentItem.site_switch_about || '1');
+            formData.append('site_switch_contact', currentItem.site_switch_contact || '1');
+            formData.append('site_switch_news', currentItem.site_switch_news || '1');
+            formData.append('site_switch_case', currentItem.site_switch_case || '1');
+            formData.append('site_switch_faq', currentItem.site_switch_faq || '1');
+            formData.append('site_switch_download', currentItem.site_switch_download || '1');
+
             const {code, msg, data} = await axiosInstance.post(post_url, formData);
             if (code === 0) {
                 message.success("操作成功");
@@ -115,7 +124,7 @@ const SiteSettings = () => {
 
                     <div className="flex flex-col gap-6 py-6">
 
-                        <div className="flex flex-row gap-4">
+                        <div className="flex flex-row gap-4 items-center">
                             <FormLabel title="网站状态"></FormLabel>
                             <Radio.Group
                                 onChange={(e) => handleRadioGroupChange("status", e.target.value)}
@@ -183,7 +192,89 @@ const SiteSettings = () => {
                         </div>
                     </div>
 
+
+                    <HeadLabel title="功能菜单" />
+                    <div className="flex flex-col gap-4 px-2  py-6">
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="产品"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_product", e.target.value)}
+                                value={currentItem.site_switch_product}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="关于"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_about", e.target.value)}
+                                value={currentItem.site_switch_about}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="联系"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_contact", e.target.value)}
+                                value={currentItem.site_switch_contact}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="新闻"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_news", e.target.value)}
+                                value={currentItem.site_switch_news}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="案例"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_case", e.target.value)}
+                                value={currentItem.site_switch_case}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="下载"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_download", e.target.value)}
+                                value={currentItem.site_switch_download}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                        <div className="flex flex-row items-center">
+                            <FormLabel title="Faq"></FormLabel>
+                            <Radio.Group
+                                onChange={(e) => handleRadioGroupChange("site_switch_faq", e.target.value)}
+                                value={currentItem.site_switch_faq}
+                                options={[
+                                    {value: '1', label: '开启'},
+                                    {value: '2', label: '关闭'}
+                                ]}
+                            />
+                        </div>
+                    </div>
                     <Divider/>
+
 
                     <div className="pb-6 flex flex-row gap-4 justify-start">
                         <Button type="primary" onClick={handleSave}>提交</Button>

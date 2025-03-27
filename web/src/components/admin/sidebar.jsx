@@ -26,27 +26,27 @@ const items = [
   },
   {
     key: '/admin/news',
-    label: '新闻页',
+    label: '新闻管理',
     icon: <FileWordOutlined />,
   },
   {
     key: '/admin/about',
-    label: '关于页',
+    label: '关于管理',
     icon: <AppstoreOutlined />,
   },
   {
     key: '/admin/case',
-    label: '案例页',
+    label: '案例管理',
     icon: <FunnelPlotOutlined />,
   },
   {
     key: '/admin/download',
-    label: '下载页',
+    label: '下载管理',
     icon:  <DownloadOutlined />,
   },
   {
     key: '/admin/faq',
-    label: 'FAQ页',
+    label: 'FAQ管理',
     icon: <CompassOutlined />,
   },
   {

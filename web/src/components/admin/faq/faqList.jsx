@@ -8,16 +8,15 @@ import FaqModal from "@/components/admin/faq/faqModal";
 export default function FaqList() {
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
+    const [dataList, setDataList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
-
-    const [paginationParams, setPaginationParams] = useState({
-        current: 1,
-        pageSize: 10,
-        total: 0
-    });
+    // 分页变量
+    const [page, setPage] = useState(1);
+    const [pageSize, setPageSize] = useState(10);
+    const [total, setTotal] = useState(0);
 
     const columns = [
         {
@@ -60,21 +59,19 @@ export default function FaqList() {
         },
     ];
 
-    const fetchData = useCallback(async () => {
+    const fetchData = async (page, pageSize) => {
         try {
             setLoading(true);
             const params = {
-                page: paginationParams.current,
-                pageSize: paginationParams.pageSize,
-                keyword: searchValue
+                page: page,
+                pageSize: pageSize,
             };
             const {code,total, data} = await axiosInstance.get('/myapp/admin/faq/list',{params});
             if (code === 0) {
-                setData(data)
-                setPaginationParams({
-                    ...paginationParams,
-                    total: total
-                })
+                setDataList(data)
+                setTotal(total)
+                setPage(page);
+                setPageSize(pageSize);
             } else {
                 message.error("数据获取失败")
             }
@@ -82,14 +79,13 @@ export default function FaqList() {
         } catch (err) {
             console.log(err)
         }
-    },[paginationParams.current, searchValue])
+    }
 
     useEffect(() => {
-        fetchData();
-    }, [fetchData])
+        fetchData(page, pageSize);
+    }, [])
 
 
-    const [data, setData] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [currentItem, setCurrentItem] = useState(null);
 
@@ -102,7 +98,7 @@ export default function FaqList() {
         setModalIsOpen(false);
         setCurrentItem(null);
         if (shouldRefresh) {
-            fetchData();
+            fetchData(page, pageSize);
         }
     };
 
@@ -111,7 +107,11 @@ export default function FaqList() {
             const {code, data} = await axiosInstance.post('/myapp/admin/faq/delete', {ids: selected_ids.join(',')});
             if (code === 0) {
                 message.success("删除成功")
-                fetchData();
+                if (dataList.length === 1 && page > 1) {
+                    fetchData(page - 1, pageSize);
+                } else {
+                    fetchData(page, pageSize);
+                }
             } else {
                 message.error("删除失败")
             }
@@ -132,11 +132,7 @@ export default function FaqList() {
 
 
     const handleChangePage = (page, pageSize) => {
-        setPaginationParams(pre => ({
-            ...pre,
-            current: page,
-            pageSize: pageSize
-        }))
+        fetchData(page, pageSize);
     }
 
     return (
@@ -158,7 +154,7 @@ export default function FaqList() {
                                 </Popconfirm>
                             </div>
                             <Table columns={columns}
-                                   dataSource={data}
+                                   dataSource={dataList}
                                    size="middle"
                                    rowSelection={rowSelection}
                                    rowKey={(record) => record.id}
@@ -169,9 +165,9 @@ export default function FaqList() {
 
                             <div className="p-4">
                                 <Pagination align='end'
-                                            current={paginationParams.current}
-                                            pageSize={paginationParams.pageSize}
-                                            total={paginationParams.total}
+                                            current={page}
+                                            pageSize={pageSize}
+                                            total={total}
                                             showTotal={(total) => `共 ${total} 条`}
                                             onChange={handleChangePage}
                                 />

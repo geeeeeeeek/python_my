@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormLabel = ({title, required}) => {
+const HeadLabel = ({title, required}) => {
 
     return (
         <span className="bg-gray-100 text-[13px] w-full text-gray-700 px-3 h-[36px] leading-[36px] flex flex-row items-center">
@@ -11,4 +11,4 @@ const FormLabel = ({title, required}) => {
         </span>
     );
 };
-export default FormLabel;
+export default HeadLabel;

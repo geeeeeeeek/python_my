@@ -30,7 +30,7 @@ export default function OverViewInfo() {
 
     const cardStyle = "rounded-lg bg-gradient-to-b from-[#e1e5f5] to-[#e1e5f5]  h-[100px] p-4 flex-1 flex flex-col gap-3";
     const labelStyle = "text-[#001e30] text-[14px] font-light";
-    const valueStyle = "text-[#3399cc] text-2xl font-light ";
+    const valueStyle = "text-adminPrimaryColor text-2xl font-light ";
 
     return (
         <>

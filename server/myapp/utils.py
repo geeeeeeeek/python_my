@@ -10,12 +10,10 @@ def get_timestamp():
     return int(round(time.time() * 1000))
 
 
-def md5value(key):
-    salt = "987654321hello"
-    input_name = hashlib.md5()
-    input_name.update((key + salt).encode("utf-8"))
-    md5str = (input_name.hexdigest()).lower()
-    return md5str
+def md5value(key, salt="987654321hello"):
+    # 使用sha256算法
+    hash_result = hashlib.sha256((key + salt).encode("utf-8")).hexdigest()
+    return hash_result.lower()[:32]
 
 
 def dict_fetchall(cursor):  # cursor是执行sql_str后的记录，作入参
@@ -86,4 +84,3 @@ def log_error(request, content):
     serializer = ErrorLogSerializer(data=data)
     if serializer.is_valid():
         serializer.save()
-

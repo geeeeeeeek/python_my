@@ -32,7 +32,7 @@ export default function NewsList() {
             title: '摘要',
             dataIndex: 'summary',
             key: 'summary',
-            width: '240px',
+            width: '380px',
             textWrap: 'word-break',
             render: (text) => <div>{text}</div>,
         },
@@ -167,7 +167,7 @@ export default function NewsList() {
                                     <Button disabled={!selectedRowKeys.length > 0 }>删除</Button>
                                 </Popconfirm>
                                 <Search
-                                    placeholder="搜索产品"
+                                    placeholder="搜索"
                                     allowClear
                                     onSearch={onSearch}
                                     style={{

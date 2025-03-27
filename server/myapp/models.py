@@ -165,7 +165,7 @@ class Download(models.Model):
 
 class BasicSite(models.Model):
     id = models.BigAutoField(primary_key=True)
-    status = models.CharField(max_length=2, blank=True, null=True)  # 网站状态
+    status = models.CharField(max_length=2, default='1')  # 网站状态(1开启 2关闭)
     site_name = models.CharField(max_length=100, blank=True, null=True)  # 网站名称
     site_nickname = models.CharField(max_length=100, blank=True, null=True)  # 网站简称
     site_logo = models.CharField(max_length=100, blank=True, null=True)  # 网站logo
@@ -173,6 +173,13 @@ class BasicSite(models.Model):
     site_address = models.CharField(max_length=100, blank=True, null=True)  # 网站网址
     site_copyright = models.CharField(max_length=100, blank=True, null=True)  # 版权信息
     site_code = models.CharField(max_length=1000, blank=True, null=True)  # 第三方代码
+    site_switch_product = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_about = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_contact = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_news = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_case = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_faq = models.CharField(max_length=2, default='1')  # 功能开关
+    site_switch_download = models.CharField(max_length=2, default='1')  # 功能开关
 
     class Meta:
         db_table = "b_basic_site"

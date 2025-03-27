@@ -39,39 +39,51 @@ export default function ProductList() {
             title: '产品名称',
             dataIndex: 'title',
             key: 'title',
-            width: '240px',
+            width: '200px',
             textWrap: 'word-break',
             ellipsis: true,
-            render: (text) => <div>{text}</div>,
         },
         {
             title: '分类',
             dataIndex: 'category_title',
             key: 'category_title',
-            render: (text) => <div>{text}</div>,
+            width: '150px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '摘要',
             dataIndex: 'summary',
             key: 'summary',
-            render: (text) => <div>{text}</div>,
+            width: '280px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '是否启用',
             dataIndex: 'status',
             key: 'status',
+            width: '90px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (text) => <div>{text === '0' ? '是' : '否'}</div>,
         },
         {
             title: '创建时间',
             dataIndex: 'create_time',
             key: 'create_time',
-            render: (text) => <div>{text}</div>,
+            width: '150px',
+            textWrap: 'word-break',
+            ellipsis: true,
         },
         {
             title: '操作',
             key: 'action',
             fixed: 'right',
+            align: 'center',
+            width: '150px',
+            textWrap: 'word-break',
+            ellipsis: true,
             render: (_, item) => (
                 <Space size="middle">
                     <a className="text-adminPrimaryColor" onClick={() => openModal(item)}>编辑</a>
@@ -191,7 +203,6 @@ export default function ProductList() {
                            rowSelection={rowSelection}
                            rowKey={(record) => record.id}
                            pagination={false}
-                           scroll={{x: 'max-content'}}
                            showSizeChanger={false}/>
                     <div className="p-4">
                         <Pagination align='end'
