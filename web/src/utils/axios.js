@@ -13,8 +13,11 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     (config) => {
         // 在发送请求之前添加 token 等信息
-        const token = localStorage.getItem('admintoken'); // 假设 token 存储在 localStorage
-        config.headers.ADMINTOKEN = token || '';
+        if (typeof window !== 'undefined') {
+            const token = localStorage.getItem('admintoken'); // 假设 token 存储在 localStorage
+            config.headers.ADMINTOKEN = token || '';
+        }
+
         return config;
     },
     (error) => {

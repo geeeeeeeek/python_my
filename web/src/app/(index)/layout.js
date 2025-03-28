@@ -1,8 +1,8 @@
 import {ThemeProvider} from "@/theme/theme-provider";
 import {Montserrat, Aboreto} from 'next/font/google';
-import Footer from "@/components/Footer";
+import Footer from "@/components/index/Footer";
 import "@/styles/globals.css";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/index/Navbar";
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 
