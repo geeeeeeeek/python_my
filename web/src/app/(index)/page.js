@@ -1,4 +1,4 @@
-import NavBar from "@/components/index/nav/navBar4";
+import NavBar from "@/components/index/nav/navBar5";
 
 
 export default function Home() {
@@ -7,12 +7,35 @@ export default function Home() {
         <div className="flex flex-col bg-blue-400">
             <NavBar/>
 
-            <div className="bg-gray-200 h-[900px]">
-                <h2>hello hello </h2>
-                <h2>hello hello </h2>
-                <h2>hello hello </h2>
-                <h2>hello hello </h2>
-                <h2>hello hello </h2>
+            <div className="bg-gray-200 ">
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-40">hello hello </h2>
+                <h2 className="h-20">hello hello000 </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
+                <h2 className="h-20">hello hello </h2>
             </div>
 
         </div>
