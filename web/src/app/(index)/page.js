@@ -1,11 +1,10 @@
-import NavBar from "@/components/index/nav/navBar7";
+import NavBar from "@/components/index/nav/navBar4";
 
 
 export default function Home() {
 
     return (
         <div className="flex flex-col bg-blue-400">
-            <NavBar/>
 
             <div className="bg-gray-200 ">
                 <h2 className="h-40">hello hello </h2>

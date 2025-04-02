@@ -18,12 +18,11 @@ from myapp.utils import dict_fetchall
 def list_api(request):
     if request.method == 'GET':
         # 获取所有顶级分类，并根据 sort 排序
-        top_level_categories = Category.objects.filter(pid=-1).order_by('sort','-id')
+        top_level_categories = Category.objects.filter(pid=-1).order_by('sort', '-id')
 
         # 序列化顶级分类
         serializer = CategorySerializer(top_level_categories, many=True)
         return APIResponse(code=0, msg='查询成功', data=serializer.data)
-
 
 
 @api_view(['POST'])
