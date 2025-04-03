@@ -1,4 +1,4 @@
-import NavBar from "@/components/index/nav/navBar4";
+import NavBar from "@/components/index/nav/navBar2";
 import Footer from "@/components/index/Footer";
 import axiosInstance from "@/utils/axios";
 import {message} from "antd";
@@ -8,7 +8,6 @@ async function getNavSection() {
     try {
         const {code, msg, data} = await axiosInstance.get('/myapp/index/nav/section');
         if (code === 0) {
-            console.log('data---',data)
             return data
         }
     } catch (err) {

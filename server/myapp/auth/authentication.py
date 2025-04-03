@@ -21,9 +21,9 @@ class AdminTokenAuthtication(BaseAuthentication):
             2. 查到了该帐号 
             3. 过期机制
         """
-        # ts = utils.get_timestamp()
-        # if not adminToken or len(users) == 0 or int(users[0].exp) < ts:
-        #     raise exceptions.AuthenticationFailed("token认证失败")
-        # else:
-        #     print('adminToken验证通过')
+        ts = utils.get_timestamp()
+        if not adminToken or len(users) == 0 or int(users[0].exp) < ts:
+            raise exceptions.AuthenticationFailed("token认证失败")
+        else:
+            print('adminToken验证通过')
 

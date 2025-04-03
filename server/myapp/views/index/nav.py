@@ -14,14 +14,14 @@ def get_category_data():
             'id': parent.id,
             'name': parent.title,
             'href': '/product/' + str(parent.id),
-            'cover': parent.cover,
-            'pid': parent.pid,
-            'sort': parent.sort,
+            'type': 'link',
             'subItems': []
         }
 
         # 获取该一级分类下的所有二级分类
         child_categories = Category.objects.filter(pid=parent.id).order_by('sort', '-id')
+        if child_categories.count() > 0:
+            parent_data['type'] = 'dropdown'
 
         # 将二级分类添加到sub列表中
         for child in child_categories:
@@ -29,8 +29,7 @@ def get_category_data():
                 'id': child.id,
                 'name': child.title,
                 'href': '/product/' + str(child.id),
-                'cover': child.cover,
-                'pid': child.pid,
+                'type': 'link',
                 'sort': child.sort
             }
             parent_data['subItems'].append(child_data)
