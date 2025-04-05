@@ -18,7 +18,7 @@ export default function InquiryList() {
 
     const columns = [
         {
-            title: '姓名',
+            title: '客户姓名',
             dataIndex: 'name',
             key: 'name',
             width: '120px',
@@ -26,10 +26,10 @@ export default function InquiryList() {
             ellipsis: true,
         },
         {
-            title: '电话',
+            title: '客户电话',
             dataIndex: 'tel',
             key: 'tel',
-            width: '150px',
+            width: '120px',
             textWrap: 'word-break',
             ellipsis: true,
         },
@@ -42,18 +42,10 @@ export default function InquiryList() {
             ellipsis: true,
         },
         {
-            title: '公司',
-            dataIndex: 'company',
-            key: 'company',
-            width: '120px',
-            textWrap: 'word-break',
-            ellipsis: true,
-        },
-        {
-            title: '消息',
+            title: '消息内容',
             dataIndex: 'message',
             key: 'message',
-            width: '120px',
+            width: '200px',
             textWrap: 'word-break',
         },
         {

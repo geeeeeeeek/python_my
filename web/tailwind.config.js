@@ -50,7 +50,9 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
+			// 自定义颜色
 			adminPrimaryColor: '#3399cc',
+			mainColor: '#0077b6',
   		},
   		fontFamily: {},
   		borderRadius: {

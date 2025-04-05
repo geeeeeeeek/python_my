@@ -1,10 +1,10 @@
 import {ThemeProvider} from "@/theme/theme-provider";
-import {Montserrat, Aboreto} from 'next/font/google';
+import {Montserrat, Aboreto, Open_Sans} from 'next/font/google';
 import "@/styles/globals.css";
 import IndexLayout from "@/components/index/indexLayout";
 
 
-const font = Montserrat({subsets: ["latin"], weight: "400"})
+const font = Open_Sans({subsets: ["latin"], weight: ['400', '700']})
 
 export const metadata = {
     title: "我是首页",
