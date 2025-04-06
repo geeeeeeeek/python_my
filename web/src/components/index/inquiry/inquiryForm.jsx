@@ -160,7 +160,7 @@ const InquiryForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-mainColor hover:bg-[#005f8c] text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full bg-mainColor hover:bg-secondColor text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>

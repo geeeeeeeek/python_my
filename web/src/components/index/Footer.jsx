@@ -160,7 +160,7 @@ const Footer = ({sectionData}) => {
 
                 <div className="flex flex-col md:flex-row justify-between items-center mt-6">
                     <div className="text-gray-500 text-sm">
-                        <p>© 2023 Your Website. All rights reserved.</p>
+                        <p>© 2025 { sectionData.basicGlobal.global_company_name }. All rights reserved.</p>
                         <p className="mt-1">Powered by <a href="https://fktool.com"
                                                           target='_blank'
                                                           className="text-[#0077b6] hover:underline">FKtool</a></p>

@@ -52,7 +52,9 @@ module.exports = {
   			},
 			// 自定义颜色
 			adminPrimaryColor: '#3399cc',
+			// 主题色
 			mainColor: '#0077b6',
+			secondColor: '#005f8c',
   		},
   		fontFamily: {},
   		borderRadius: {

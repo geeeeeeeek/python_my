@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({children}) {
     return (
         <html lang="en" suppressHydrationWarning>
-        <body className={`${font.className} bg-blue-200`}>
+        <body className={`${font.className} bg-white`}>
 
         <ThemeProvider attribute="class" defaultTheme="light">
             <IndexLayout>{children}</IndexLayout>
