@@ -107,13 +107,13 @@ const InquiryForm = () => {
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogAction className="bg-mainColor hover:bg-[#005f8c] text-white" onClick={closeAlert}>确定</AlertDialogAction>
+                        <AlertDialogAction className="bg-mainColor3 hover:bg-[#005f8c] text-white" onClick={closeAlert}>确定</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
 
             <div className="transform transition duration-300 hover:translate-y-[-5px]">
-                <h2 className="text-xl font-bold mb-6 border-b border-gray-200 pb-2">Send Form</h2>
+                <h2 className="text-xl font-bold mb-6 border-b border-gray-200 pb-2">Inquiry Form</h2>
                 <form className="space-y-4" onSubmit={sendInquiryData}>
                     <div>
                         <label className="block text-sm mb-2 text-gray-600" htmlFor="name">
@@ -160,7 +160,7 @@ const InquiryForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-mainColor hover:bg-secondColor text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full bg-mainColor3 hover:bg-mainColor4 text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>

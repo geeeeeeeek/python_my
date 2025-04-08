@@ -71,7 +71,7 @@ const Carousel = ({title}) => {
                 carouselImages.length > 1 ? (
                     <>
                         <button
-                            className="custom-prev z-10 absolute top-1/2 left-4 transform -translate-y-1/2 bg-mainColor/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-secondColor focus:outline-none transition duration-300">
+                            className="custom-prev z-10 absolute top-1/2 left-4 transform -translate-y-1/2 bg-mainColor3/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-secondColor focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -88,7 +88,7 @@ const Carousel = ({title}) => {
                             </svg>
                         </button>
                         <button
-                            className="custom-next z-10 absolute top-1/2 right-4 transform -translate-y-1/2 bg-mainColor/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-secondColor focus:outline-none transition duration-300">
+                            className="custom-next z-10 absolute top-1/2 right-4 transform -translate-y-1/2 bg-mainColor3/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-secondColor focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
