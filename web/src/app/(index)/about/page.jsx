@@ -9,6 +9,7 @@ import WorkWithMe from "@/components/index/sections/workWithMe";
 import TimeLine from "@/components/index/sections/timeLine";
 import CustomersSay from "@/components/index/sections/customersSay";
 import Testimonials from "@/components/index/sections/testimonials";
+import Stats from "@/components/index/sections/stats";
 
 export default function Page() {
 
@@ -40,14 +41,6 @@ export default function Page() {
                 </div>
 
 
-                {/*横幅图*/}
-                {/*<div className="container mx-auto h-[300px] md:h-[600px] rounded-2xl">*/}
-                {/*    <img*/}
-                {/*        src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80"*/}
-                {/*        className="object-cover w-full h-full rounded-2xl"*/}
-                {/*    />*/}
-                {/*</div>*/}
-
                 {/* Blog section */}
                 <div className="py-16 lg:py-24">
                     <FromTheBlog />
@@ -58,6 +51,8 @@ export default function Page() {
 
                 {/*Testimonials*/}
                 <Testimonials />
+
+                <Stats />
 
 
                 {/*talk to us section*/}

@@ -228,7 +228,7 @@ export default function NavBar({sectionData}) {
             <header className="bg-white shadow-sm  px-4 lg:px-4 md:px-4">
                 <nav
                     aria-label="Global"
-                    className="h-16 mx-auto max-w-[1200px] flex items-stretch justify-between"
+                    className="h-20 mx-auto max-w-[1200px] flex items-stretch justify-between"
                 >
                     <div className="flex items-center lg:flex-1">
                         <a href="#" className="-m-1.5 p-1.5">

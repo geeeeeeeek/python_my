@@ -15,10 +15,11 @@ export default function OurMission() {
                         <p className="mt-10 max-w-xl text-base/7 text-gray-700">
                             Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet
                             vitae sed turpis id. Id dolor praesent donec est. Odio penatibus risus viverra tellus varius sit neque
-                            erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris
-                            semper sed amet vitae sed turpis id.Odio penatibus risus viverra tellus varius sit neque erat velit. Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris
+                            erat velit. Faucibus commodo massa rhoncus, volutpat.   Dignissim sed eget risus enim. Mattis mauris
+                            semper sed amet vitae sed turpis id.<br/> <br/>Odio penatibus risus viverra tellus varius sit neque erat velit.
+                            Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris
                             semper sed amet vitae sed turpis id. sed amet vitae sed turpis id.Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet
-                            vitae sed turpis id. Id dolor praesent donec est.
+                            vitae sed turpis id.
                         </p>
                     </div>
                     <div className="lg:flex lg:flex-auto lg:justify-center">

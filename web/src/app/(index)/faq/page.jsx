@@ -46,10 +46,10 @@ export default function Page() {
             </div>
             <div className="mx-auto max-w-7xl px-6 py-10 sm:py-20 lg:px-8 lg:py-30">
                 <div className="mx-auto max-w-4xl">
-                    <h2 className="text-3xl text-center font-semibold tracking-tight text-gray-900 sm:text-4xl">
-                        Frequently asked questions
+                    <h2 className="text-3xl text-center leading-normal font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                        Frequently Asked Questions
                     </h2>
-                    <dl className="mt-16 divide-y divide-gray-900/10">
+                    <dl className="mt-28 divide-y divide-gray-900/10">
                         {faqs.map((faq) => (
                             <Disclosure key={faq.question} as="div" className="py-6 first:pt-0 last:pb-0">
                                 <dt>
