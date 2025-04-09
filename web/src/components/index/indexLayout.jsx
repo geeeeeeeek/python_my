@@ -1,5 +1,5 @@
 import NavBar from "@/components/index/nav/navBar2";
-import Footer from "@/components/index/footer/footer1";
+import Footer from "@/components/index/footer/footer2";
 import axiosInstance from "@/utils/axios";
 
 // 服务端获取导航数据的函数

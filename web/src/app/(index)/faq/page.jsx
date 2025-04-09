@@ -2,6 +2,8 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import Carousel from "@/components/index/carousel";
+import ServicePanel from "@/components/index/sections/servicePanel";
+import WhyChooseUs from "@/components/index/sections/whyChooseUs";
 
 
 
@@ -69,6 +71,11 @@ export default function Page() {
                     </dl>
                 </div>
             </div>
+
+
+            <ServicePanel />
+
+            <WhyChooseUs />
         </div>
     )
 }

@@ -10,6 +10,7 @@ import TimeLine from "@/components/index/sections/timeLine";
 import CustomersSay from "@/components/index/sections/customersSay";
 import Testimonials from "@/components/index/sections/testimonials";
 import Stats from "@/components/index/sections/stats";
+import WhyChooseUs from "@/components/index/sections/whyChooseUs";
 
 export default function Page() {
 
@@ -59,6 +60,8 @@ export default function Page() {
                 <TalkToUs />
 
                 <WorkWithMe />
+
+                <WhyChooseUs />
 
             </div>
         </div>

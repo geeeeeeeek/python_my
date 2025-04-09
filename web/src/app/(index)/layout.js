@@ -1,10 +1,10 @@
 import {ThemeProvider} from "@/theme/theme-provider";
-import {Montserrat, Aboreto, Open_Sans} from 'next/font/google';
+import {Roboto,Open_Sans, Lato,Nunito,Merriweather,Montserrat} from 'next/font/google';
 import "@/styles/globals.css";
 import IndexLayout from "@/components/index/indexLayout";
 
 
-const font = Open_Sans({subsets: ["latin"], weight: ['400', '700']})
+const font = Roboto({subsets: ["latin"], weight: ['400']})
 
 export const metadata = {
     title: "我是首页",
