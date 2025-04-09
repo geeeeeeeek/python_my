@@ -1,17 +1,18 @@
 import GetInTouch from "@/components/index/sections/getInTouch";
 import Carousel from "@/components/index/carousel";
+import RecommendedForYou from "@/components/index/sections/recommendedForYou";
 
 export default function Page() {
 
     return (
         <div className="flex flex-col">
             <div className="w-full h-[200px]">
-                <Carousel title="About Us"/>
+                <Carousel title="Contact"/>
             </div>
 
-            <p>page</p>
-
             <GetInTouch />
+
+            <RecommendedForYou />
         </div>
     );
 }
