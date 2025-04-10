@@ -40,7 +40,7 @@ export default function Page() {
 
 
     return (
-        <div>
+        <div className="bg-mainColor0">
 
             <div  className="w-full h-[200px]">
                 <Carousel title="Faq"/>
