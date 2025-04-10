@@ -32,7 +32,7 @@ export default function WhyChooseUs(){
     ];
 
     return (
-        <section className="py-20 md:py-32 bg-mainColor0">
+        <section className="py-20 md:py-20 bg-mainColor0">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {features.map((feature, index) => (

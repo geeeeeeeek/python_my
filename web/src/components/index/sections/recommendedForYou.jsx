@@ -63,7 +63,7 @@ function StarRating({ rating }) {
 
 export default function RecommendedForYou() {
     return (
-        <div className="bg-gray-50 py-16 lg:py-24">
+        <div className="bg-white py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <div className="h-1 w-16 bg-mainColor3 mx-auto mb-6"></div>

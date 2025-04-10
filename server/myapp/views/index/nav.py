@@ -72,12 +72,6 @@ def section(request):
                 "type": "link"
             })
 
-        if basicSite.site_switch_contact == '1':
-            navigationItems.append({
-                "name": "Contact",
-                "href": "/contact",
-                "type": "link"
-            })
 
         if basicSite.site_switch_news == '1':
             navigationItems.append({
@@ -104,6 +98,13 @@ def section(request):
             navigationItems.append({
                 "name": "Faq",
                 "href": "/faq",
+                "type": "link"
+            })
+
+        if basicSite.site_switch_contact == '1':
+            navigationItems.append({
+                "name": "Contact",
+                "href": "/contact",
                 "type": "link"
             })
 

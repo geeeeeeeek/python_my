@@ -54,14 +54,14 @@ const InquiryForm = () => {
 
         // 基本验证
         if (!formData.name || !formData.email || !formData.message) {
-            showAlert('验证失败', '请填写必填字段（姓名、邮箱和留言）', 'destructive');
+            showAlert('Validation Failed', 'Please fill in all required fields (Name, Email, and Message)', 'destructive');
             return;
         }
 
         // 邮箱格式验证
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(formData.email)) {
-            showAlert('验证失败', '请输入有效的邮箱地址', 'destructive');
+            showAlert('Validation Failed', 'Please enter a valid email address', 'destructive');
             return;
         }
 
@@ -75,7 +75,7 @@ const InquiryForm = () => {
             const { code, msg } = await axiosInstance.post('/myapp/index/inquiry/create', submitData);
 
             if (code === 0) {
-                showAlert('提交成功', '我们会尽快联系您', 'default');
+                showAlert('Submission Successful', 'We will contact you as soon as possible', 'default');
                 // 重置表单
                 setFormData({
                     name: '',
@@ -84,11 +84,11 @@ const InquiryForm = () => {
                     message: ''
                 });
             } else {
-                showAlert('提交失败', msg || '请稍后重试', 'destructive');
+                showAlert('Submission Failed', msg || 'Please try again later', 'destructive');
             }
         } catch (error) {
-            console.error('提交表单时出错:', error);
-            showAlert('提交失败', '请检查网络连接', 'destructive');
+            console.error('Error submitting form:', error);
+            showAlert('Submission Failed', 'Please check your network connection', 'destructive');
         } finally {
             setLoading(false);
         }
@@ -107,7 +107,7 @@ const InquiryForm = () => {
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogAction className="bg-mainColor3 hover:bg-[#005f8c] text-white" onClick={closeAlert}>确定</AlertDialogAction>
+                        <AlertDialogAction className="bg-mainColor3 hover:bg-mainColor4 text-white" onClick={closeAlert}>OK</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>

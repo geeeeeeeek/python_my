@@ -42,15 +42,8 @@ const downloadFiles = [
 
 export default function DownloadList() {
   return (
-    <section className="py-16 bg-mainColor0">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="text-center mb-12">
-          <div className="h-1 w-16 bg-mainColor3 mx-auto mb-6"></div>
-          <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Product Resources</h2>
-          <p className="text-gray-700 max-w-3xl mx-auto mb-8 px-4">
-            Access detailed specifications, user guides, and pricing information to better understand and use our products.
-          </p>
-        </div>
 
         {/* File list */}
         <div className="max-w-4xl mx-auto">
@@ -58,7 +51,7 @@ export default function DownloadList() {
             {downloadFiles.map((file) => (
               <li 
                 key={file.id} 
-                className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6"
+                className="bg-gray-50 border border-gray-100 rounded-lg hover:shadow-md transition-all p-6"
               >
                 <div className="flex flex-col md:flex-row items-start md:items-center">
                   {/* File icon */}

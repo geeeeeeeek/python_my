@@ -3,7 +3,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { MinusSmallIcon, PlusSmallIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import Carousel from "@/components/index/carousel";
 import WhyChooseUs from "@/components/index/sections/whyChooseUs";
-import DownloadList from "@/components/index/sections/downloadList";
+import CaseList from "@/components/index/sections/caseList";
+
 
 
 
@@ -12,14 +13,15 @@ export default function Page() {
 
 
     return (
-        <div>
+        <div className="bg-mainColor0">
 
             <div  className="w-full h-[200px]">
-                <Carousel title="Download"/>
+                <Carousel title="Case"/>
             </div>
 
-            <DownloadList />
+            <CaseList />
 
+            <WhyChooseUs />
         </div>
     )
 }
