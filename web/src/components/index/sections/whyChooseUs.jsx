@@ -32,8 +32,8 @@ export default function WhyChooseUs(){
     ];
 
     return (
-        <section className="py-32 bg-mainColor0">
-            <div className="container mx-auto px-4">
+        <section className="py-20 md:py-32 bg-mainColor0">
+            <div className="max-w-7xl mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {features.map((feature, index) => (
                         <div key={index} className="flex flex-col items-center text-center">
