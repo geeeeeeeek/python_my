@@ -1,7 +1,9 @@
 // 'use client'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
 
 export default function Pagination({currentPage = 1, pageSize = 9, total = 100}) {
+
     // 计算总页数
     const totalPages = Math.ceil(total / pageSize);
     
@@ -62,13 +64,13 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
             <div className="flex gap-2">
                 {/* 上一页按钮 - 仅当不是第一页时显示 */}
                 {currentPage > 1 && (
-                    <a
-                        href="#"
+                    <Link
+                        href={`/news/page/${currentPage - 1}`}
                         className={inactiveButtonClasses}
                     >
                         <span className="sr-only">Previous</span>
                         <ChevronLeftIcon className="h-5 w-5" />
-                    </a>
+                    </Link>
                 )}
 
                 {/* 动态生成页码 */}
@@ -78,25 +80,25 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
                             ...
                         </span>
                     ) : (
-                        <a
+                        <Link
                             key={page}
-                            href="#"
+                            href={`/news/page/${page}`}
                             className={currentPage === page ? activeButtonClasses : inactiveButtonClasses}
                         >
                             {page}
-                        </a>
+                        </Link>
                     )
                 ))}
                 
                 {/* 下一页按钮 - 仅当不是最后一页时显示 */}
                 {currentPage < totalPages && (
-                    <a
-                        href="#"
+                    <Link
+                        href={`/news/page/${currentPage + 1}`}
                         className={inactiveButtonClasses}
                     >
                         <span className="sr-only">Next</span>
                         <ChevronRightIcon className="h-5 w-5" />
-                    </a>
+                    </Link>
                 )}
             </div>
         </div>

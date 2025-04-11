@@ -1,12 +1,13 @@
 import NavBar from "@/components/index/nav/navBar2";
 import Footer from "@/components/index/footer/footer1";
-import axiosInstance from "@/utils/axios";
+
 import ScrollBar from "@/components/index/sections/scrollBar";
+import api from "@/utils/axiosApi";
 
 // 服务端获取导航数据的函数
 async function getNavSection() {
     try {
-        const {code, msg, data} = await axiosInstance.get('/myapp/index/nav/section');
+        const {code, msg, data} = await api.get('/myapp/index/nav/section');
         if (code === 0) {
             return data;
         } else {
@@ -22,7 +23,7 @@ async function getNavSection() {
 // 服务端获取footer数据的函数
 async function getFooterSection() {
     try {
-        const {code, msg, data} = await axiosInstance.get('/myapp/index/footer/section');
+        const {code, msg, data} = await api.get('/myapp/index/footer/section');
         if (code === 0) {
             return data;
         } else {

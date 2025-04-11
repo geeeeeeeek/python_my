@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import { Suspense } from 'react';
+
+// 骨架屏组件
+const ImageSkeleton = ({ className }) => (
+    <div className={`animate-pulse bg-gray-200 ${className || 'w-full h-full'}`}></div>
+);
 
 // 模拟新闻数据
 const news = {
@@ -51,19 +58,19 @@ const recommendedProducts = [
     {
         id: 101,
         name: "High Precision Pressure Sensor",
-        imageUrl: "/images/product-1.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80",
         price: "$249.99"
     },
     {
         id: 102,
         name: "Industrial Ethernet Switch",
-        imageUrl: "/images/product-2.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80",
         price: "$189.50"
     },
     {
         id: 103,
         name: "Advanced Motion Controller",
-        imageUrl: "/images/product-3.jpg",
+        imageUrl: "https://images.unsplash.com/photo-1603732551681-2e91159b9dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&h=300&q=80",
         price: "$399.00"
     }
 ];
@@ -117,7 +124,7 @@ export default function Page({params}) {
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* 左侧新闻详情 */}
-                    <div className="lg:w-2/3">
+                    <div className="lg:w-3/4">
                         <div
                             className="bg-white rounded-md overflow-hidden transform transition-all duration-300 hover:shadow-lg">
                             
@@ -150,22 +157,28 @@ export default function Page({params}) {
 
                                 {/* 主图 - 移动到标题区域下方 */}
                                 <div className="relative w-full h-72 md:h-96 mb-6 overflow-hidden rounded-lg">
-                                    <img 
-                                        src={news.imageUrl}
-                                        alt={news.title}
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                                    />
+                                    <Suspense fallback={<ImageSkeleton className="w-full h-72 md:h-96 rounded-lg" />}>
+                                        <Image 
+                                            src={news.imageUrl}
+                                            alt={news.title}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 800px"
+                                            priority={false}
+                                            loading="lazy"
+                                            className="object-cover hover:scale-105 transition-transform duration-500"
+                                        />
+                                    </Suspense>
                                 </div>
 
                                 {/* 文章内容 */}
                                 <div className="prose max-w-none border-t border-gray-100 pt-6"
                                     dangerouslySetInnerHTML={{__html: news.content}}></div>
 
-                                {/* 分享按钮 - 使用a标签代替button */}
+                                {/* 分享按钮 - 使用Link标签代替a标签 */}
                                 <div className="mt-8 flex items-center">
                                     <span className="text-gray-700 font-medium mr-4">Share:</span>
                                     <div className="flex space-x-2">
-                                        <a
+                                        <Link
                                             href={shareLinks.facebook}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -175,8 +188,8 @@ export default function Page({params}) {
                                                 <path
                                                     d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
                                             </svg>
-                                        </a>
-                                        <a
+                                        </Link>
+                                        <Link
                                             href={shareLinks.twitter}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -186,8 +199,8 @@ export default function Page({params}) {
                                                 <path
                                                     d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
                                             </svg>
-                                        </a>
-                                        <a
+                                        </Link>
+                                        <Link
                                             href={shareLinks.linkedin}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -197,7 +210,7 @@ export default function Page({params}) {
                                                 <path
                                                     d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path>
                                             </svg>
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +218,7 @@ export default function Page({params}) {
                     </div>
 
                     {/* 右侧产品推荐和分类 */}
-                    <div className="lg:w-1/3 space-y-8">
+                    <div className="lg:w-1/4 space-y-8">
                         {/* 产品分类 */}
                         <div
                             className="bg-white rounded-md overflow-hidden transform transition-all duration-300 hover:shadow-lg">
@@ -220,14 +233,14 @@ export default function Page({params}) {
                                 </h3>
                             </div>
                             <div className="p-6">
-                                <ul className="space-y-2">
+                                <ul className="space-y-3">
                                     {productCategories.map(category => (
-                                        <li key={category.id} className="border-b border-gray-50 last:border-0">
-                                            <Link href={`/products/category/${category.id}`}
-                                                  className="flex items-center justify-between py-3 text-gray-700 hover:text-mainColorNormal transition-colors">
-                                                <span>{category.name}</span>
-                                                <span
-                                                    className="bg-gray-100 text-mainColorNormal text-xs rounded-full px-2 py-1">{category.count}</span>
+                                        <li key={category.id} className="border-b border-gray-50 last:border-0 pb-3 last:pb-0">
+                                            <Link href={`/product/category/${category.id}`}
+                                                  className="flex items-center text-gray-700 hover:text-mainColorNormal transition-colors group">
+                                                <div className="w-2 h-2 rounded-full bg-mainColorNormal group-hover:bg-mainColorNormal transition-colors mr-3 flex-shrink-0"></div>
+                                                <span className="flex-grow">{category.name}</span>
+                                                <span className="bg-gray-50 text-gray-500 text-xs rounded-full px-2 py-1 ml-2 group-hover:bg-mainColorLight group-hover:text-mainColorNormal transition-colors">{category.count}</span>
                                             </Link>
                                         </li>
                                     ))}
@@ -249,24 +262,36 @@ export default function Page({params}) {
                                 </h3>
                             </div>
                             <div className="p-6">
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     {recommendedProducts.map(product => (
-                                        <Link href={`/products/${product.id}`} key={product.id}
-                                              className="group flex items-start pb-4 last:pb-0 last:mb-0 border-b border-gray-50 last:border-0">
+                                        <Link href={`/product/${product.id}`} key={product.id}
+                                              className="group flex items-start pb-5 last:pb-0 last:mb-0 border-b border-gray-50 last:border-0">
                                             <div
-                                                className="w-20 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0 relative">
-                                                <div className="flex items-center justify-center h-full text-gray-400">
-                                                    <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg"
-                                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round"
-                                                              strokeWidth={1}
-                                                              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                                    </svg>
-                                                </div>
+                                                className="w-20 h-20 bg-gray-50 rounded-md overflow-hidden flex-shrink-0 relative border border-gray-100 group-hover:border-mainColorLight transition-colors">
+                                                <Suspense fallback={<ImageSkeleton className="w-20 h-20 rounded-md" />}>
+                                                    <Image 
+                                                        src={product.imageUrl}
+                                                        alt={product.name}
+                                                        fill
+                                                        sizes="80px"
+                                                        loading="lazy"
+                                                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                                                    />
+                                                </Suspense>
                                             </div>
-                                            <div className="ml-4">
+                                            <div className="ml-4 flex-grow">
                                                 <h4 className="text-gray-800 font-medium group-hover:text-mainColorNormal transition-colors">{product.name}</h4>
                                                 <p className="text-mainColorNormal font-semibold mt-1">{product.price}</p>
+                                                <div className="mt-2 flex items-center">
+                                                    <div className="flex text-amber-400">
+                                                        {[...Array(5)].map((_, i) => (
+                                                            <svg key={i} className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z"></path>
+                                                            </svg>
+                                                        ))}
+                                                    </div>
+                                                    <span className="text-xs text-gray-500 ml-1">(24 reviews)</span>
+                                                </div>
                                             </div>
                                         </Link>
                                     ))}

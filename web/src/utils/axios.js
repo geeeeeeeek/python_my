@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL, // 设置你的基础 API URL
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     timeout: 3000, // 设置请求超时时间
     headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,8 @@ axiosInstance.interceptors.response.use(
                 localStorage.removeItem('admintoken');
                 localStorage.removeItem('username');
                 // 例如，重定向到登录页面
-                window.location.href = '/adminLogin';
+                let bp = process.env.NEXT_PUBLIC_BASE_PATH || ''
+                window.location.href = bp + '/adminLogin';
             }
             // 处理其他响应错误
             return Promise.reject(response.data); // 返回错误信息
@@ -50,5 +51,6 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
 
 export default axiosInstance;

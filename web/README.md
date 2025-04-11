@@ -4,6 +4,11 @@
 富文本编辑器的上传文件带baseurl
 主题色 #3399cc
 
+多语言方案
+next.config.js的basePath前缀+.env前缀配置
+
+NEXT_PUBLIC_DJANGO_BASE_URL用于ssr中的请求
+
 
 ```bash
 npm run dev

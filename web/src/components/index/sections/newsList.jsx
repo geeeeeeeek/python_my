@@ -1,4 +1,5 @@
 import Pagination from "@/components/index/sections/pagination";
+import Link from 'next/link';
 
 const posts = [
     {
@@ -156,7 +157,7 @@ const posts = [
     }
 ]
 
-export default function NewsList() {
+export default function NewsList({pageNumber=1, total}) {
     return (
         <div className="bg-white py-8 sm:py-10">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -164,9 +165,9 @@ export default function NewsList() {
                     className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {posts.map((post) => (
                         <article key={post.id} className="flex flex-col items-start group relative">
-                            <a href={post.href} className="absolute inset-0 z-10">
-                                <span className="sr-only">查看文章</span>
-                            </a>
+                            <Link href={`/news/${post.id}`} className="absolute inset-0 z-10">
+                                <span className="sr-only">detail</span>
+                            </Link>
                             
                             <div className="relative w-full overflow-hidden cursor-pointer">
                                 <img
@@ -193,7 +194,7 @@ export default function NewsList() {
                 </div>
 
                 <div className="mt-12">
-                    <Pagination />
+                    <Pagination currentPage={pageNumber} total={total}/>
                 </div>
             </div>
         </div>

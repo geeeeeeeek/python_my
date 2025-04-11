@@ -10,7 +10,6 @@ import NewsList from "@/components/index/sections/newsList";
 
 export default function Page() {
 
-    console.log('newsPageList')
 
 
     return (
@@ -20,7 +19,7 @@ export default function Page() {
                 <Carousel title="News"/>
             </div>
 
-            <NewsList />
+            <NewsList pageNumber={1} total={100} />
 
         </div>
     )

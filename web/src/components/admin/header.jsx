@@ -9,9 +9,11 @@ import MenuIcon from "/public/admin/menu.png";
 import AvatarIcon from "/public/admin/icon_avatar.svg";
 import {Dropdown} from "antd";
 import HomeIcon from "/public/admin/icon_home.svg";
-
+import {useRouter} from "next/navigation";
+import Link from "next/link";
 
 const Header = () => {
+    const router = useRouter();
 
     const adminApp = useSelector((state) => state.adminSetting);
     const dispatch = useDispatch();
@@ -31,11 +33,10 @@ const Header = () => {
     const logout = () => {
         localStorage.removeItem('admintoken');
         localStorage.removeItem('username');
-        window.location.href = '/adminLogin';
+        router.push("/adminLogin")
     }
 
     const goHome = () => {
-        window.open(window.location.origin, '_blank');
     }
 
     const items = [
@@ -67,8 +68,10 @@ const Header = () => {
                     onClick={toggleSideBar}
                 />
                 <div className="flex flex-row gap-2 items-center justify-center ml-auto pr-4">
-                    <div className="flex flex-row gap-1 mr-4 cursor-pointer"
-                         onClick={()=>goHome()}>
+                    <Link className="flex flex-row gap-1 mr-4 cursor-pointer"
+                          href="/"
+                          target="_blank"
+                    >
                         <Image
                             src={HomeIcon}
                             alt="home"
@@ -76,7 +79,7 @@ const Header = () => {
                             className="cursor-pointer"
                         />
                         <div className="text-[14px] text-gray-900">网站首页</div>
-                    </div>
+                    </Link>
                     <div className="flex flex-col items-end">
                         <div className={"ml-2 leading-[14px] text-gray-700 text-[12px]"}>{username}</div>
                         <div className={"ml-2 leading-[14px] text-gray-400 text-[11px]"}>超级管理员</div>
