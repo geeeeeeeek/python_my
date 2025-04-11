@@ -9,8 +9,8 @@ import CaseList from "@/components/index/sections/caseList";
 
 
 
-export default function Page() {
-
+export default function Page({params}) {
+    const pageNumber = parseInt(params.pageNumber, 10) || 1;
 
     return (
         <div className="bg-mainColorLight">
@@ -19,7 +19,7 @@ export default function Page() {
                 <Carousel title="Case"/>
             </div>
 
-            <CaseList  pageNumber={1} total={100} />
+            <CaseList  pageNumber={pageNumber} total={100} />
 
         </div>
     )

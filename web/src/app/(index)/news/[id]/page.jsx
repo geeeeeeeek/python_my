@@ -124,9 +124,9 @@ export default function Page({params}) {
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* 左侧新闻详情 */}
-                    <div className="lg:w-3/4">
+                    <div className="lg:w-2/3">
                         <div
-                            className="bg-white rounded-md overflow-hidden transform transition-all duration-300 hover:shadow-lg">
+                            className="bg-white overflow-hidden rounded-md border border-gray-200 shadow-md">
                             
                             <div className="p-6 lg:p-8">
                                 {/* 标题信息和日期 */}
@@ -218,10 +218,10 @@ export default function Page({params}) {
                     </div>
 
                     {/* 右侧产品推荐和分类 */}
-                    <div className="lg:w-1/4 space-y-8">
+                    <div className="lg:w-1/3 space-y-8">
                         {/* 产品分类 */}
                         <div
-                            className="bg-white rounded-md overflow-hidden transform transition-all duration-300 hover:shadow-lg">
+                            className="bg-white border border-gray-200 rounded-md shadow-md">
                             <div className="border-b border-gray-100">
                                 <h3 className="text-xl font-bold px-6 py-4 flex items-center">
                                     <svg className="w-5 h-5 text-mainColorNormal mr-2" fill="none" stroke="currentColor"
@@ -250,7 +250,7 @@ export default function Page({params}) {
 
                         {/* 推荐产品 */}
                         <div
-                            className="bg-white rounded-md overflow-hidden transform transition-all duration-300 hover:shadow-lg">
+                            className="bg-white  border border-gray-200 rounded-md overflow-hidden shadow-md">
                             <div className="border-b border-gray-100">
                                 <h3 className="text-xl font-bold px-6 py-4 flex items-center">
                                     <svg className="w-5 h-5 text-mainColorNormal mr-2" fill="none" stroke="currentColor"

@@ -2,7 +2,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 
-export default function Pagination({currentPage = 1, pageSize = 9, total = 100}) {
+export default function Pagination({linkPrefix, currentPage = 1, pageSize = 9, total = 100}) {
 
     // 计算总页数
     const totalPages = Math.ceil(total / pageSize);
@@ -65,7 +65,7 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
                 {/* 上一页按钮 - 仅当不是第一页时显示 */}
                 {currentPage > 1 && (
                     <Link
-                        href={`/news/page/${currentPage - 1}`}
+                        href={`${linkPrefix}/page/${currentPage - 1}`}
                         className={inactiveButtonClasses}
                     >
                         <span className="sr-only">Previous</span>
@@ -82,7 +82,7 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
                     ) : (
                         <Link
                             key={page}
-                            href={`/news/page/${page}`}
+                            href={`${linkPrefix}/page/${page}`}
                             className={currentPage === page ? activeButtonClasses : inactiveButtonClasses}
                         >
                             {page}
@@ -93,7 +93,7 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
                 {/* 下一页按钮 - 仅当不是最后一页时显示 */}
                 {currentPage < totalPages && (
                     <Link
-                        href={`/news/page/${currentPage + 1}`}
+                        href={`${linkPrefix}/page/${currentPage + 1}`}
                         className={inactiveButtonClasses}
                     >
                         <span className="sr-only">Next</span>

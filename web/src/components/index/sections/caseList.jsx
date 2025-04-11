@@ -1,4 +1,5 @@
 import Pagination from "@/components/index/sections/pagination";
+import Link from 'next/link';
 
 // 示例案例数据
 const cases = [
@@ -64,7 +65,7 @@ const cases = [
     }
 ];
 
-export default function CaseList() {
+export default function CaseList({pageNumber=1, total}) {
     return (
         <div className="bg-white py-12 sm:py-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -73,9 +74,9 @@ export default function CaseList() {
                     {cases.map((caseItem) => (
                         <article key={caseItem.id} className="group relative flex flex-col overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                             {/* 整个卡片可点击 */}
-                            <a href={caseItem.href} className="absolute inset-0 z-10">
+                            <Link href={'/case/'+caseItem.id} className="absolute inset-0 z-10">
                                 <span className="sr-only">View case study</span>
-                            </a>
+                            </Link>
                             
                             {/* 图片部分 */}
                             <div className="relative h-48 overflow-hidden">
@@ -119,7 +120,7 @@ export default function CaseList() {
 
                 {/* 分页 */}
                 <div className="mt-12">
-                    <Pagination currentPage={1} pageSize={6} total={18} />
+                    <Pagination linkPrefix="/case" currentPage={pageNumber} total={total} />
                 </div>
             </div>
         </div>

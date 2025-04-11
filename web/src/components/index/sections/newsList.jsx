@@ -194,7 +194,7 @@ export default function NewsList({pageNumber=1, total}) {
                 </div>
 
                 <div className="mt-12">
-                    <Pagination currentPage={pageNumber} total={total}/>
+                    <Pagination linkPrefix="/news" currentPage={pageNumber} total={total}/>
                 </div>
             </div>
         </div>
