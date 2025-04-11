@@ -39,7 +39,7 @@ export default function Stats() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
                     {statsData.map(stat => (
                         <div key={stat.id} className="text-center">
-                            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold text-mainColor3 mb-2">
+                            <p className="text-2xl md:text-4xl lg:text-5xl font-semibold text-mainColorNormal mb-2">
                                 {stat.value}
                             </p>
                             <p className="mt-4 text-sm md:text-base font-semibold text-gray-900">

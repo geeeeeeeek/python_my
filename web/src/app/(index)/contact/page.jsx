@@ -1,6 +1,7 @@
 import GetInTouch from "@/components/index/sections/getInTouch";
-import Carousel from "@/components/index/carousel";
+import Carousel from "@/components/index/sections/carousel";
 import RecommendedForYou from "@/components/index/sections/recommendedForYou";
+import FacilityArea from "@/components/index/sections/facilityArea";
 
 export default function Page() {
 
@@ -13,6 +14,9 @@ export default function Page() {
             <GetInTouch />
 
             <RecommendedForYou />
+
+            <FacilityArea />
+
         </div>
     );
 }

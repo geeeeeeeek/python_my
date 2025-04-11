@@ -46,7 +46,7 @@ function StarRating({ rating }) {
                 <svg
                     key={star}
                     className={`h-4 w-4 ${
-                        rating > star ? 'text-mainColor3' : 'text-gray-300'
+                        rating > star ? 'text-mainColorNormal' : 'text-gray-300'
                     }`}
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
@@ -66,7 +66,7 @@ export default function RecommendedForYou() {
         <div className="bg-white py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <div className="h-1 w-16 bg-mainColor3 mx-auto mb-6"></div>
+                    <div className="h-1 w-16 bg-mainColorNormal mx-auto mb-6"></div>
                     <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Recommended For You</h2>
                     <p className="text-gray-700 max-w-3xl mx-auto mb-4 px-4">
                         Discover our most popular products that match your style and needs
@@ -91,7 +91,7 @@ export default function RecommendedForYou() {
                                             {product.name}
                                         </a>
                                     </h3>
-                                    <p className="text-lg font-medium text-mainColor3">{product.price}</p>
+                                    <p className="text-lg font-medium text-mainColorNormal">{product.price}</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">{product.category}</p>
                             </div>
@@ -102,7 +102,7 @@ export default function RecommendedForYou() {
                 <div className="mt-12 text-center">
                     <a
                         href="/product"
-                        className="bg-mainColor3 hover:bg-mainColor3/80 text-white font-medium py-3 px-12 rounded-sm uppercase tracking-wide transition-colors duration-200 text-sm inline-flex items-center"
+                        className="bg-mainColorNormal hover:bg-mainColorNormal/80 text-white font-medium py-3 px-12 rounded-sm uppercase tracking-wide transition-colors duration-200 text-sm inline-flex items-center"
                     >
                         View All Products
                         <svg className="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

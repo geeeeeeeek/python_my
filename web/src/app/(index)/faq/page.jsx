@@ -1,7 +1,7 @@
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import { MinusSmallIcon, PlusSmallIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import Carousel from "@/components/index/carousel";
+import Carousel from "@/components/index/sections/carousel";
 import WhyChooseUs from "@/components/index/sections/whyChooseUs";
 import FaqList from "@/components/index/sections/faqList";
 import FacilityArea from "@/components/index/sections/facilityArea";
@@ -23,7 +23,6 @@ export default function Page() {
 
             <FacilityArea />
 
-            <WhyChooseUs />
         </div>
     )
 }

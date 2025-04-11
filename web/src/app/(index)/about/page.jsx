@@ -1,4 +1,4 @@
-import Carousel from "@/components/index/carousel";
+import Carousel from "@/components/index/sections/carousel";
 import Image from "next/image";
 import FromTheBlog from "@/components/index/sections/fromTheBlog";
 import TalkToUs from "@/components/index/sections/talkToUs";
@@ -61,7 +61,6 @@ export default function Page() {
 
                 <WorkWithMe />
 
-                <WhyChooseUs />
 
             </div>
         </div>

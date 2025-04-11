@@ -1,10 +1,10 @@
 
 export default function WhoWeAre() {
   return (
-      <div className="bg-mainColor0 p-8 lg:p-16">
+      <div className="bg-mainColorLight p-8 lg:p-16">
           <div className="flex flex-col lg:flex-row gap-8 ">
               <div className="flex flex-col w-full lg:w-1/2 lg:h-[400px] bg-white p-8 lg:p-16">
-                  <div className="h-1 w-16 bg-mainColor3 mb-6"></div>
+                  <div className="h-1 w-16 bg-mainColorNormal mb-6"></div>
                   <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
                   <p id="content"
                      className="flex-1 text-gray-700 mb-4 overflow-hidden relative lg:max-h-[320px]">

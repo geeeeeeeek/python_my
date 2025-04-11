@@ -53,7 +53,7 @@ export default function Pagination({currentPage = 1, pageSize = 9, total = 100})
     const pageNumbers = getPageNumbers();
 
     const commonButtonClasses = "flex items-center justify-center h-10 w-10 border shadow-sm hover:shadow-md transition-all duration-200";
-    const activeButtonClasses = `${commonButtonClasses} border-mainColor3 bg-mainColor3 text-white font-medium shadow-md`;
+    const activeButtonClasses = `${commonButtonClasses} border-mainColorNormal bg-mainColorNormal text-white font-medium shadow-md`;
     const inactiveButtonClasses = `${commonButtonClasses} border-gray-300 hover:bg-gray-50 text-gray-700`;
     const ellipsisClasses = `${commonButtonClasses} border-gray-300 text-gray-500`;
 

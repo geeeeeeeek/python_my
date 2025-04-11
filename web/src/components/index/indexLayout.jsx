@@ -1,6 +1,7 @@
 import NavBar from "@/components/index/nav/navBar2";
 import Footer from "@/components/index/footer/footer1";
 import axiosInstance from "@/utils/axios";
+import ScrollBar from "@/components/index/sections/scrollBar";
 
 // 服务端获取导航数据的函数
 async function getNavSection() {
@@ -46,6 +47,7 @@ export default async function IndexLayout({children}) {
                 {children}
             </main>
             <Footer sectionData={footerSectionData}/>
+            <ScrollBar />
         </div>
     );
 }

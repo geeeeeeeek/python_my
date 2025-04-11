@@ -23,7 +23,7 @@ export default function WorkWithMe() {
                 </p>
                 <a
                     href="/contact"
-                    className="inline-block border-2 border-white hover:border-mainColor3 text-white hover:bg-mainColor3 px-8 py-3 transition-colors duration-300 text-lg"
+                    className="inline-block border-2 border-white hover:border-mainColorNormal text-white hover:bg-mainColorNormal px-8 py-3 transition-colors duration-300 text-lg"
                 >
                     Get A Quote
                 </a>

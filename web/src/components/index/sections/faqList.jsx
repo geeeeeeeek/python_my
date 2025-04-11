@@ -65,7 +65,7 @@ export default function FaqList() {
                 <h2 className="text-3xl text-center leading-normal font-semibold tracking-tight text-gray-900 sm:text-5xl">
                     Frequently Asked Questions
                 </h2>
-                <dl className="mt-28 divide-y divide-gray-900/10">
+                <dl className="mt-12 sm:mt-28 divide-y divide-gray-900/10">
                     {faqs.map((faq) => (
                         <Disclosure key={faq.question} as="div" className="py-6 first:pt-0 last:pb-0">
                             <dt>

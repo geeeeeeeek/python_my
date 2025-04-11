@@ -1,17 +1,11 @@
-
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { MinusSmallIcon, PlusSmallIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 import Carousel from "@/components/index/sections/carousel";
-import WhyChooseUs from "@/components/index/sections/whyChooseUs";
 import NewsList from "@/components/index/sections/newsList";
 
 
+export default function Page({params}) {
 
-
-export default function Page() {
-
-    console.log('newsPageList')
-
+    const { pageNumber } = params; // 解析页码参数，如 1，2，3 等
+    console.log(pageNumber);
 
     return (
         <div className="bg-mainColorLight">

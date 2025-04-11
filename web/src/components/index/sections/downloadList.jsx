@@ -57,7 +57,7 @@ export default function DownloadList() {
                   {/* File icon */}
                   <div className="flex-shrink-0 mr-4 mb-4 md:mb-0">
                     <svg 
-                      className="h-12 w-12 text-mainColor3" 
+                      className="h-12 w-12 text-mainColorNormal" 
                       xmlns="http://www.w3.org/2000/svg" 
                       fill="none" 
                       viewBox="0 0 24 24" 
@@ -91,7 +91,7 @@ export default function DownloadList() {
                   {/* Download button */}
                   <div className="mt-4 md:mt-0">
                     <button
-                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mainColor3 hover:bg-mainColor3/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mainColor3 transition-colors"
+                      className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-mainColorNormal hover:bg-mainColorNormal/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mainColorNormal transition-colors"
                     >
                       <svg 
                         className="-ml-1 mr-2 h-5 w-5" 

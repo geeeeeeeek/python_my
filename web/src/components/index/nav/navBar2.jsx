@@ -256,7 +256,7 @@ export default function NavBar({sectionData}) {
                                 <a
                                     key={item.name}
                                     href={item.href}
-                                    className={`px-6 flex items-center justify-center ${current===item.href? 'bg-mainColor3 text-white':'text-gray-900'} hover:bg-mainColor3 hover:text-white transition-colors duration-200 text-sm/6 font-semibold`}
+                                    className={`px-6 flex items-center justify-center ${current===item.href? 'bg-mainColorNormal text-white':'text-gray-900'} hover:bg-mainColorNormal hover:text-white transition-colors duration-200 text-sm/6 font-semibold`}
                                 >
                                     {item.name}
                                 </a>
@@ -272,7 +272,7 @@ export default function NavBar({sectionData}) {
                                 >
                                     <a
                                         href={item.href}
-                                        className={`px-6 ${current.indexOf(item.href)>=0 ? 'bg-mainColor3 text-white':'text-gray-900'} hover:bg-mainColor3 hover:text-white transition-colors duration-200 cursor-pointer h-full flex items-center gap-x-1 text-sm/6 font-semibold`}
+                                        className={`px-6 ${current.indexOf(item.href)>=0 ? 'bg-mainColorNormal text-white':'text-gray-900'} hover:bg-mainColorNormal hover:text-white transition-colors duration-200 cursor-pointer h-full flex items-center gap-x-1 text-sm/6 font-semibold`}
                                     >
                                         {item.name}
                                         <ChevronDownIcon
@@ -300,7 +300,7 @@ export default function NavBar({sectionData}) {
                                                     >
                                                         <a
                                                             href={subItem.href}
-                                                            className="flex items-center gap-x-4 rounded-md p-3 ${current===item.href? 'bg-mainColor3 text-white':'text-gray-900'}  hover:bg-mainColor3 hover:text-white transition-colors duration-200 group"
+                                                            className="flex items-center gap-x-4 rounded-md p-3 ${current===item.href? 'bg-mainColorNormal text-white':'text-gray-900'}  hover:bg-mainColorNormal hover:text-white transition-colors duration-200 group"
                                                         >
                                                             <div>
                                                                 <div className="text-sm font-semibold">
@@ -322,7 +322,7 @@ export default function NavBar({sectionData}) {
                                                                     <a
                                                                         key={subSubItem.name}
                                                                         href={subSubItem.href}
-                                                                        className="block rounded-md p-3 text-sm font-semibold ${current===item.href? 'bg-mainColor3 text-white':'text-gray-900'}  hover:bg-mainColor3 hover:text-white transition-colors duration-200"
+                                                                        className="block rounded-md p-3 text-sm font-semibold ${current===item.href? 'bg-mainColorNormal text-white':'text-gray-900'}  hover:bg-mainColorNormal hover:text-white transition-colors duration-200"
                                                                     >
                                                                         <div>
                                                                             {subSubItem.name}

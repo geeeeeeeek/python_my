@@ -107,7 +107,7 @@ const InquiryForm = () => {
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogAction className="bg-mainColor3 hover:bg-mainColor4 text-white" onClick={closeAlert}>OK</AlertDialogAction>
+                        <AlertDialogAction className="bg-mainColorNormal hover:bg-mainColorDeep text-white" onClick={closeAlert}>OK</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
@@ -160,7 +160,7 @@ const InquiryForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-mainColor3 hover:bg-mainColor4 text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="w-full bg-mainColorNormal hover:bg-mainColorDeep text-white py-2 rounded-md transition duration-300 transform hover:translate-y-[-2px] hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                         {loading ? 'Submitting...' : 'Submit'}
                     </button>

@@ -24,10 +24,10 @@ export default function GetInTouch() {
     };
 
     return (
-        <div className="bg-mainColor0 py-16 lg:py-24">
+        <div className="bg-mainColorLight py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <div className="h-1 w-16 bg-mainColor3 mx-auto mb-6"></div>
+                    <div className="h-1 w-16 bg-mainColorNormal mx-auto mb-6"></div>
                     <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Get In Touch</h2>
                     <p className="text-gray-700 max-w-3xl mx-auto mb-4 px-4">
                         We're here to help and answer any question you might have
@@ -39,7 +39,7 @@ export default function GetInTouch() {
                         {/* 左侧联系表单 */}
                         <div className="p-8 lg:p-12">
                             <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                                <svg className="w-5 h-5 text-mainColor3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg className="w-5 h-5 text-mainColorNormal mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
                                 </svg>
                                 Send Us a Message
@@ -53,7 +53,7 @@ export default function GetInTouch() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         placeholder="Your Name"
-                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColor3 focus:border-transparent transition-colors duration-200 rounded-sm"
+                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
                                         required
                                     />
                                 </div>
@@ -65,7 +65,7 @@ export default function GetInTouch() {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="Email Address"
-                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColor3 focus:border-transparent transition-colors duration-200 rounded-sm"
+                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
                                             required
                                         />
                                     </div>
@@ -76,7 +76,7 @@ export default function GetInTouch() {
                                             value={formData.phone}
                                             onChange={handleChange}
                                             placeholder="Phone Number"
-                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColor3 focus:border-transparent transition-colors duration-200 rounded-sm"
+                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
                                         />
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@ export default function GetInTouch() {
                                         onChange={handleChange}
                                         placeholder="Your Message"
                                         rows="4"
-                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColor3 focus:border-transparent transition-colors duration-200 rounded-sm"
+                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
                                         required
                                     ></textarea>
                                 </div>
@@ -95,7 +95,7 @@ export default function GetInTouch() {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="bg-mainColor3 hover:bg-mainColor3/80 text-white font-medium py-3 px-10 uppercase tracking-wide transition-colors duration-200 text-sm inline-flex items-center rounded-sm"
+                                        className="bg-mainColorNormal hover:bg-mainColorDeep text-white font-medium py-3 px-10 uppercase tracking-wide transition-colors duration-200 text-sm inline-flex items-center rounded-sm"
                                     >
                                         Send Message
                                         <svg className="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -108,19 +108,24 @@ export default function GetInTouch() {
 
                         {/* 右侧联系信息 */}
                         <div className="bg-gray-50 p-8 lg:p-12 relative">
-                            <div className="h-full flex flex-col">
+
+                            {/* 装饰背景元素 - 设置最低的z-index */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-mainColorNormal/5 rounded-bl-full z-0"></div>
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-mainColorNormal/5 rounded-tr-full z-0"></div>
+
+                            <div className="h-full flex flex-col relative z-10">
                                 <h3 className="text-xl font-semibold text-gray-900 mb-8 flex items-center">
-                                    <svg className="w-5 h-5 text-mainColor3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <svg className="w-5 h-5 text-mainColorNormal mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     Contact Information
                                 </h3>
 
-                                <div className="space-y-8 mb-auto">
+                                <div className="space-y-8 mb-auto relative z-10">
                                     {/* 邮箱 */}
                                     <div className="flex">
-                                        <div className="w-12 h-12 rounded-full bg-mainColor3/10 flex items-center justify-center mr-4 shrink-0">
-                                            <svg className="w-6 h-6 text-mainColor3" fill="none" stroke="currentColor"
+                                        <div className="w-12 h-12 rounded-full bg-mainColorNormal/10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg className="w-6 h-6 text-mainColorNormal" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -128,14 +133,14 @@ export default function GetInTouch() {
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-sm font-medium uppercase mb-1">EMAIL</p>
-                                            <a href="mailto:something@tyler.com" className="text-gray-900 hover:text-mainColor3 font-medium text-lg transition-colors">something@tyler.com</a>
+                                            <a href="mailto:something@tyler.com" className="text-gray-900 hover:text-mainColorNormal font-medium text-lg transition-colors">something@tyler.com</a>
                                         </div>
                                     </div>
 
                                     {/* 电话 */}
                                     <div className="flex">
-                                        <div className="w-12 h-12 rounded-full bg-mainColor3/10 flex items-center justify-center mr-4 shrink-0">
-                                            <svg className="w-6 h-6 text-mainColor3" fill="none" stroke="currentColor"
+                                        <div className="w-12 h-12 rounded-full bg-mainColorNormal/10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg className="w-6 h-6 text-mainColorNormal" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
@@ -143,14 +148,14 @@ export default function GetInTouch() {
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-sm font-medium uppercase mb-1">PHONE NUMBER</p>
-                                            <a href="tel:202-555-0188" className="text-gray-900 hover:text-mainColor3 font-medium text-lg transition-colors">202-555-0188</a>
+                                            <a href="tel:202-555-0188" className="text-gray-900 hover:text-mainColorNormal font-medium text-lg transition-colors">202-555-0188</a>
                                         </div>
                                     </div>
 
                                     {/* 地址 */}
                                     <div className="flex">
-                                        <div className="w-12 h-12 rounded-full bg-mainColor3/10 flex items-center justify-center mr-4 shrink-0">
-                                            <svg className="w-6 h-6 text-mainColor3" fill="none" stroke="currentColor"
+                                        <div className="w-12 h-12 rounded-full bg-mainColorNormal/10 flex items-center justify-center mr-4 shrink-0">
+                                            <svg className="w-6 h-6 text-mainColorNormal" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -165,13 +170,13 @@ export default function GetInTouch() {
                                     </div>
                                 </div>
 
-                                {/* 社交媒体 */}
-                                <div className="mt-10 pt-8 border-t border-gray-200">
+                                {/* 社交媒体 - 确保最高的z-index */}
+                                <div className="mt-10 pt-8 border-t border-gray-200 relative z-20">
                                     <p className="text-gray-700 font-semibold mb-4">Follow Us:</p>
                                     <div className="flex space-x-4">
                                         {/* Facebook */}
                                         <a href="#"
-                                        className="w-10 h-10 rounded-full bg-mainColor3 text-white flex items-center justify-center hover:bg-mainColor3/80 transition-colors duration-300">
+                                        className="w-10 h-10 rounded-full bg-mainColorNormal text-white flex items-center justify-center hover:bg-mainColorNormal/80 transition-colors duration-300 relative z-20">
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -181,7 +186,7 @@ export default function GetInTouch() {
 
                                         {/* Twitter */}
                                         <a href="#"
-                                        className="w-10 h-10 rounded-full bg-mainColor3 text-white flex items-center justify-center hover:bg-mainColor3/80 transition-colors duration-300">
+                                        className="w-10 h-10 rounded-full bg-mainColorNormal text-white flex items-center justify-center hover:bg-mainColorNormal/80 transition-colors duration-300 relative z-20">
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -191,7 +196,7 @@ export default function GetInTouch() {
 
                                         {/* LinkedIn */}
                                         <a href="#"
-                                        className="w-10 h-10 rounded-full bg-mainColor3 text-white flex items-center justify-center hover:bg-mainColor3/80 transition-colors duration-300">
+                                        className="w-10 h-10 rounded-full bg-mainColorNormal text-white flex items-center justify-center hover:bg-mainColorNormal/80 transition-colors duration-300 relative z-20">
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -201,7 +206,7 @@ export default function GetInTouch() {
 
                                         {/* YouTube */}
                                         <a href="#"
-                                        className="w-10 h-10 rounded-full bg-mainColor3 text-white flex items-center justify-center hover:bg-mainColor3/80 transition-colors duration-300">
+                                        className="w-10 h-10 rounded-full bg-mainColorNormal text-white flex items-center justify-center hover:bg-mainColorNormal/80 transition-colors duration-300 relative z-20">
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -212,9 +217,6 @@ export default function GetInTouch() {
                                 </div>
                             </div>
 
-                            {/* 装饰背景元素 */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-mainColor3/5 rounded-bl-full z-0"></div>
-                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-mainColor3/5 rounded-tr-full z-0"></div>
                         </div>
                     </div>
                 </div>

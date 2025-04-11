@@ -85,7 +85,7 @@ export default function CaseList() {
                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
                                 {/* 分类标签 */}
-                                <div className="absolute top-4 right-4 bg-white text-mainColor3 text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                                <div className="absolute top-4 right-4 bg-white text-mainColorNormal text-xs font-bold px-3 py-1 rounded-full shadow-md">
                                     {caseItem.category}
                                 </div>
                             </div>
@@ -93,7 +93,7 @@ export default function CaseList() {
                             {/* 内容部分 */}
                             <div className="flex-1 bg-white p-6 flex flex-col">
                                 <div className="flex-1">
-                                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-mainColor3 transition-colors duration-300 line-clamp-2">
+                                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-mainColorNormal transition-colors duration-300 line-clamp-2">
                                         {caseItem.title}
                                     </h3>
                                     <p className="mt-2 text-sm text-gray-600 font-medium">
@@ -105,7 +105,7 @@ export default function CaseList() {
                                 </div>
                                 <div className="mt-4 flex items-center justify-between">
                                     <span className="text-xs text-gray-500">{caseItem.date}</span>
-                                    <span className="inline-flex items-center text-sm font-medium text-mainColor3 group-hover:text-mainColor3/80">
+                                    <span className="inline-flex items-center text-sm font-medium text-mainColorNormal group-hover:text-mainColorNormal/80">
                                         View Case Study
                                         <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

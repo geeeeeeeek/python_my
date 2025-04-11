@@ -45,7 +45,7 @@ export default function OurTeam() {
     return (
         <div className="">
             <div className="text-center mb-12">
-                <div className="h-1 w-16 bg-mainColor3 mx-auto mb-6"></div>
+                <div className="h-1 w-16 bg-mainColorNormal mx-auto mb-6"></div>
                 <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Our Team</h2>
                 <p className="text-gray-700 max-w-3xl mx-auto mb-4 px-4">
                     we are passionate about crafting high-quality audio devices that deliver exceptional sound
@@ -57,7 +57,7 @@ export default function OurTeam() {
             <div
                 className="max-w-[800px] mx-auto px-8 lg:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {teamMembers.map((member) => (
-                    <div key={member.id} className="bg-mainColor0 border-[1px] border-[#333]/16 rounded-md p-8 text-center">
+                    <div key={member.id} className="bg-mainColorLight border-[1px] border-[#333]/16 rounded-md p-8 text-center">
                         <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 relative">
                             <img
                                 src={member.image}
