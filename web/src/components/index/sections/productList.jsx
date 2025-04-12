@@ -1,6 +1,9 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import Pagination from '@/components/index/sections/pagination';
+import SearchBar from "@/components/index/sections/searchBar";
+import SearchResultBar from "@/components/index/sections/SearchResultBar";
 
 // 模拟产品数据
 const products = [
@@ -112,29 +115,18 @@ const categories = [
     { name: 'Women', count: 17 }
 ];
 
-export default async function ProductList() {
+export default function ProductList() {
+
+
     return (
-        <div className="bg-mainColorLight py-12 sm:py-16">
+        <div className="bg-white py-12 sm:py-16">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex flex-col md:flex-row gap-x-16">
                     {/* 左侧边栏 */}
                     <div className="md:w-1/4">
-                        {/* 搜索框 */}
-                        <div className="mb-8">
-                            <div className="flex">
-                                <input
-                                    type="text"
-                                    placeholder="Search products..."
-                                    className="w-full px-4 py-2 border border-gray-300 focus:outline-none"
-                                />
-                                <button className="bg-mainColorNormal text-white px-4 py-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
 
+                        {/* 搜索框 */}
+                        <SearchBar />
 
                         {/* 分类 */}
                         <div className="mb-8">
@@ -151,14 +143,17 @@ export default async function ProductList() {
                             </ul>
                         </div>
 
+                        {/* 分割线 */}
+                        {/*<div className="border-b border-gray-200 mb-8"></div>*/}
+
                         {/* 热门产品 */}
                         <div>
                             <h3 className="text-lg font-semibold mb-4">Our Best Sellers</h3>
                             <ul>
                                 {bestSellers.map((product) => (
-                                    <li key={product.id} className="flex items-center mb-4 pb-4 border-b border-gray-100">
-                                        <div className="w-16 h-16 flex-shrink-0 mr-4 bg-gray-100 relative">
-                                            <Link href={`/product/${product.id}`}>
+                                    <li key={product.id} className="mb-4 pb-4 border-b border-gray-100">
+                                        <Link href={`/product/${product.id}`} className="flex items-center">
+                                            <div className="w-16 h-16 flex-shrink-0 mr-4 bg-gray-100 relative">
                                                 <div className="w-full h-full relative">
                                                     <Image
                                                         src={product.image}
@@ -169,18 +164,18 @@ export default async function ProductList() {
                                                         unoptimized
                                                     />
                                                 </div>
-                                            </Link>
-                                        </div>
-                                        <div>
-                                            <h4 className="font-medium mb-1">{product.name}</h4>
-                                            <div className="text-mainColorNormal font-medium">
-                                                {product.maxPrice ? (
-                                                    <span>${product.price.toFixed(2)} – ${product.maxPrice.toFixed(2)}</span>
-                                                ) : (
-                                                    <span>${product.price.toFixed(2)}</span>
-                                                )}
                                             </div>
-                                        </div>
+                                            <div>
+                                                <h4 className="font-medium mb-1">{product.name}</h4>
+                                                <div className="text-mainColorNormal font-medium">
+                                                    {product.maxPrice ? (
+                                                        <span>${product.price.toFixed(2)} – ${product.maxPrice.toFixed(2)}</span>
+                                                    ) : (
+                                                        <span>${product.price.toFixed(2)}</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
@@ -188,7 +183,10 @@ export default async function ProductList() {
                     </div>
 
                     {/* 右侧产品列表 */}
-                    <div className="md:w-3/4 bg-white p-12">
+                    <div className="md:w-3/4 bg-white p-0">
+
+                        {/* 搜索结果提示 */}
+                        <SearchResultBar />
 
                         {/* 产品网格 */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
