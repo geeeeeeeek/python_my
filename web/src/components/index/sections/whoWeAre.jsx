@@ -2,7 +2,7 @@
 export default function WhoWeAre() {
   return (
       <div className="bg-mainColorLight p-8 lg:p-16">
-          <div className="flex flex-col lg:flex-row gap-8 ">
+          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 ">
               <div className="flex flex-col w-full lg:w-1/2 lg:h-[400px] bg-white p-8 lg:p-16">
                   <div className="h-1 w-16 bg-mainColorNormal mb-6"></div>
                   <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
