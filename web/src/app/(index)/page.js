@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <div className="flex flex-col">
 
-            <div  className="w-full h-[200px] md:h-[400px] lg:h-[600px]">
+            <div  className="w-full h-[200px] md:h-[300px] lg:h-[400px]">
                 <Carousel title=""/>
             </div>
 

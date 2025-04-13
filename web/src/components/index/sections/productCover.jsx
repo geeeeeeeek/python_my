@@ -24,7 +24,7 @@ const carouselImages = [
 ]
 
 
-const Carousel = ({title}) => {
+const ProductCover = ({title}) => {
     return (
         <div className="relative w-full h-full">
             <Swiper
@@ -36,11 +36,7 @@ const Carousel = ({title}) => {
                     nextEl: ".custom-next",
                     prevEl: ".custom-prev",
                 }}
-                pagination={{
-                    clickable: true, // 确保分页器可以点击
-                    bulletClass: 'my-custom-bullet', // 自定义类名
-                    bulletActiveClass: 'my-custom-bullet-active', // 自定义当前活跃圆点的类名
-                }}
+                pagination={{clickable: true}}
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,
@@ -62,7 +58,7 @@ const Carousel = ({title}) => {
                             }}
                         />
                         {/*蒙层*/}
-                        <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
                             <h1 className="text-white text-4xl font-bold tracking-wider">
                                 {title}
                             </h1>
@@ -75,7 +71,7 @@ const Carousel = ({title}) => {
                 carouselImages.length > 1 ? (
                     <>
                         <button
-                            className="custom-prev z-10 absolute top-1/2 left-0 transform -translate-y-1/2 text-white/30 hover:text-white/90 p-3 rounded-0  focus:outline-none transition duration-300">
+                            className="custom-prev z-10 absolute top-1/2 left-0 transform -translate-y-1/2 text-white/50 hover:text-white p-3 rounded-full focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -92,7 +88,7 @@ const Carousel = ({title}) => {
                             </svg>
                         </button>
                         <button
-                            className="custom-next z-10 absolute top-1/2 right-0 transform -translate-y-1/2 text-white/30 hover:text-white/90 p-3 rounded-0 focus:outline-none transition duration-300">
+                            className="custom-next z-10 absolute top-1/2 right-0 transform -translate-y-1/2 text-white/50 hover:text-white p-3 rounded-full  focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -117,4 +113,4 @@ const Carousel = ({title}) => {
     );
 };
 
-export default Carousel;
+export default ProductCover;
