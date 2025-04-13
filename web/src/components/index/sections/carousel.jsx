@@ -13,14 +13,14 @@ const carouselImages = [
         src: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=600&q=80",
         alt: "FAQ Image 1"
     },
-    // {
-    //     src: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=1000&q=80",
-    //     alt: "FAQ Image 2"
-    // },
-    // {
-    //     src: "https://images.unsplash.com/photo-1468779036391-52341f60b55d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8&auto=format&fit=crop&w=1920&h=600&q=80",
-    //     alt: "FAQ Image 3"
-    // }
+    {
+        src: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=1000&q=80",
+        alt: "FAQ Image 2"
+    },
+    {
+        src: "https://images.unsplash.com/photo-1468779036391-52341f60b55d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8&auto=format&fit=crop&w=1920&h=600&q=80",
+        alt: "FAQ Image 3"
+    }
 ]
 
 
@@ -71,7 +71,7 @@ const Carousel = ({title}) => {
                 carouselImages.length > 1 ? (
                     <>
                         <button
-                            className="custom-prev z-10 absolute top-1/2 left-4 transform -translate-y-1/2 bg-mainColorNormal/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-mainColorNormal focus:outline-none transition duration-300">
+                            className="custom-prev z-10 absolute top-1/2 left-0 transform -translate-y-1/2 bg-mainColorNormal/30 bg-opacity-75 text-white/30 p-3 rounded-0 hover:bg-mainColorNormal focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -88,7 +88,7 @@ const Carousel = ({title}) => {
                             </svg>
                         </button>
                         <button
-                            className="custom-next z-10 absolute top-1/2 right-4 transform -translate-y-1/2 bg-mainColorNormal/60 bg-opacity-75 text-white p-3 rounded-0 hover:bg-mainColorNormal focus:outline-none transition duration-300">
+                            className="custom-next z-10 absolute top-1/2 right-0 transform -translate-y-1/2 bg-mainColorNormal/30 bg-opacity-75 text-white/30 p-3 rounded-0 hover:bg-mainColorNormal focus:outline-none transition duration-300">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

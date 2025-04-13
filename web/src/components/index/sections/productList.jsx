@@ -110,12 +110,26 @@ const bestSellers = [
 
 // 模拟分类数据
 const categories = [
-    { name: 'Accessories', count: 7 },
-    { name: 'Men', count: 14 },
-    { name: 'Women', count: 17 }
+    { name: 'Accessories', count: 7, id:1 },
+    { name: 'Men', count: 14 , id:2},
+    { name: 'Women', count: 17, id:3 }
 ];
 
-export default function ProductList() {
+export default function ProductList({ categoryId, pageNumber,total, searchQuery }) {
+
+    // 构建基础链接前缀，不包含页码部分
+    let linkPrefix = '/product';
+
+    // 添加分类部分，如果存在
+    if (categoryId) {
+        linkPrefix += `/category/${categoryId}`;
+    }
+
+    // 添加页码路径前缀
+    linkPrefix += '/page';
+
+    // 如果有搜索查询，我们需要在每个分页链接中保持它
+    const searchSuffix = searchQuery ? `?s=${encodeURIComponent(searchQuery)}` : '';
 
 
     return (
@@ -134,7 +148,7 @@ export default function ProductList() {
                             <ul>
                                 {categories.map((category) => (
                                     <li key={category.name} className="flex justify-between items-center py-2">
-                                        <Link href="#" className="text-gray-600 hover:text-blue-600">
+                                        <Link href={"/product/category/"+category.id} className="text-gray-600 hover:text-blue-600">
                                             {category.name}
                                         </Link>
                                         <span className="text-gray-500">({category.count})</span>
@@ -229,7 +243,11 @@ export default function ProductList() {
 
                         {/* 分页 */}
                         <div className="mt-10 flex justify-center">
-                            <Pagination totalPages={2} currentPage={1} linkPrefix="/product" total={17} />
+                            <Pagination
+                                        currentPage={pageNumber}
+                                        linkPrefix={linkPrefix}
+                                        total={total}
+                                        searchSuffix={searchSuffix} />
                         </div>
                     </div>
                 </div>
