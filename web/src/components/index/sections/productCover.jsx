@@ -29,14 +29,16 @@ const ProductCover = ({title}) => {
         <div className="relative w-full h-full">
             <Swiper
                 className="w-full h-full"
-                modules={[Navigation, Autoplay, Pagination, EffectFade]}
+                modules={[Navigation, Autoplay, EffectFade]}
                 spaceBetween={30}
                 slidesPerView={1}
                 navigation={{
                     nextEl: ".custom-next",
                     prevEl: ".custom-prev",
                 }}
-                pagination={{clickable: true}}
+                pagination={{
+                    clickable: true,
+                }}
                 autoplay={{
                     delay: 5000,
                     disableOnInteraction: false,

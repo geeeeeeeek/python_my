@@ -1,9 +1,11 @@
-
+'use client'
 import Link from 'next/link';
 import Image from 'next/image';
 import Pagination from '@/components/index/sections/pagination';
 import SearchBar from "@/components/index/sections/searchBar";
 import SearchResultBar from "@/components/index/sections/SearchResultBar";
+import { useState } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
 // 模拟产品数据
 const products = [
@@ -108,14 +110,85 @@ const bestSellers = [
     }
 ];
 
-// 模拟分类数据
+// 更新分类数据，添加子分类
 const categories = [
-    { name: 'Accessories', count: 7, id:1 },
-    { name: 'Men', count: 14 , id:2},
-    { name: 'Women', count: 17, id:3 }
+    { 
+        name: 'Accessories', 
+        count: 7, 
+        id: 1,
+    },
+    { 
+        name: 'Men', 
+        count: 14, 
+        id: 2,
+        subCategories: [
+            { name: 'Shirts', count: 5, id: 21 },
+            { name: 'Jeans', count: 4, id: 22 },
+            { name: 'Jackets', count: 3, id: 23 },
+            { name: 'Shoes', count: 2, id: 24 }
+        ]
+    },
+    { 
+        name: 'Women', 
+        count: 17, 
+        id: 3,
+        subCategories: [
+            { name: 'Dresses', count: 6, id: 31 },
+            { name: 'Tops', count: 5, id: 32 },
+            { name: 'Skirts', count: 3, id: 33 },
+            { name: 'Shoes', count: 3, id: 34 }
+        ]
+    }
 ];
 
-export default function ProductList({ categoryId, pageNumber,total, searchQuery }) {
+// 分类组件
+function CategoryItem({ category, currentCategoryId }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const hasSubCategories = category.subCategories && category.subCategories.length > 0;
+    const isActive = currentCategoryId === category.id;
+    
+    return (
+        <div className="mb-2">
+            <div className="flex justify-between items-center py-2">
+                <Link 
+                    href={`/product/category/${category.id}`} 
+                    className={`${isActive ? 'text-mainColorNormal font-semibold' : 'text-gray-600'} hover:text-mainColorNormal flex-grow`}
+                >
+                    {category.name}
+                </Link>
+                {hasSubCategories && (
+                    <button 
+                        onClick={() => setIsOpen(!isOpen)} 
+                        className="p-1 text-gray-500 hover:text-mainColorNormal focus:outline-none"
+                    >
+                        <ChevronDownIcon 
+                            className={`h-5 w-5 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+                        />
+                    </button>
+                )}
+            </div>
+            
+            {/* 子分类 */}
+            {hasSubCategories && isOpen && (
+                <ul className="pl-6 mt-1 border-t border-gray-100">
+                    {category.subCategories.map((subCategory) => (
+                        <li key={subCategory.id} className="flex items-center py-2">
+                            <span className="text-xl text-gray-500 mr-2">•</span>
+                            <Link 
+                                href={`/product/category/${subCategory.id}`}
+                                className={`${currentCategoryId === subCategory.id ? 'text-mainColorNormal font-semibold' : 'text-gray-600'} hover:text-mainColorNormal`}
+                            >
+                                {subCategory.name}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+
+export default function ProductList({ categoryId, pageNumber, total, searchQuery }) {
 
     // 构建基础链接前缀，不包含页码部分
     let linkPrefix = '/product';
@@ -142,26 +215,22 @@ export default function ProductList({ categoryId, pageNumber,total, searchQuery 
                         {/* 搜索框 */}
                         <SearchBar />
 
-                        {/* 分类 */}
+                        {/* 分类 - 使用折叠面板 */}
                         <div className="mb-8">
                             <h3 className="text-lg font-semibold mb-4">Categories</h3>
-                            <ul>
+                            <div className="divide-y divide-gray-100">
                                 {categories.map((category) => (
-                                    <li key={category.name} className="flex justify-between items-center py-2">
-                                        <Link href={"/product/category/"+category.id} className="text-gray-600 hover:text-blue-600">
-                                            {category.name}
-                                        </Link>
-                                        <span className="text-gray-500">({category.count})</span>
-                                    </li>
+                                    <CategoryItem 
+                                        key={category.id} 
+                                        category={category} 
+                                        currentCategoryId={Number(categoryId)}
+                                    />
                                 ))}
-                            </ul>
+                            </div>
                         </div>
 
-                        {/* 分割线 */}
-                        {/*<div className="border-b border-gray-200 mb-8"></div>*/}
-
-                        {/* 热门产品 */}
-                        <div>
+                        {/* 热门产品 - 在md尺寸以下隐藏 */}
+                        <div className="hidden md:block">
                             <h3 className="text-lg font-semibold mb-4">Our Best Sellers</h3>
                             <ul>
                                 {bestSellers.map((product) => (

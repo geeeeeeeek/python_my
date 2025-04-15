@@ -21,7 +21,7 @@ export default function WhoWeAre() {
               <div className="w-full lg:w-1/2 h-[300px] lg:h-[400px]">
                   <div className="relative h-full  bg-gray-100 rounded-0 overflow-hidden">
                       <img
-                          src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=800&q=80"
+                          src="https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/slide-image-free-img.jpg"
                           alt="Our Team"
                           className="object-cover w-full h-full"
                       />

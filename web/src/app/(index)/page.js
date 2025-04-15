@@ -1,15 +1,34 @@
 import Carousel from "@/components/index/sections/carousel";
+import FeaturedProducts from "@/components/index/sections/featuredProducts";
+import Testimonials from "@/components/index/sections/testimonials";
+import WorkWithMe from "@/components/index/sections/workWithMe";
+import FacilityArea from "@/components/index/sections/facilityArea";
+import OurCategories from "@/components/index/sections/ourCategories";
+import AboutUs from "@/components/index/sections/aboutUs";
+import CustomersSay from "@/components/index/sections/customersSay";
+import FromTheBlog from "@/components/index/sections/fromTheBlog";
 
 export default function Home() {
 
     return (
         <div className="flex flex-col">
 
-            <div  className="w-full h-[200px] md:h-[300px] lg:h-[400px]">
+            <div  className="w-full h-[200px] md:h-[300px] lg:h-[500px]">
                 <Carousel title=""/>
             </div>
 
-            <div className="bg-purple-300 h-[1000px]"></div>
+
+            <FeaturedProducts />
+
+            <OurCategories />
+
+            <AboutUs />
+
+            <CustomersSay />
+
+            <FromTheBlog />
+
+            <FacilityArea />
 
         </div>
     );

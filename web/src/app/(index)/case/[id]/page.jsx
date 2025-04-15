@@ -97,6 +97,17 @@ export default async function Page({params}) {
     return (
         <div className="bg-mainColorLight py-12 sm:py-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                {/* 面包屑导航 */}
+                <div className="mb-8 hidden md:block">
+                    <div className="flex items-center text-sm text-gray-500">
+                        <Link href="/" className="hover:text-mainColorNormal transition-colors">Home</Link>
+                        <span className="mx-2">/</span>
+                        <Link href="/case" className="hover:text-mainColorNormal transition-colors">Case</Link>
+                        <span className="mx-2">/</span>
+                        <span className="text-mainColorNormal">{caseDetail.title}</span>
+                    </div>
+                </div>
+                
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* 左侧案例详情 */}
                     <div className="lg:col-span-2">

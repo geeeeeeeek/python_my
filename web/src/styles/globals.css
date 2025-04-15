@@ -77,15 +77,3 @@
     }
 }
 
-
-/* 自定义圆点样式 */
-.my-custom-bullet {
-    background-color: green;
-    width: 12px;
-    height: 12px;
-}
-
-/* 自定义当前激活圆点样式 */
-.my-custom-bullet-active {
-    background-color: yellow;
-}

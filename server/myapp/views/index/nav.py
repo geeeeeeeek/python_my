@@ -13,7 +13,7 @@ def get_category_data():
         parent_data = {
             'id': parent.id,
             'name': parent.title,
-            'href': '/product/' + str(parent.id),
+            'href': '/product/category/' + str(parent.id),
             'type': 'link',
             'subItems': []
         }
@@ -28,7 +28,7 @@ def get_category_data():
             child_data = {
                 'id': child.id,
                 'name': child.title,
-                'href': '/product/' + str(child.id),
+                'href': '/product/category/' + str(child.id),
                 'type': 'link',
                 'sort': child.sort
             }
@@ -67,7 +67,7 @@ def section(request):
 
         if basicSite.site_switch_about == '1':
             navigationItems.append({
-                "name": "About",
+                "name": "About Us",
                 "href": "/about",
                 "type": "link"
             })
@@ -103,7 +103,7 @@ def section(request):
 
         if basicSite.site_switch_contact == '1':
             navigationItems.append({
-                "name": "Contact",
+                "name": "Contact Us",
                 "href": "/contact",
                 "type": "link"
             })

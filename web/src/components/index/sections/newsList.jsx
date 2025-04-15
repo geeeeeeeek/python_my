@@ -159,10 +159,10 @@ const posts = [
 
 export default function NewsList({pageNumber=1, total}) {
     return (
-        <div className="bg-white py-8 sm:py-10">
+        <div className="bg-white py-8 sm:py-16">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div
-                    className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                    className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {posts.map((post) => (
                         <article key={post.id} className="flex flex-col items-start group relative">
                             <Link href={`/news/${post.id}`} className="absolute inset-0 z-10">
