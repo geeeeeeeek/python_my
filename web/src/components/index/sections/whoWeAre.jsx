@@ -10,13 +10,13 @@ export default function WhoWeAre() {
         "Join us on our journey to shape a smarter, more connected future. Learn more about what we do and how we can work together by exploring our website or contacting our team today."
 
   return (
-      <div className="bg-mainColorLight p-8 lg:p-16">
+      <div className="bg-mainColorLight py-8 lg:py-20">
           <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8  px-6 lg:px-8">
               <div className="flex flex-col w-full lg:w-1/2 p-0">
                   <div className="h-1 w-28 bg-gradient-to-r from-mainColorNormal to-mainColorNormal/50 mb-6"></div>
                   <h2 className="text-2xl lg:text-4xl font-bold text-gray-900 mb-6">Who We Are</h2>
                   <p id="content"
-                     className="flex-1 text-gray-700 mb-4 overflow-hidden relative ">
+                     className="flex-1 text-gray-700 mb-4 overflow-hidden relative">
                       {content}
                   </p>
               </div>

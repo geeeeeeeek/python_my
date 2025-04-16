@@ -6,7 +6,7 @@ const stats = [
 
 export default function OurMission() {
     return (
-        <div className="bg-white py-16">
+        <div className="bg-white py-20">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 px-6 lg:px-8">
                 {/* 左侧：图片和统计数据 */}
                 <div className="w-full lg:w-1/2 flex flex-col">

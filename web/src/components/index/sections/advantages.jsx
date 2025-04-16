@@ -81,7 +81,7 @@ export default function Advantages() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                     {advantagesList.map((advantage) => (
                         <div key={advantage.id} 
-                             className="bg-white rounded-lg shadow-md p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg border border-gray-200 ">
+                             className="bg-white rounded-lg p-8 flex flex-col items-center text-center transition-all duration-300 hover:shadow-lg border border-gray-200 ">
                             <div className="mb-5 rounded-full p-3 bg-mainColorLight/50 flex items-center justify-center border border-mainColorNormal/20">
                                 {advantage.icon}
                             </div>

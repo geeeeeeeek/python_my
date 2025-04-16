@@ -1,3 +1,5 @@
+import React from "react";
+
 const products = [
     {
         id: 1,
@@ -66,7 +68,7 @@ export default function RecommendedForYou() {
         <div className="bg-white py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <div className="h-1 w-16 bg-mainColorNormal mx-auto mb-6"></div>
+                    <div className="h-1 w-20 bg-gradient-to-r from-mainColorNormal to-mainColorNormal/50 mx-auto mb-6"></div>
                     <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Recommended For You</h2>
                     <p className="text-gray-700 max-w-3xl mx-auto mb-4 px-4">
                         Discover our most popular products that match your style and needs

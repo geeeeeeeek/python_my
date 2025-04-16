@@ -48,17 +48,6 @@ def section(request):
                 "href": "/news",
             })
 
-        if basicSite.site_switch_download == '1':
-            navigationItems.append({
-                "name": "Download",
-                "href": "/download",
-            })
-
-        if basicSite.site_switch_case == '1':
-            navigationItems.append({
-                "name": "Case",
-                "href": "/case",
-            })
 
         if basicSite.site_switch_faq == '1':
             navigationItems.append({

@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react';
+import React, {useState} from 'react';
 
 export default function GetInTouch() {
     const [formData, setFormData] = useState({
@@ -27,7 +27,7 @@ export default function GetInTouch() {
         <div className="bg-mainColorLight py-16 lg:py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <div className="h-1 w-16 bg-mainColorNormal mx-auto mb-6"></div>
+                    <div className="h-1 w-20 bg-gradient-to-r from-mainColorNormal to-mainColorNormal/50 mx-auto mb-6"></div>
                     <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-6">Get In Touch</h2>
                     <p className="text-gray-700 max-w-3xl mx-auto mb-4 px-4">
                         We're here to help and answer any question you might have
@@ -53,7 +53,7 @@ export default function GetInTouch() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         placeholder="Your Name"
-                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
+                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none transition-colors duration-200 rounded-sm"
                                         required
                                     />
                                 </div>
@@ -65,7 +65,7 @@ export default function GetInTouch() {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="Email Address"
-                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
+                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none transition-colors duration-200 rounded-sm"
                                             required
                                         />
                                     </div>
@@ -76,7 +76,7 @@ export default function GetInTouch() {
                                             value={formData.phone}
                                             onChange={handleChange}
                                             placeholder="Phone Number"
-                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
+                                            className="w-full px-4 py-3 border border-gray-200 focus:outline-none transition-colors duration-200 rounded-sm"
                                         />
                                     </div>
                                 </div>
@@ -87,7 +87,7 @@ export default function GetInTouch() {
                                         onChange={handleChange}
                                         placeholder="Your Message"
                                         rows="4"
-                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-mainColorNormal focus:border-transparent transition-colors duration-200 rounded-sm"
+                                        className="w-full px-4 py-3 border border-gray-200 focus:outline-none transition-colors duration-200 rounded-sm"
                                         required
                                     ></textarea>
                                 </div>
