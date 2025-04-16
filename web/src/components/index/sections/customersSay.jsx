@@ -22,11 +22,16 @@ export default function CustomersSay(){
     ];
 
     return(
-        <div className="w-full border-t-[1px] border-gray-200">
+        <div className="w-full bg-mainColorLight">
             <div className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
-                <h2 className="text-2xl md:text-4xl font-bold text-left mb-16">
-                    WHAT OUR CUSTOMERS SAY
-                </h2>
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        WHAT OUR CUSTOMERS SAY
+                    </h2>
+                    <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                        Hear what our valued customers have to say about their experience with our products.
+                    </p>
+                </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-16">
                     {testimonials.map((testimonial) => (

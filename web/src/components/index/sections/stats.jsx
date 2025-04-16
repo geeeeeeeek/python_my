@@ -27,13 +27,13 @@ export default function Stats() {
         <div className="py-12 md:py-16 lg:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* 大型图片区域 */}
-                <div className="mb-12 md:mb-16 overflow-hidden h-[300px] md:h-[550px]">
-                    <img 
-                        src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
-                        alt="Beachside cottage with white picket fence" 
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+                {/*<div className="mb-12 md:mb-16 overflow-hidden h-[300px] md:h-[550px]">*/}
+                {/*    <img */}
+                {/*        src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" */}
+                {/*        alt="Beachside cottage with white picket fence" */}
+                {/*        className="w-full h-full object-cover"*/}
+                {/*    />*/}
+                {/*</div>*/}
 
                 {/* 数据统计区域 */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">

@@ -33,7 +33,7 @@ export default async function Page({ params, searchParams }) {
         <div className="">
 
             <div className="w-full h-[200px]">
-                <Carousel title="Product"/>
+                <Carousel title="Products"/>
             </div>
 
             <ProductList

@@ -9,23 +9,35 @@ import {Navigation, Autoplay, Pagination, EffectFade} from "swiper/modules";
 
 
 const carouselImages = [
-    // {
-    //     src: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&h=600&q=80",
-    //     alt: "FAQ Image 1"
-    // },
     {
-        src: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=1000&q=80",
-        alt: "FAQ Image 2"
+        src: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+        alt: "现代时尚购物中心橱窗展示"
     },
     {
-        src: "https://images.unsplash.com/photo-1468779036391-52341f60b55d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8MHx8&auto=format&fit=crop&w=1920&h=600&q=80",
-        alt: "FAQ Image 3"
-    }
+        src: "https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&h=1000&q=80",
+        alt: "精品电子产品展示"
+    },
+    // {
+    //     src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&h=1000&q=80",
+    //     alt: "高端时尚服装系列"
+    // },
+    // {
+    //     src: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&h=1000&q=80",
+    //     alt: "家居装饰设计精品"
+    // },
+    // {
+    //     src: "https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&h=1000&q=80",
+    //     alt: "运动装备限时特惠"
+    // },
+    // {
+    //     src: "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&h=1000&q=80",
+    //     alt: "季节限定时尚产品"
+    // }
 ]
 
 
 const Carousel = ({title}) => {
-    const colorValue = "bg-mainColorNormal/70 hover:bg-mainColorNormal text-white/60 hover:text-white/80";
+    const colorValue = "bg-black/20 hover:bg-black/50 text-white hover:text-white border border-white/30 backdrop-blur-sm";
     return (
         <div className="relative w-full h-full bg-gray-300">
             <Swiper
@@ -76,14 +88,14 @@ const Carousel = ({title}) => {
                 carouselImages.length > 1 ? (
                     <>
                         <button
-                            className={`custom-prev z-10 absolute top-1/2 left-0 transform -translate-y-1/2 p-3 ${colorValue} rounded-0  focus:outline-none transition duration-300`}>
+                            className={`custom-prev z-10 absolute top-1/2 left-5 transform -translate-y-1/2 p-3 ${colorValue} rounded-full shadow-lg focus:outline-none transition-all duration-300 ease-in-out`}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="2"
                                 stroke="currentColor"
-                                className="w-4 h-4"
+                                className="w-5 h-5"
                             >
                                 <path
                                     strokeLinecap="round"
@@ -93,14 +105,14 @@ const Carousel = ({title}) => {
                             </svg>
                         </button>
                         <button
-                            className={`custom-next z-10 absolute top-1/2 right-0 transform -translate-y-1/2 p-3 ${colorValue}  rounded-0 focus:outline-none transition duration-300`}>
+                            className={`custom-next z-10 absolute top-1/2 right-5 transform -translate-y-1/2 p-3 ${colorValue} rounded-full shadow-lg focus:outline-none transition-all duration-300 ease-in-out`}>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="2"
                                 stroke="currentColor"
-                                className="w-4 h-4"
+                                className="w-5 h-5"
                             >
                                 <path
                                     strokeLinecap="round"

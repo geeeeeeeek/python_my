@@ -4,12 +4,12 @@ export default function WorkWithMe() {
             {/* 背景图片 */}
             <div className="absolute inset-0">
                 <img
-                    src="https://images.unsplash.com/photo-1439405326854-014607f694d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                    alt="Mountain Lake"
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+                    alt="国际商务会议"
                     className="w-full h-full object-cover"
                 />
                 {/* 深色遮罩 */}
-                <div className="absolute inset-0 bg-black/30"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/40"></div>
             </div>
 
             {/* 内容区域 */}
@@ -23,7 +23,7 @@ export default function WorkWithMe() {
                 </p>
                 <a
                     href="/contact"
-                    className="inline-block border-2 border-white hover:border-mainColorNormal text-white hover:bg-mainColorNormal px-8 py-3 transition-colors duration-300 text-lg"
+                    className="inline-block bg-transparent hover:bg-white border-2 border-white hover:border-white text-white hover:text-gray-800 px-8 py-3 transition-all duration-300 text-lg shadow-md hover:shadow-lg"
                 >
                     Get A Quote
                 </a>

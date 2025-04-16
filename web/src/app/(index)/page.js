@@ -6,14 +6,14 @@ import FacilityArea from "@/components/index/sections/facilityArea";
 import OurCategories from "@/components/index/sections/ourCategories";
 import AboutUs from "@/components/index/sections/aboutUs";
 import CustomersSay from "@/components/index/sections/customersSay";
-import FromTheBlog from "@/components/index/sections/fromTheBlog";
+import CompanyNews from "@/components/index/sections/companyNews";
 
 export default function Home() {
 
     return (
         <div className="flex flex-col">
 
-            <div  className="w-full h-[200px] md:h-[300px] lg:h-[500px]">
+            <div  className="w-full h-[200px] md:h-[300px] lg:h-[600px]">
                 <Carousel title=""/>
             </div>
 
@@ -26,7 +26,7 @@ export default function Home() {
 
             <CustomersSay />
 
-            <FromTheBlog />
+            <CompanyNews />
 
             <FacilityArea />
 

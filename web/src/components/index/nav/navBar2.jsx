@@ -1,12 +1,10 @@
 'use client'
-
+import Link from "next/link";
 import {useEffect, useState} from 'react'
 import {
     Dialog,
     DialogPanel,
     Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
 } from '@headlessui/react'
 import {
     Bars3Icon,
@@ -156,7 +154,7 @@ export default function NavBar({sectionData}) {
 
     return (
         <div>
-            {/* 顶部信息栏 - 添加渐变背景 */}
+            {/* 顶部信息栏  */}
             <div className="bg-mainColorNormal/70 text-white py-2 px-4">
                 <div className="mx-auto max-w-7xl flex justify-between items-center">
                     <div className="flex items-center space-x-4 text-sm">
@@ -231,14 +229,14 @@ export default function NavBar({sectionData}) {
                     className="h-20 mx-auto max-w-7xl flex items-stretch justify-between"
                 >
                     <div className="flex items-center lg:flex-1">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <Link href="/" className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <img
                                 alt=""
                                 src={`${process.env.NEXT_PUBLIC_BASE_URL}/upload/img/${sectionData.siteLogo}`}
                                 className="h-12 w-auto"
                             />
-                        </a>
+                        </Link>
                     </div>
                     <div className="flex lg:hidden">
                         <button

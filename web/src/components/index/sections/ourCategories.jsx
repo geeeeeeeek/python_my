@@ -54,7 +54,9 @@ export default function OurCategories() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Categories</h2>
-                    <div className="w-24 h-1 bg-mainColorNormal mx-auto"></div>
+                    <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                        Explore various categories with curated content designed just for you.
+                    </p>
                 </div>
                 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">

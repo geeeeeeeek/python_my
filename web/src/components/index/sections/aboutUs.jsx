@@ -8,7 +8,9 @@ export default function AboutUs() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Us</h2>
-                    <div className="w-24 h-1 bg-mainColorNormal mx-auto"></div>
+                    <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                        Learn about our mission, values, and dedicated team.
+                    </p>
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -25,11 +27,13 @@ export default function AboutUs() {
                     
                     {/* 右侧内容 */}
                     <div className="flex flex-col justify-center">
-                        <h3 className="text-2xl font-semibold text-gray-900 mb-4">Quality Products for Your Lifestyle</h3>
+                        <h3 className="text-2xl font-semibold text-gray-900 mb-4">
+                            Quality Products for Our Customers
+                        </h3>
                         <p className="text-gray-600 mb-6">
                             We are a premium retailer dedicated to providing high-quality products that enhance your everyday life. Since our founding in 2010, we've been passionate about curating collections that combine style, functionality, and durability.
-                        </p>
-                        <p className="text-gray-600 mb-6">
+                            <br />
+                            <br />
                             Our mission is to offer exceptional products that stand the test of time. We believe in sustainable practices, ethical sourcing, and creating long-lasting relationships with our customers.
                         </p>
                         
