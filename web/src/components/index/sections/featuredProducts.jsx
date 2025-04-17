@@ -7,54 +7,41 @@ const products = [
     {
         id: 1,
         name: 'DNK Yellow Shoes',
-        originalPrice: 150.00,
-        price: 120.00,
-        isOnSale: true,
         image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 2,
         name: 'DNK Blue Shoes',
-        price: 200.00,
-        maxPrice: 240.00,
         image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 3,
         name: 'Dark Brown Jeans',
-        price: 150.00,
         image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 4,
         name: 'Blue Denim Jeans',
-        price: 150.00,
         image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 5,
         name: 'Basic Gray Jeans',
-        price: 150.00,
         image: 'https://images.unsplash.com/photo-1555689502-c4b22d76c56f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 6,
         name: 'White Sneakers',
-        price: 180.00,
         image: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 7,
         name: 'Black Leather Jacket',
-        price: 250.00,
         image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     },
     {
         id: 8,
         name: 'Fashion Backpack',
-        originalPrice: 120.00,
-        price: 99.00,
-        isOnSale: true,
         image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80',
     }
 ];
@@ -73,28 +60,16 @@ function ProductCard({ product }) {
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                         />
+                        <div className="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-0 transition-all duration-300"></div>
                     </div>
                 </Link>
             </div>
 
-            <h3 className="text-lg font-medium mb-1">
+            <h3 className="text-lg font-medium text-center">
                 <Link href={`/product/${product.id}`} className="hover:text-mainColorNormal transition-colors">
                     {product.name}
                 </Link>
             </h3>
-            
-            <div className="mb-2">
-                {product.isOnSale ? (
-                    <div className="flex items-center">
-                        <span className="text-gray-400 line-through mr-2">${product.originalPrice.toFixed(2)}</span>
-                        <span className="font-bold text-mainColorNormal">${product.price.toFixed(2)}</span>
-                    </div>
-                ) : product.maxPrice ? (
-                    <span className="font-medium">${product.price.toFixed(2)} – ${product.maxPrice.toFixed(2)}</span>
-                ) : (
-                    <span className="font-medium">${product.price.toFixed(2)}</span>
-                )}
-            </div>
         </div>
     );
 }
@@ -110,7 +85,7 @@ export default function FeaturedProducts() {
                     </p>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
                     {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}

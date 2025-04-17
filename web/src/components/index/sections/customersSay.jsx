@@ -26,7 +26,7 @@ export default function CustomersSay(){
             <div className="py-16 md:py-24 px-4 max-w-7xl mx-auto">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        WHAT OUR CUSTOMERS SAY
+                        What Our Customers Say
                     </h2>
                     <p className="text-lg text-gray-500 max-w-3xl mx-auto">
                         Hear what our valued customers have to say about their experience with our products.

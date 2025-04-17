@@ -1,7 +1,5 @@
 'use client'
 
-
-
 const footerNavigation = {
     main: [
         { name: 'Home', href: '/' },
@@ -10,6 +8,14 @@ const footerNavigation = {
         { name: 'Blog', href: '/blog' },
         { name: 'Contact', href: '/contact' },
         { name: 'FAQ', href: '/faq' },
+    ],
+    categories: [
+        { name: 'Electronics', href: '/product/category/electronics' },
+        { name: 'Fashion', href: '/product/category/fashion' },
+        { name: 'Home Decor', href: '/product/category/home' },
+        { name: 'Sports Gear', href: '/product/category/sports' },
+        { name: 'Jewelry', href: '/product/category/jewelry' },
+        { name: 'Beauty Products', href: '/product/category/beauty' },
     ],
     social: [
         {
@@ -84,37 +90,14 @@ const footerNavigation = {
 export default function Footer() {
 
     return (
-        <div className="bg-white">
+        <div className="bg-white border-t border-gray-200">
             {/* Footer */}
-            <footer className="py-12 lg:py-20">
+            <footer className="py-12 lg:py-16">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    {/* Footer Top Section with Logo */}
-                    <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-                        <div className="mb-6 md:mb-0">
-                            <h2 className="text-2xl font-bold text-gray-900">Your Company</h2>
-                            <p className="mt-2 text-sm text-gray-600 max-w-md">
-                                We're dedicated to providing the best products and services to our customers.
-                                Contact us for any inquiries or support needs.
-                            </p>
-                        </div>
-                        <div className="flex flex-col items-end">
-                            <p className="text-sm text-gray-600 mb-1">Have questions?</p>
-                            <a href="/contact" className="bg-mainColorNormal hover:bg-mainColorNormal/80 text-white font-medium py-2 px-6 rounded-sm uppercase tracking-wide transition-colors duration-200 text-sm inline-flex items-center">
-                                Contact Us
-                                <svg className="ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-
-                    {/* Divider */}
-                    <div className="border-t border-gray-200 mb-10"></div>
-
                     {/* Navigation Links */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
                                 Navigation
                             </h3>
                             <ul className="space-y-2">
@@ -131,7 +114,24 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                                Product Categories
+                            </h3>
+                            <ul className="space-y-2">
+                                {footerNavigation.categories.map((item) => (
+                                    <li key={item.name}>
+                                        <a href={item.href} className="text-gray-600 hover:text-mainColorNormal transition-colors flex items-center">
+                                            <svg className="w-3 h-3 text-mainColorNormal mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                            </svg>
+                                            {item.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
                                 Contact
                             </h3>
                             <ul className="space-y-3">
@@ -149,7 +149,7 @@ export default function Footer() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                                         </svg>
                                     </div>
-                                    <span className="text-gray-600">+1 (555) 123-4567</span>
+                                    <span className="text-gray-600">+86 10 8888 8888</span>
                                 </li>
                                 <li className="flex items-start">
                                     <div className="text-mainColorNormal mr-2 mt-1">
@@ -158,39 +158,17 @@ export default function Footer() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         </svg>
                                     </div>
-                                    <span className="text-gray-600">123 Main Street, Suzhou City, Jiangsu Province, China</span>
+                                    <span className="text-gray-600">88 Zhongguancun Science Park, Haidian District, Beijing, China</span>
                                 </li>
                             </ul>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                                Newsletter
-                            </h3>
-                            <p className="text-gray-600 mb-4 text-sm">Subscribe to our newsletter for updates and offers.</p>
-                            <form className="flex">
-                                <input
-                                    type="email"
-                                    placeholder="Your Email"
-                                    className="w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-mainColorNormal focus:border-mainColorNormal rounded-l-sm"
-                                    required
-                                />
-                                <button
-                                    type="submit"
-                                    className="bg-mainColorNormal hover:bg-mainColorNormal/80 text-white font-medium py-2 px-4 transition-colors duration-200 rounded-r-sm"
-                                >
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                                    </svg>
-                                </button>
-                            </form>
                         </div>
                     </div>
 
                     {/* Social Icons */}
                     <div className="flex flex-col sm:flex-row justify-between items-center border-t border-gray-200 pt-8">
                         <div className="flex flex-col text-sm text-gray-600 mb-4 sm:mb-0">
-                            <p>&copy; {new Date().getFullYear()} Beijing Sky Tech Company, Inc. All rights reserved.</p>
-                            <p className="mt-1">Powered by <a href="https://fktool.com" target="_blank" className="text-mainColorNormal hover:underline">FK</a></p>
+                            <p>&copy; {new Date().getFullYear()} Beijing Cloud Technology Co., Ltd. All rights reserved.</p>
+                            <p className="mt-1">Powered by <a href="https://fktool.com" target="_blank" rel="noopener noreferrer" className="text-mainColorNormal hover:underline">FK</a></p>
                         </div>
                         <div className="flex flex-wrap justify-center gap-4">
                             {footerNavigation.social.map((item) => (

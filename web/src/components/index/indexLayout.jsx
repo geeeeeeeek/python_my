@@ -1,5 +1,5 @@
 import NavBar from "@/components/index/nav/navBar2";
-import Footer from "@/components/index/footer/footer1";
+import Footer from "@/components/index/footer/footer2";
 
 import ScrollBar from "@/components/index/sections/scrollBar";
 import api from "@/utils/axiosApi";
