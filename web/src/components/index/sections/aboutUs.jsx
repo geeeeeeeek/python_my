@@ -28,9 +28,10 @@ export default function AboutUs() {
                     {/* 右侧内容 */}
                     <div className="flex flex-col justify-center">
                         <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                            Quality Products for Our Customers
+                            Beijing Cloud Technology Co., Ltd
                         </h3>
                         <p className="text-gray-600 mb-6">
+                            We are a premium retailer dedicated to providing high-quality products that enhance your everyday life. Since our founding in 2010, we've been passionate about curating collections that combine style, functionality, and durability.
                             We are a premium retailer dedicated to providing high-quality products that enhance your everyday life. Since our founding in 2010, we've been passionate about curating collections that combine style, functionality, and durability.
                             <br />
                             <br />

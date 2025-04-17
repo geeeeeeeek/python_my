@@ -90,7 +90,7 @@ const Carousel = ({title}) => {
                         />
 
                         {/*蒙层*/}
-                        <div className="absolute inset-0 bg-black/10 flex items-center justify-center">
+                        <div className="absolute inset-0 bg-mainColorNormal/5 flex items-center justify-center">
                             <h1 className="text-white text-4xl font-bold tracking-wider">
                                 {title}
                             </h1>

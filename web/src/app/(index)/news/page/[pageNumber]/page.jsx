@@ -1,5 +1,5 @@
-import Carousel from "@/components/index/sections/carousel";
 import NewsList from "@/components/index/sections/newsList";
+import Banner from "@/components/index/sections/banner";
 
 
 export default function Page({params}) {
@@ -10,7 +10,7 @@ export default function Page({params}) {
         <div className="bg-mainColorLight">
 
             <div  className="w-full h-[200px]">
-                <Carousel title="News"/>
+                <Banner title="News" imageUrl=""/>
             </div>
 
             <NewsList pageNumber={pageNumber} total={100} />

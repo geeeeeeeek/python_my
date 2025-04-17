@@ -39,9 +39,9 @@ export default function ScrollBar() {
             <button
                 onClick={scrollToTop}
                 aria-label="Scroll to top"
-                className="flex items-center justify-center size-10 bg-mainColorNormal text-white shadow-md hover:bg-mainColorNormal/80 transition-colors"
+                className="flex items-center justify-center size-8 bg-mainColorNormal text-white rounded-[2px] shadow-md hover:bg-mainColorNormal/80 transition-colors"
             >
-                <ChevronUp className="w-5 h-5" />
+                <ChevronUp className="w-4 h-4" />
             </button>
         </div>
     )

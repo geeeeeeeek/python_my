@@ -1,4 +1,4 @@
-'use client'
+
 
 const footerNavigation = {
     main: [
@@ -90,14 +90,14 @@ const footerNavigation = {
 export default function Footer() {
 
     return (
-        <div className="bg-white border-t border-gray-200">
+        <div className="bg-white">
+            <div className="w-full h-[1px] bg-gray-200"></div>
             {/* Footer */}
             <footer className="py-12 lg:py-16">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    {/* Navigation Links */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2 ">
                                 Navigation
                             </h3>
                             <ul className="space-y-2">
@@ -114,7 +114,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2">
                                 Product Categories
                             </h3>
                             <ul className="space-y-2">
@@ -131,7 +131,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2 pb-2">
                                 Contact
                             </h3>
                             <ul className="space-y-3">
@@ -166,13 +166,13 @@ export default function Footer() {
 
                     {/* Social Icons */}
                     <div className="flex flex-col sm:flex-row justify-between items-center border-t border-gray-200 pt-8">
-                        <div className="flex flex-col text-sm text-gray-600 mb-4 sm:mb-0">
+                        <div className="flex flex-col text-sm text-gray-500 mb-4 sm:mb-0">
                             <p>&copy; {new Date().getFullYear()} Beijing Cloud Technology Co., Ltd. All rights reserved.</p>
-                            <p className="mt-1">Powered by <a href="https://fktool.com" target="_blank" rel="noopener noreferrer" className="text-mainColorNormal hover:underline">FK</a></p>
+                            <p className="mt-1">Powered by <a href="https://fktool.com" target="_blank" rel="noopener noreferrer" className="text-mainColorNormal hover:text-mainColorDeep">FK</a></p>
                         </div>
                         <div className="flex flex-wrap justify-center gap-4">
                             {footerNavigation.social.map((item) => (
-                                <a key={item.name} href={item.href} className="w-8 h-8 rounded-full bg-mainColorNormal text-white flex items-center justify-center hover:bg-mainColorNormal/80 transition-colors duration-300">
+                                <a key={item.name} href={item.href} className="w-8 h-8 rounded-full bg-mainColorLight text-mainColorNormal hover:bg-mainColorNormal hover:text-white flex items-center justify-center transition-colors duration-300">
                                     <span className="sr-only">{item.name}</span>
                                     <item.icon className="w-4 h-4" aria-hidden="true" />
                                 </a>

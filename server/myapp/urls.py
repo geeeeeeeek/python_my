@@ -71,4 +71,5 @@ urlpatterns = [
     path('index/nav/section', views.index.nav.section),
     path('index/footer/section', views.index.footer.section),
     path('index/inquiry/create', views.index.inquiry.create),
+    path('index/contact/section', views.index.contact.section),
 ]

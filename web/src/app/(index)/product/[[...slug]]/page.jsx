@@ -1,6 +1,6 @@
 import ProductList from "@/components/index/sections/productList";
-import Carousel from "@/components/index/sections/carousel";
 import FacilityArea from "@/components/index/sections/facilityArea";
+import Banner from "@/components/index/sections/banner";
 
 export default async function Page({ params, searchParams }) {
     // 解析slug参数
@@ -33,7 +33,7 @@ export default async function Page({ params, searchParams }) {
         <div className="">
 
             <div className="w-full h-[200px]">
-                <Carousel title="Products"/>
+                <Banner title="Products" imageUrl=""/>
             </div>
 
             <ProductList

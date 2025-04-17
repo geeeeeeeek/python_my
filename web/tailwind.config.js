@@ -53,9 +53,13 @@ module.exports = {
 			// 自定义颜色
 			adminPrimaryColor: '#3399cc',
 			// 主题色
-			mainColorLight: 'hsl(202, 100%, 97%)',
-			mainColorNormal: 'hsl(216, 100%, 65%)',
-			mainColorDeep: 'hsl(216, 100%, 60%)',
+			// mainColorLight: 'hsl(202, 100%, 97%)',
+			// mainColorNormal: 'hsl(216, 100%, 65%)',
+			// mainColorDeep: 'hsl(216, 100%, 60%)',
+			mainColorLight: 'hsl(203, 100%, 95%)',
+			mainColorNormal: 'hsl(203, 100%, 42%)',
+			mainColorDeep: 'hsl(203, 100%, 35%)',
+
   		},
   		fontFamily: {},
   		borderRadius: {

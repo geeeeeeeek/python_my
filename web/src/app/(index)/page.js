@@ -1,7 +1,5 @@
 import Carousel from "@/components/index/sections/carousel";
 import FeaturedProducts from "@/components/index/sections/featuredProducts";
-import Testimonials from "@/components/index/sections/testimonials";
-import WorkWithMe from "@/components/index/sections/workWithMe";
 import FacilityArea from "@/components/index/sections/facilityArea";
 import OurCategories from "@/components/index/sections/ourCategories";
 import AboutUs from "@/components/index/sections/aboutUs";

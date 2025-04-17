@@ -12,7 +12,7 @@ const nextConfig = {
         NEXT_PUBLIC_CLOUDINARY_PRESET_NAME: "fi0lxkc1",
     },
     images: {
-        domains: ['images.unsplash.com'],
+        domains: ['images.unsplash.com', '127.0.0.1'],
     },
 };
 

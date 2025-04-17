@@ -16,6 +16,7 @@ import TalkToUs from "@/components/index/sections/talkToUs";
 import WorkWithMe from "@/components/index/sections/workWithMe";
 import RecommendedForYou from "@/components/index/sections/recommendedForYou";
 import FacilityArea from "@/components/index/sections/facilityArea";
+import Banner from "@/components/index/sections/banner";
 
 
 
@@ -28,7 +29,7 @@ export default function Page() {
         <div className="">
 
             <div  className="w-full h-[200px]">
-                <Carousel title="Test"/>
+                <Banner title="test" imageUrl=""/>
             </div>
 
 
