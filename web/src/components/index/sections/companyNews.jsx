@@ -60,29 +60,29 @@ export default function CompanyNews() {
                   Learn how to grow your business with our expert advice.
               </p>
           </div>
-          <div className="mx-auto mt-16 grid container auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <div className="mx-auto mt-16 grid auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
               {blogPosts.map((post) => (
                   <div
                       key={post.id}
-                      className="relative isolate flex flex-col justify-end overflow-hidden bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80 transform transition-transform duration-300 hover:-translate-y-2"
+                      className="relative isolate flex flex-col justify-end overflow-hidden rounded-xl bg-gray-900 aspect-square transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl"
                   >
                       <div className="absolute inset-0 -z-10 overflow-hidden">
                           <img 
                               src={post.imageUrl} 
                               alt={post.title}
-                              className="absolute inset-0 size-full object-cover transition-transform duration-500 hover:scale-105" 
+                              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105" 
                           />
                       </div>
                       
                       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40" />
-                      <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
+                      <div className="absolute inset-0 -z-10 rounded-xl ring-1 ring-inset ring-gray-900/10" />
 
-                      <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm/6 text-gray-300">
+                      <div className="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300 px-6 pb-2">
                           <time dateTime={post.datetime} className="mr-8">
                               {post.date}
                           </time>
                       </div>
-                      <h3 className="mt-3 text-lg/6 font-semibold text-white">
+                      <h3 className="mt-3 text-lg leading-6 font-semibold text-white px-6 pb-6">
                           <a href={post.href}>
                               <span className="absolute inset-0" />
                               {post.title}

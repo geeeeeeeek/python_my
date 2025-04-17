@@ -64,11 +64,6 @@ function ProductCard({ product }) {
     return (
         <div className="group">
             <div className="relative mb-4 overflow-hidden bg-gray-100 aspect-square">
-                {product.isOnSale && (
-                    <div className="absolute top-2 left-2 z-10 bg-white text-gray-800 font-medium py-1 px-3 rounded-full shadow-sm">
-                        Sale!
-                    </div>
-                )}
                 <Link href={`/product/${product.id}`}>
                     <div className="relative w-full h-full transition-transform duration-300 group-hover:scale-105">
                         <Image
